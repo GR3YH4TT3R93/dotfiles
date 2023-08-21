@@ -111,9 +111,9 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
+export LANG=UTF-8
+export LC_ALL=UTF-8
+export LC_CTYPE=UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -148,3 +148,5 @@ fi
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main brackets pattern cursor)
