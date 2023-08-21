@@ -28,8 +28,9 @@ alias tdel='task delete' # Delete Task from Taskwarrior
 alias tl='task entry.after:now-1wk list' # List Tasks created in the last week
 alias tla='task list' # List all Tasks
 alias b='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME'
-alias ba='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME -a'
+alias ba='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME add'
 alias bam='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME commit -am'
 alias bs='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME status'
 alias bad='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME diff'
-
+alias bpu='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push'
+alias bpl='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME pull'
