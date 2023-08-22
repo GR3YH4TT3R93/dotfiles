@@ -1,0 +1,28 @@
+{
+  "name": "@johnsoncodehk/pug-beautify",
+  "main": "index",
+  "version": "0.2.2",
+  "description": "Simple Pug(Jade) Beautify",
+  "keywords": [
+    "jade",
+    "pug",
+    "beautify",
+    "formatter"
+  ],
+  "scripts": {
+    "test": "./node_modules/.bin/mocha ./test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnsoncodehk/pug-beautify.git"
+  },
+  "author": {
+    "name": "Marani Matias Ezequiel",
+    "email": "maranimatias@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^3.4.2"
+  }
+}

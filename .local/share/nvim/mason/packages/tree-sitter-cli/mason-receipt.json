@@ -1,0 +1,1 @@
+{"metrics":{"start_time":1692453664371,"completion_time":1692453665614},"secondary_sources":[],"schema_version":"1.1","name":"tree-sitter-cli","links":{"opt":{},"share":{},"bin":{"tree-sitter":"tree-sitter-linux-arm64"}},"primary_source":{"type":"registry+v1","id":"pkg:github\/tree-sitter\/tree-sitter@v0.20.8"}}

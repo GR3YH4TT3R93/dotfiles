@@ -1,0 +1,3 @@
+[console_scripts]
+nginx-language-server=nginx_language_server.cli:cli
+

@@ -1,0 +1,1 @@
+{"schema_version":"1.1","name":"prettierd","primary_source":{"type":"registry+v1","id":"pkg:npm\/%40fsouza\/prettierd@0.24.2"},"links":{"bin":{"prettierd":"node_modules\/.bin\/prettierd"},"opt":{},"share":{}},"metrics":{"start_time":1692019183657,"completion_time":1692019201632},"secondary_sources":[]}
