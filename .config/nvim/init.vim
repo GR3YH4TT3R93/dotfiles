@@ -44,7 +44,10 @@ function! CheckBackspace() abort
 endfunction
 
 let g:coc_snippet_next = '<CR>'
-  " Control-W Save
+let g:python3_host_prog = '/data/data/com.termux/files/usr/bin/python3'
+let g:loaded_perl_provider = 0
+
+" Control-W Save
   nnoremap <C-W> :w<CR>
   vnoremap <C-W> <esc>:w<CR>
   "imap <C-W> <esc>:w<CR>
