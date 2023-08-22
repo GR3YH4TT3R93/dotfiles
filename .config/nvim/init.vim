@@ -43,7 +43,7 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_next = '<CR>'
   " Control-W Save
   nnoremap <C-W> :w<CR>
   vnoremap <C-W> <esc>:w<CR>
