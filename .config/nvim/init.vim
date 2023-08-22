@@ -32,10 +32,10 @@ call plug#end()
   vnoremap <C-x> :!termux-clipboard-set<CR>
   vnoremap <C-c> :w !termux-clipboard-set<CR><CR>
   inoremap <C-v> <ESC>:read !termux-clipboard-get<CR>
-  inoremap <silent><expr> <CR>
+  inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ CheckBackspace() ? "\<CR>" :
+      \ CheckBackspace() ? "\<TAB>" :
       \ coc#refresh()
 
 function! CheckBackspace() abort
@@ -43,7 +43,7 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-let g:coc_snippet_next = '<CR>'
+let g:coc_snippet_next = '<TAB>'
 let g:python3_host_prog = '/data/data/com.termux/files/usr/bin/python3'
 let g:loaded_perl_provider = 0
 
