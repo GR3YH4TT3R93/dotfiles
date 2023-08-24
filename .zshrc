@@ -86,6 +86,7 @@ plugins=(
 	git-auto-fetch
 	git-flow-completion
 	gitfast
+	git-prompt
 	ionic
 	last-working-dir
 	magic-enter
@@ -100,7 +101,9 @@ plugins=(
 	zsh-syntax-highlighting
 	)
 
+
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+fpath+=~/.cargo/bin
 source $ZSH/oh-my-zsh.sh
 
 # User configuration

@@ -314,7 +314,7 @@
       "LSP"
     ],
     "source": {
-      "id": "pkg:github/forcedotcom/salesforcedx-vscode@v58.11.0",
+      "id": "pkg:github/forcedotcom/salesforcedx-vscode@v58.13.1",
       "asset": {
         "file": "salesforcedx-vscode-apex-{{ version | strip_prefix \"v\" }}.vsix"
       }
@@ -461,7 +461,7 @@
       "LSP"
     ],
     "source": {
-      "id": "pkg:npm/%40astrojs/language-server@2.2.0",
+      "id": "pkg:npm/%40astrojs/language-server@2.3.0",
       "extra_packages": [
         "typescript"
       ]
@@ -2639,7 +2639,7 @@
       "LSP"
     ],
     "source": {
-      "id": "pkg:github/erg-lang/erg@v0.6.18",
+      "id": "pkg:github/erg-lang/erg@v0.6.19",
       "asset": [
         {
           "target": "darwin_x64",
@@ -3867,7 +3867,7 @@
       "LSP"
     ],
     "source": {
-      "id": "pkg:generic/haskell/haskell-language-server@2.0.0.0",
+      "id": "pkg:generic/haskell/haskell-language-server@2.1.0.0",
       "build": [
         {
           "target": "unix",
@@ -3880,9 +3880,10 @@
             "wrapper": "bin/haskell-language-server-wrapper",
             "server_8_10_7": "bin/haskell-language-server-8.10.7",
             "server_9_0_2": "bin/haskell-language-server-9.0.2",
-            "server_9_2_7": "bin/haskell-language-server-9.2.7",
+            "server_9_2_8": "bin/haskell-language-server-9.2.8",
             "server_9_4_5": "bin/haskell-language-server-9.4.5",
-            "server_9_6_1": "bin/haskell-language-server-9.6.1"
+            "server_9_4_6": "bin/haskell-language-server-9.4.6",
+            "server_9_6_2": "bin/haskell-language-server-9.6.2"
           }
         },
         {
@@ -3896,9 +3897,10 @@
             "wrapper": "haskell-language-server-wrapper.exe",
             "server_8_10_7": "haskell-language-server-8.10.7.exe",
             "server_9_0_2": "haskell-language-server-9.0.2.exe",
-            "server_9_2_7": "haskell-language-server-9.2.7.exe",
+            "server_9_2_8": "haskell-language-server-9.2.8.exe",
             "server_9_4_5": "haskell-language-server-9.4.5.exe",
-            "server_9_6_1": "haskell-language-server-9.6.1.exe"
+            "server_9_4_6": "haskell-language-server-9.4.6.exe",
+            "server_9_6_2": "haskell-language-server-9.6.2.exe"
           }
         }
       ]
@@ -3907,9 +3909,10 @@
       "haskell-language-server-wrapper": "{{source.build.bin.wrapper}}",
       "haskell-language-server-8.10.7": "{{source.build.bin.server_8_10_7}}",
       "haskell-language-server-9.0.2": "{{ source.build.bin.server_9_0_2 | take_if_not(is_platform('darwin_arm64')) }}",
-      "haskell-language-server-9.2.7": "{{source.build.bin.server_9_2_7}}",
+      "haskell-language-server-9.2.8": "{{source.build.bin.server_9_2_8}}",
       "haskell-language-server-9.4.5": "{{source.build.bin.server_9_4_5}}",
-      "haskell-language-server-9.6.1": "{{source.build.bin.server_9_6_1}}"
+      "haskell-language-server-9.4.6": "{{source.build.bin.server_9_4_6}}",
+      "haskell-language-server-9.6.2": "{{source.build.bin.server_9_6_2}}"
     }
   },
   {
@@ -4613,7 +4616,7 @@
       "Linter"
     ],
     "source": {
-      "id": "pkg:github/kcl-lang/kcl@v0.5.4",
+      "id": "pkg:github/kcl-lang/kcl@v0.5.5",
       "asset": [
         {
           "target": "darwin_x64",
@@ -5588,7 +5591,7 @@
       "LSP"
     ],
     "source": {
-      "id": "pkg:github/elixir-tools/next-ls@v0.10.2",
+      "id": "pkg:github/elixir-tools/next-ls@v0.10.3",
       "asset": [
         {
           "target": "darwin_x64",
@@ -6329,7 +6332,7 @@
       "Linter"
     ],
     "source": {
-      "id": "pkg:github/phpstan/phpstan@1.10.29",
+      "id": "pkg:github/phpstan/phpstan@1.10.30",
       "asset": {
         "file": "phpstan.phar"
       }
@@ -6504,7 +6507,7 @@
       "LSP"
     ],
     "source": {
-      "id": "pkg:npm/%40prisma/language-server@5.1.0"
+      "id": "pkg:npm/%40prisma/language-server@5.2.0"
     },
     "bin": {
       "prisma-language-server": "npm:prisma-language-server"
@@ -6910,7 +6913,7 @@
       "LSP"
     ],
     "source": {
-      "id": "pkg:cargo/pylyzer@0.0.40"
+      "id": "pkg:cargo/pylyzer@0.0.41"
     },
     "bin": {
       "pylyzer": "cargo:pylyzer"
@@ -6991,7 +6994,7 @@
       "LSP"
     ],
     "source": {
-      "id": "pkg:npm/pyright@1.1.323"
+      "id": "pkg:npm/pyright@1.1.324"
     },
     "schemas": {
       "lsp": "vscode:https://raw.githubusercontent.com/microsoft/pyright/{{version}}/packages/vscode-pyright/package.json"
@@ -7484,7 +7487,7 @@
       "Formatter"
     ],
     "source": {
-      "id": "pkg:github/fables-tales/rubyfmt@v0.9.5",
+      "id": "pkg:github/fables-tales/rubyfmt@v0.10.0",
       "asset": [
         {
           "target": [
@@ -8390,7 +8393,7 @@
       "LSP"
     ],
     "source": {
-      "id": "pkg:gem/sorbet@0.5.10981",
+      "id": "pkg:gem/sorbet@0.5.10984",
       "supported_platforms": [
         "unix"
       ]
@@ -9503,7 +9506,7 @@
       "Linter"
     ],
     "source": {
-      "id": "pkg:github/daveshanley/vacuum@v0.3.5",
+      "id": "pkg:github/daveshanley/vacuum@v0.3.6",
       "asset": [
         {
           "target": "darwin_arm64",
@@ -9895,7 +9898,7 @@
       "LSP"
     ],
     "source": {
-      "id": "pkg:github/forcedotcom/salesforcedx-vscode@v58.11.0",
+      "id": "pkg:github/forcedotcom/salesforcedx-vscode@v58.13.1",
       "asset": {
         "file": "salesforcedx-vscode-visualforce-{{ version | strip_prefix \"v\" }}.vsix"
       }

@@ -1,3 +1,1 @@
-/data/data/com.termux/files/home/.motd/init.sh
-
-export TODOTXT_DEFAULT_ACTION=ls
+/data/data/com.termux/files/usr/etc/motd/init.sh
