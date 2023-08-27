@@ -80,14 +80,6 @@ let g:python3_host_prog = '/data/data/com.termux/files/usr/bin/python3'
 let g:loaded_perl_provider = 0
 "}}}
 
-" Find files using Telescope command-line sugar.{{{
-let mapleader= "." "map leader to space
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-"}}}
-
 " Cut, Copy Paste{{{ 
   vnoremap <C-x> :!termux-clipboard-set<CR>
   vnoremap <C-c> :w !termux-clipboard-set<CR><CR>
