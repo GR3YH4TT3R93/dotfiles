@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "@vue/language-server": "^1.8.8",
-    "typescript": "^5.1.6"
+    "typescript": "^5.2.2"
   }
 }

@@ -1,53 +1,100 @@
-"Plugins
+"Plugins {{{
+"
 call plug#begin()
 
-   Plug 'one-dark/onedark.nvim'
+   Plug 'navarasu/onedark.nvim'
    Plug 'sheerun/vim-polyglot'
    Plug 'preservim/nerdtree'
+   Plug 'ryanoasis/vim-devicons'
+   Plug 'tiagofumo/vim-nerdtree-syntax-highlight' 
    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+   Plug 'honza/vim-snippets'
    Plug 'frazrepo/vim-rainbow'
-   Plug 'itchyny/lightline.vim'
-   Plug 'nvimdev/dashboard-nvim'
-   Plug 'kshenoy/vim-signature' 
+   Plug 'vim-airline/vim-airline'
+   Plug 'vim-airline/vim-airline-themes'
+   Plug 'lukas-reineke/indent-blankline.nvim'
+   Plug 'yamatsum/nvim-cursorline'
+   Plug 'm4xshen/autoclose.nvim'
+"   Plug 'kshenoy/vim-signature' 
    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
    Plug 'nvim-tree/nvim-web-devicons'
-   Plug 'nvim-lua/plenary.nvim'
-   Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
-   Plug 'nvim-telescope/telescope-file-browser.nvim'
    " LSP Support
-   Plug 'neovim/nvim-lspconfig'             " Required
-   Plug 'williamboman/mason.nvim',          " Optional
-   Plug 'williamboman/mason-lspconfig.nvim' " Optional
+"   Plug 'neovim/nvim-lspconfig'             " Required
+"   Plug 'williamboman/mason.nvim',          " Optional
+"   Plug 'williamboman/mason-lspconfig.nvim' " Optional
    
    " Autocompletion
-   Plug 'hrsh7th/nvim-cmp'     " Required
-   Plug 'hrsh7th/cmp-nvim-lsp' " Required 
-   Plug 'L3MON4D3/LuaSnip'     " Required
+"   Plug 'hrsh7th/nvim-cmp'     " Required
+"   Plug 'hrsh7th/cmp-nvim-lsp' " Required 
+"   Plug 'L3MON4D3/LuaSnip'     " Required
    
-   Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v2.x'}
+"   Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v2.x'}
 call plug#end()
+"}}}
 
-" Save/ Load Folds
-augroup remember_folds
-  autocmd!
-  autocmd BufWinLeave *.* mkview
-  autocmd BufWinEnter *.* silent! loadview
-augroup END
-
-" Theme
+" Theme{{{ 
   set encoding=UTF-8
-  set number
+  set number relativenumber
+  set cursorline
+  set scrolloff=999
+  set syntax=on
+  set foldmethod=marker
   set nocompatible
+  set listchars=tab:\|\ 
+  set list
+  set wrap linebreak
+  set breakindent
+  set breakindentopt=shift:2
   colorscheme onedark
+  let g:airline_theme='onedark'
+  let g:airline_powerline_fonts = 1
+  let g:NERDTreeDirArrowExpandable = ''
+  let g:NERDTreeDirArrowCollapsible = ''
   nnoremap <C-n> :NERDTree<CR>
 
-" Cut, Copy Paste
+" virtual text
+hi default LightBulbDefaultVirtualText guifg=#FDD164
+hi default link LightBulbQuickFixVirtualText LightBulbDefaultVirtualText
+" sign
+hi default LightBulbDefaultSignLine guifg=#FDD164
+hi default link LightBulbQuickFixSignLine LightBulbDefaultSignLine
+" for numhl, you can set LightBulbDefaultSignLine, LightBulbQuickFixSignLine
+  "}}}
+
+"COC Volar{{{  
+ 
+"Set File Types{{{ 
+au FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsconfig.json', 'jsconfig.json', 'vite.config.ts', 'vite.config.js', 'vue.config.js', 'nuxt.config.ts']"}}}
+
+"Fix Completions{{{ 
+autocmd Filetype vue setlocal iskeyword+=-
+"}}}
+"}}}
+
+"Coc Tailwind CSS{{{ 
+au FileType html let b:coc_root_patterns = ['.git', '.env', 'tailwind.config.js', 'tailwind.config.cjs']
+"}}}
+
+" Providers{{{
+let g:python3_host_prog = '/data/data/com.termux/files/usr/bin/python3'
+let g:loaded_perl_provider = 0
+"}}}
+
+" Find files using Telescope command-line sugar.{{{
+let mapleader= "." "map leader to space
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+"}}}
+
+" Cut, Copy Paste{{{ 
   vnoremap <C-x> :!termux-clipboard-set<CR>
   vnoremap <C-c> :w !termux-clipboard-set<CR><CR>
-
   inoremap <C-v> <ESC> :read !termux-clipboard-get<CR>
+  "}}}
 
-" COC Tab Completions
+" COC Tab Completions{{{  
   inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -60,17 +107,9 @@ function! CheckBackspace() abort
 endfunction
 
 let g:coc_snippet_next = '<TAB>'
+"}}}
 
-"COC Vetur LSP
-let g:LanguageClient_serverCommands = {
-    \ 'vue': ['vls']
-    \ }
-
-" Providers
-let g:python3_host_prog = '/data/data/com.termux/files/usr/bin/python3'
-let g:loaded_perl_provider = 0
-
-" C-W C-Q C-X
+" Write, Quit, eXit{{{
   " Control-W Save
   nnoremap <C-W> :w<CR>
   vnoremap <C-W> <esc> :w<CR>
@@ -86,31 +125,36 @@ let g:loaded_perl_provider = 0
   " force exit
   nnoremap <C-X> :wq<CR>
   vnoremap <C-X> <esc> :wq<CR>
+  "}}}
 
-" Nvim Space Folding
+" Nvim Space Folding{{{
   nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
   vnoremap <Space> zf
+"}}}
 
-  " Exit Vim if NERDTree is the only window remaining in the only tab.
+" Exit Vim if NERDTree is the only window remaining in the only tab.{{{
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+"}}}
 
-" Lua Configs
+"coc :Prettier command {{{
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+"}}}
+
+"Use C to open Coc Config{{{
+function! SetupCommandAbbrs(from, to)
+  exec 'cnoreabbrev <expr> '.a:from
+        \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
+        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+endfunction
+
+" Use C to open coc config
+call SetupCommandAbbrs('C', 'CocConfig')
+"}}}
+
+"Lua Configs{{{
 lua <<EOF
---LSP Zero Config
 
-local lsp = require('lsp-zero').preset({})
-
-lsp.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  lsp.default_keymaps({buffer = bufnr})
-end)
-
--- (Optional) Configure lua language server for neovim
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-lsp.setup()
-
--- TreeSitter Config
+-- TreeSitter Config"{{{
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
@@ -153,4 +197,70 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+--}}}
+
+-- Colored Blank Line"{{{
+vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
+
+vim.opt.list = true
+
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+    char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2",
+        "IndentBlanklineIndent3",
+        "IndentBlanklineIndent4",
+        "IndentBlanklineIndent5",
+        "IndentBlanklineIndent6",
+    },
+}
+--"}}}
+
+-- Cursor Line
+require('nvim-cursorline').setup {
+  cursorline = {
+    enable = true,
+    timeout = 1000,
+    number = false,
+  },
+  cursorword = {
+    enable = true,
+    min_length = 3,
+    hl = { underline = true },
+  }
+}
+
+-- Close Symbols"{{{
+local config = {
+   keys = {
+      ["("] = { escape = false, close = true, pair = "()" },
+      ["["] = { escape = false, close = true, pair = "[]" },
+      ["{"] = { escape = false, close = true, pair = "{}" },
+
+      [">"] = { escape = true, close = false, pair = "<>" },
+      [")"] = { escape = true, close = false, pair = "()" },
+      ["]"] = { escape = true, close = false, pair = "[]" },
+      ["}"] = { escape = true, close = false, pair = "{}" },
+
+      ['"'] = { escape = true, close = true, pair = '""' },
+      ["'"] = { escape = true, close = true, pair = "''" },
+      ["`"] = { escape = true, close = true, pair = "``" },
+   },
+   options = {
+      disabled_filetypes = { "text" },
+      disable_when_touch = false,
+      touch_regex = "[%w(%[{]",
+      pair_spaces = false,
+      auto_indent = true,
+   },
+}
+--}}}
+
 EOF
+"}}}
