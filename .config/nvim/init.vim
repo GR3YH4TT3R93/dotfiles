@@ -52,13 +52,14 @@ call plug#end()
   let g:NERDTreeDirArrowCollapsible = ''
   nnoremap <C-n> :NERDTree<CR>
 
+"Coc Lightbulb{{{
 " virtual text
 hi default LightBulbDefaultVirtualText guifg=#FDD164
 hi default link LightBulbQuickFixVirtualText LightBulbDefaultVirtualText
 " sign
 hi default LightBulbDefaultSignLine guifg=#FDD164
 hi default link LightBulbQuickFixSignLine LightBulbDefaultSignLine
-" for numhl, you can set LightBulbDefaultSignLine, LightBulbQuickFixSignLine
+" for numhl, you can set LightBulbDefaultSignLine, LightBulbQuickFixSignLine}}}
   "}}}
 
 "COC Volar{{{  
