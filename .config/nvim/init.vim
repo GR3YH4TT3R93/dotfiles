@@ -102,6 +102,7 @@ let g:coc_global_extensions = [
       \]
 "}}}
 
+
 "COC Volar{{{  
  
 "Set File Types{{{ 
