@@ -69,6 +69,39 @@ hi default link LightBulbQuickFixSignLine LightBulbDefaultSignLine
   "}}}
 "}}}
 
+" CoC Extensions{{{
+let g:coc_global_extensions = [
+      \'@statiolake/coc-extension-auto-installer',
+      \'@raidou/coc-prettier-v3',
+      \'@yaegassy/coc-volar',
+      \'@yaegassy/coc-volar-tools',
+      \'@yaegassy/coc-vitest',
+      \'@yaegassy/coc-typescript-vue-plugin',
+      \'@yaegassy/coc-tailwindcss3',
+      \'coc-go',
+      \'coc-markdownlint',
+      \'coc-highlight',
+      \'coc-python',
+      \'coc-explorer',
+      \'coc-json', 
+      \'coc-git',
+      \'coc-tsserver',
+      \'coc-sh',
+      \'coc-lua',
+      \'coc-vimlsp',
+      \'coc-ultisnips',
+      \'coc-ultisnips-select',
+      \'coc-typos',
+      \'coc-snippets',
+      \'coc-marketplace',
+      \'coc-node_modules',
+      \'coc-html',
+      \'coc-html-css-support',
+      \'coc-eslint',
+      \'coc-emmet',
+      \]
+"}}}
+
 "COC Volar{{{  
  
 "Set File Types{{{ 
