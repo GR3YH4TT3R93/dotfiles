@@ -1,23 +1,24 @@
 "Plugins {{{
-"
+
 call plug#begin()
 
    Plug 'navarasu/onedark.nvim'
    Plug 'sheerun/vim-polyglot'
    Plug 'preservim/nerdtree'
-   Plug 'ryanoasis/vim-devicons'
    Plug 'tiagofumo/vim-nerdtree-syntax-highlight' 
    Plug 'neoclide/coc.nvim', {'branch': 'release'}
    Plug 'honza/vim-snippets'
-   Plug 'frazrepo/vim-rainbow'
    Plug 'vim-airline/vim-airline'
    Plug 'vim-airline/vim-airline-themes'
    Plug 'lukas-reineke/indent-blankline.nvim'
    Plug 'yamatsum/nvim-cursorline'
    Plug 'm4xshen/autoclose.nvim'
-"   Plug 'kshenoy/vim-signature' 
+   Plug 'kshenoy/vim-signature'
    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+   Plug 'ryanoasis/vim-devicons'
    Plug 'nvim-tree/nvim-web-devicons'
+   Plug 'HiPhish/rainbow-delimiters.nvim'
+   Plug 'farmergreg/vim-lastplace'
    " LSP Support
 "   Plug 'neovim/nvim-lspconfig'             " Required
 "   Plug 'williamboman/mason.nvim',          " Optional
@@ -37,7 +38,6 @@ call plug#end()
   set number relativenumber
   set cursorline
   set scrolloff=999
-  set syntax=on
   set foldmethod=marker
   set nocompatible
   set listchars=tab:\|\ 
@@ -48,19 +48,26 @@ call plug#end()
   colorscheme onedark
   let g:airline_theme='onedark'
   let g:airline_powerline_fonts = 1
+  ""let g:rainbow_active = 1
   let g:NERDTreeDirArrowExpandable = ''
   let g:NERDTreeDirArrowCollapsible = ''
+  let NERDTreeShowHidden=1
   nnoremap <C-n> :NERDTree<CR>
+
+  ""autocmd VimLeave * wshada!
 
 "Coc Lightbulb{{{
 " virtual text
 hi default LightBulbDefaultVirtualText guifg=#FDD164
 hi default link LightBulbQuickFixVirtualText LightBulbDefaultVirtualText
 " sign
+hi default LightBulbDefaultSign guifg=#FDD164
+hi default link LightBulbQuickFixSign LightBulbDefaultSignLine
+" numhl
 hi default LightBulbDefaultSignLine guifg=#FDD164
 hi default link LightBulbQuickFixSignLine LightBulbDefaultSignLine
-" for numhl, you can set LightBulbDefaultSignLine, LightBulbQuickFixSignLine}}}
   "}}}
+"}}}
 
 "COC Volar{{{  
  
@@ -102,6 +109,25 @@ endfunction
 let g:coc_snippet_next = '<TAB>'
 "}}}
 
+" Mappings for CoCList{{{
+" Show all diagnostics
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+"}}}
+
 " Write, Quit, eXit{{{
   " Control-W Save
   nnoremap <C-W> :w<CR>
@@ -121,15 +147,29 @@ let g:coc_snippet_next = '<TAB>'
   "}}}
 
 " Nvim Space Folding{{{
-  nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+  nnoremap <silent><nowait> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
   vnoremap <Space> zf
+"}}}
+
+" Start NERDTree when Vim is started without file arguments.{{{
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+"}}}
+
+" Open the existing NERDTree on each new tab.{{{
+autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+"}}}
+
+" Highlight NERDTree folders and icons using exact match{{{
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 "}}}
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.{{{
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 "}}}
 
-"coc :Prettier command {{{
+"use Prettier to format document {{{
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 "}}}
 
@@ -192,6 +232,75 @@ require'nvim-treesitter.configs'.setup {
 }
 --}}}
 
+-- Rainbow Delimiters{{{
+local rainbow_delimiters = require 'rainbow-delimiters'
+
+vim.g.rainbow_delimiters = {
+    strategy = {
+        [''] = rainbow_delimiters.strategy['global'],
+        vim = rainbow_delimiters.strategy['local'],
+    },
+    query = {
+        [''] = 'rainbow-delimiters',
+        lua = 'rainbow-blocks',
+    },
+    highlight = {
+        'RainbowDelimiterRed',
+        'RainbowDelimiterYellow',
+        'RainbowDelimiterBlue',
+        'RainbowDelimiterOrange',
+        'RainbowDelimiterGreen',
+        'RainbowDelimiterViolet',
+        'RainbowDelimiterCyan',
+    },
+}
+--}}}
+
+-- Web DevIcons Config{{{
+require'nvim-web-devicons'.setup {
+ -- your personnal icons can go here (to override)
+ -- you can specify color or cterm_color instead of specifying both of them
+ -- DevIcon will be appended to `name`
+ override = {
+  zsh = {
+    icon = "",
+    color = "#428850",
+    cterm_color = "65",
+    name = "Zsh"
+  }
+ };
+ -- globally enable different highlight colors per icon (default to true)
+ -- if set to false all icons will have the default icon's color
+ color_icons = true;
+ -- globally enable default icons (default to false)
+ -- will get overriden by `get_icons` option
+ default = true;
+ -- globally enable "strict" selection of icons - icon will be looked up in
+ -- different tables, first by filename, and if not found by extension; this
+ -- prevents cases when file doesn't have any extension but still gets some icon
+ -- because its name happened to match some extension (default to false)
+ strict = true;
+ -- same as `override` but specifically for overrides by filename
+ -- takes effect when `strict` is true
+ override_by_filename = {
+  [".gitignore"] = {
+    icon = "",
+    color = "#f1502f",
+    name = "Gitignore"
+  }
+ };
+ -- same as `override` but specifically for overrides by extension
+ -- takes effect when `strict` is true
+ override_by_extension = {
+  ["log"] = {
+    icon = "",
+    color = "#81e043",
+    name = "Log"
+  }
+ };
+}
+--}}}
+
 -- Colored Blank Line"{{{
 vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
@@ -215,7 +324,7 @@ require("indent_blankline").setup {
 }
 --"}}}
 
--- Cursor Line
+-- Cursor Line"{{{
 require('nvim-cursorline').setup {
   cursorline = {
     enable = true,
@@ -228,9 +337,10 @@ require('nvim-cursorline').setup {
     hl = { underline = true },
   }
 }
+--}}}
 
 -- Close Symbols"{{{
-local config = {
+require("autoclose").setup({
    keys = {
       ["("] = { escape = false, close = true, pair = "()" },
       ["["] = { escape = false, close = true, pair = "[]" },
@@ -252,7 +362,7 @@ local config = {
       pair_spaces = false,
       auto_indent = true,
    },
-}
+})
 --}}}
 
 EOF
