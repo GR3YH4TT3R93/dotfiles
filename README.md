@@ -50,6 +50,10 @@
 
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
+## Git Flow Completions
+
+git clone https://github.com/bobthecow/git-flow-completion ~/.oh-my-zsh/custom/plugins/git-flow-completion
+
 # Clone Dotfiles
 
     rm .termux/termux.properties .zshrc
