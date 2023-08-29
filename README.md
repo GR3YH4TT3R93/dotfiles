@@ -4,7 +4,7 @@
 
 # Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI,Neovim, NodeJS, Python-pip, Ruby, wget
 
-    apt update && apt install nala zsh termux-clipboard git gh neovim nodejs python-pip ruby wget -y
+    apt update && apt install nala zsh termux-api git gh neovim nodejs python-pip ruby wget -y
 
 ## Install pynvim
 
