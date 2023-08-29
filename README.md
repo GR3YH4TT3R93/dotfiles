@@ -2,9 +2,9 @@
 
     apt update && apt upgrade -y
 
-# Install Nala Package Manager, Z Shell, Git, GitHub CLI,Neovim, NodeJS, wget
+# Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI,Neovim, NodeJS, Python-pip, Ruby, wget
 
-    apt update && apt install nala zsh git gh neovim nodejs python-pip ruby wget -y
+    apt update && apt install nala zsh termux-clipboard git gh neovim nodejs python-pip ruby wget -y
 
 ## Install pynvim
 
@@ -13,6 +13,10 @@
 ## Install neovim npm package
 
     npm install -g neovim
+
+## Install neovim gem package
+
+    gem install neovim
 
 # install MOTD
 
