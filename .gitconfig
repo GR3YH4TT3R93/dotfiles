@@ -1,0 +1,20 @@
+# This is Git's per-user configuration file.
+[user]
+	name = GR3YH4TT3R
+	email = 76727386+GR3YH4TT3R93@users.noreply.github.com
+
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
+[color]
+	status = auto
+	branch = auto
+	interactive = auto
+	diff = auto
+[credential "https://github.com"]
+	helper = 
+	helper = !/data/data/com.termux/files/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/data/data/com.termux/files/usr/bin/gh auth git-credential
