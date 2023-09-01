@@ -102,7 +102,6 @@ let g:coc_global_extensions = [
       \]
 "}}}
 
-
 "COC Volar{{{  
  
 "Set File Types{{{ 
@@ -169,15 +168,16 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
   "imap <C-W> <esc>:w<CR>
   " Save + back into insert 
   inoremap <C-W> <esc> :w<CR>a
-  
-  " Control-Q exit
+ 
+  " Control-t
   nnoremap <C-Q> :q!<CR>
   vnoremap <C-Q> <esc> :q!<CR>
   inoremap <C-Q> <esc> :q!<CR>
-
+ 
   " force exit
-  nnoremap <C-X> :wq<CR>
-  vnoremap <C-X> <esc> :wq<CR>
+  nnoremap <C-X> :x<CR>
+  vnoremap <C-X> <esc> :x<CR>
+  inoremap <C-X> <esc> :x<CR>
   "}}}
 
 " Nvim Space Folding{{{
