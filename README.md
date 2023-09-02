@@ -2,9 +2,9 @@
 
     apt update && apt upgrade -y
 
-# Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI,Neovim, NodeJS, Python-pip, Ruby, wget
+# Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls
 
-    apt update && apt install nala zsh termux-api git gh neovim nodejs python-pip ruby wget -y
+    apt update && apt install nala zsh termux-api git gh neovim nodejs python-pip ruby wget logo-ls -y
 
 ## Install pynvim
 
@@ -22,7 +22,7 @@
 
     gh auth login
 
-# install MOTD
+# Install MOTD
 
     rm /data/data/com.termux/files/usr/etc/motd
     git clone https://github.com/GR3YH4TT3R93/termux-motd.git /data/data/com.termux/files/usr/etc/motd
