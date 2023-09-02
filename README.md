@@ -25,7 +25,7 @@
 # install MOTD
 
     rm /data/data/com.termux/files/usr/etc/motd
-    git clone https://github.com/GR3YH4TT3493/termux-motd.git /data/data/com.termux/files/usr/etc/motd
+    git clone https://github.com/GR3YH4TT3R93/termux-motd.git /data/data/com.termux/files/usr/etc/motd
     echo "/data/data/com.termux/files/usr/etc/motd/init.sh" >> /data/data/com.termux/files/usr/etc/profile # or .zprofile if using zsh
 
 # Install Oh My Zsh
