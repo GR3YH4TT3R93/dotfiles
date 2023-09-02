@@ -18,9 +18,13 @@
 
     gem install neovim
 
+# Set up GitHub auth
+
+    gh auth login
+
 # install MOTD
 
-    rm data/data/com.termux/files/usr/etc/motd
+    rm /data/data/com.termux/files/usr/etc/motd
     git clone https://github.com/GR3YH4TT3493/termux-motd.git /data/data/com.termux/files/usr/etc/motd
     echo "/data/data/com.termux/files/usr/etc/motd/init.sh" >> /data/data/com.termux/files/usr/etc/profile # or .zprofile if using zsh
 
@@ -52,7 +56,7 @@
 
 ## Git Flow Completions
 
-git clone https://github.com/bobthecow/git-flow-completion ~/.oh-my-zsh/custom/plugins/git-flow-completion
+    git clone https://github.com/bobthecow/git-flow-completion ~/.oh-my-zsh/custom/plugins/git-flow-completion
 
 # Clone Dotfiles
 
@@ -62,4 +66,4 @@ git clone https://github.com/bobthecow/git-flow-completion ~/.oh-my-zsh/custom/p
 
 # Install Nvim Plugins
 
-:PlugInstall
+    :PlugInstall
