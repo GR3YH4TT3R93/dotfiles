@@ -19,6 +19,7 @@ call plug#begin()
    Plug 'nvim-tree/nvim-web-devicons'
    Plug 'HiPhish/rainbow-delimiters.nvim'
    Plug 'farmergreg/vim-lastplace'
+   Plug 'ThePrimeagen/vim-be-good'
    " LSP Support
 "   Plug 'neovim/nvim-lspconfig'             " Required
 "   Plug 'williamboman/mason.nvim',          " Optional
@@ -33,7 +34,7 @@ call plug#begin()
 call plug#end()
 "}}}
 
-" Theme{{{ 
+" Theme{{{
   set encoding=UTF-8
   set number relativenumber
   set cursorline
@@ -55,6 +56,7 @@ call plug#end()
   nnoremap <C-n> :NERDTree<CR>
 
   ""autocmd VimLeave * wshada!
+
 
 "Coc Lightbulb{{{
 " virtual text
@@ -126,6 +128,16 @@ let g:loaded_perl_provider = 0
   vnoremap <C-c> :w !termux-clipboard-set<CR><CR>
   inoremap <C-v> <ESC> :read !termux-clipboard-get<CR>
   "}}}
+
+" Change Tabs using vim motions{{{
+vnoremap  <C-l> gt
+nnoremap  <C-l> gt
+inoremap  <C-l> <escape> gt<CR>
+
+vnoremap  <C-h> gT
+nnoremap  <C-h> gT
+inoremap  <C-h> <escape> gT<CR>
+"}}}
 
 " COC Tab Completions{{{  
   inoremap <silent><expr> <TAB>

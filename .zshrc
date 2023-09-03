@@ -99,6 +99,7 @@ plugins=(
 	zsh-history-substring-search
 	zsh-interactive-cd
 	zsh-syntax-highlighting
+	zsh-vi-mode
 	)
 
 
@@ -107,6 +108,8 @@ fpath+=~/.cargo/bin
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+ZVM_VI_SURROUND_BINDKEY='classic'
 
 # Hide Ctrl commands
 # [[ -o interactive ]] && stty -echoctl
