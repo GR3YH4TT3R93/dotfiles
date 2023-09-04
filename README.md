@@ -60,6 +60,8 @@
 
 ## Clone Dotfiles
 
+### Fork Repo and replace git clone url with your own
+
     rm .termux/termux.properties .zshrc
     git clone --bare https://github.com/GR3YH4TT3R93/dotfiles.git ~/GitHub/dotfiles
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout
