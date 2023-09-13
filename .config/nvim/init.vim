@@ -34,8 +34,8 @@ call plug#end()
   set breakindent
   set breakindentopt=shift:2
   colorscheme onedark
-	 set tabstop=2
-	 set shiftwidth=2
+	set tabstop=2
+	set shiftwidth=2
   set softtabstop=2
   let g:airline_theme='onedark'
   let g:airline_powerline_fonts = 1
