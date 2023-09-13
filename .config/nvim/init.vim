@@ -1,36 +1,23 @@
 "Plugins {{{
-
 call plug#begin()
-
-   Plug 'navarasu/onedark.nvim'
-   Plug 'sheerun/vim-polyglot'
-   Plug 'preservim/nerdtree'
-   Plug 'tiagofumo/vim-nerdtree-syntax-highlight' 
-   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-   Plug 'honza/vim-snippets'
-   Plug 'vim-airline/vim-airline'
-   Plug 'vim-airline/vim-airline-themes'
-   Plug 'lukas-reineke/indent-blankline.nvim'
-   Plug 'yamatsum/nvim-cursorline'
-   Plug 'm4xshen/autoclose.nvim'
-   Plug 'kshenoy/vim-signature'
-   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-   Plug 'ryanoasis/vim-devicons'
-   Plug 'nvim-tree/nvim-web-devicons'
-   Plug 'HiPhish/rainbow-delimiters.nvim'
-   Plug 'farmergreg/vim-lastplace'
-   Plug 'ThePrimeagen/vim-be-good'
-   " LSP Support
-"   Plug 'neovim/nvim-lspconfig'             " Required
-"   Plug 'williamboman/mason.nvim',          " Optional
-"   Plug 'williamboman/mason-lspconfig.nvim' " Optional
-   
-   " Autocompletion
-"   Plug 'hrsh7th/nvim-cmp'     " Required
-"   Plug 'hrsh7th/cmp-nvim-lsp' " Required 
-"   Plug 'L3MON4D3/LuaSnip'     " Required
-   
-"   Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v2.x'}
+	Plug 'navarasu/onedark.nvim'
+  ""Plug 'sheerun/vim-polyglot'
+  Plug 'preservim/nerdtree'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'honza/vim-snippets'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'lukas-reineke/indent-blankline.nvim'
+  Plug 'yamatsum/nvim-cursorline'
+  Plug 'm4xshen/autoclose.nvim'
+  Plug 'kshenoy/vim-signature'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'ryanoasis/vim-devicons'
+	Plug 'nvim-tree/nvim-web-devicons'
+  Plug 'HiPhish/rainbow-delimiters.nvim'
+  Plug 'farmergreg/vim-lastplace'
+  Plug 'ThePrimeagen/vim-be-good'
 call plug#end()
 "}}}
 
@@ -41,18 +28,21 @@ call plug#end()
   set scrolloff=999
   set foldmethod=marker
   set nocompatible
-  set listchars=tab:\|\ 
+  set listchars=tab:\⎸\
   set list
   set wrap linebreak
   set breakindent
   set breakindentopt=shift:2
   colorscheme onedark
+	 set tabstop=2
+	 set shiftwidth=2
+  set softtabstop=2
   let g:airline_theme='onedark'
   let g:airline_powerline_fonts = 1
-  ""let g:rainbow_active = 1
   let g:NERDTreeDirArrowExpandable = ''
   let g:NERDTreeDirArrowCollapsible = ''
   let NERDTreeShowHidden=1
+  let g:indent_blankline_use_treesitter = v:true
   nnoremap <C-n> :NERDTree<CR>
 
   ""autocmd VimLeave * wshada!
@@ -277,7 +267,7 @@ require'nvim-treesitter.configs'.setup {
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = true,
   },
 }
 --}}}
@@ -359,8 +349,6 @@ vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
 
-vim.opt.list = true
-
 require("indent_blankline").setup {
     space_char_blankline = " ",
     char_highlight_list = {
@@ -378,7 +366,7 @@ require("indent_blankline").setup {
 require('nvim-cursorline').setup {
   cursorline = {
     enable = true,
-    timeout = 1000,
+    timeout = 250,
     number = false,
   },
   cursorword = {
@@ -391,27 +379,27 @@ require('nvim-cursorline').setup {
 
 -- Close Symbols"{{{
 require("autoclose").setup({
-   keys = {
-      ["("] = { escape = false, close = true, pair = "()" },
-      ["["] = { escape = false, close = true, pair = "[]" },
-      ["{"] = { escape = false, close = true, pair = "{}" },
+  keys = {
+    ["("] = { escape = false, close = true, pair = "()" },
+    ["["] = { escape = false, close = true, pair = "[]" },
+    ["{"] = { escape = false, close = true, pair = "{}" },
 
-      [">"] = { escape = true, close = false, pair = "<>" },
-      [")"] = { escape = true, close = false, pair = "()" },
-      ["]"] = { escape = true, close = false, pair = "[]" },
-      ["}"] = { escape = true, close = false, pair = "{}" },
+    [">"] = { escape = true, close = false, pair = "<>" },
+    [")"] = { escape = true, close = false, pair = "()" },
+    ["]"] = { escape = true, close = false, pair = "[]" },
+    ["}"] = { escape = true, close = false, pair = "{}" },
 
-      ['"'] = { escape = true, close = true, pair = '""' },
-      ["'"] = { escape = true, close = true, pair = "''" },
-      ["`"] = { escape = true, close = true, pair = "``" },
-   },
-   options = {
-      disabled_filetypes = { "text" },
-      disable_when_touch = false,
-      touch_regex = "[%w(%[{]",
-      pair_spaces = false,
-      auto_indent = true,
-   },
+    ['"'] = { escape = true, close = true, pair = '""' },
+    ["'"] = { escape = true, close = true, pair = "''" },
+    ["`"] = { escape = true, close = true, pair = "``" },
+  },
+  options = {
+    disabled_filetypes = { "text" },
+    disable_when_touch = false,
+    touch_regex = "[%w(%[{]",
+    pair_spaces = false,
+    auto_indent = true,
+  },
 })
 --}}}
 
