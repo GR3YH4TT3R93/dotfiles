@@ -35,8 +35,9 @@
   "prettier.useTabs": false,
   "prettier.vueIndentScriptAndStyle": false,
   "prettier.embeddedLanguageFormatting": "auto",
-  "eslint.run": "onSave",
+  "eslint.run": "onType",
   "eslint.autoFixOnSave": true,
+  "eslint.quiet": true,
   "lightbulb.text": {
     "default": "",
     "quickfix": ""
