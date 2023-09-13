@@ -5,6 +5,7 @@ alias 10k='p10k configure' # Configure Powerlevel10k
 alias e='nvim' # A highly customizable editor
 alias z='zsh' #The better shell
 alias t='tmux' # Terminal Multiplexer
+alias ls='logo-ls'
 alias aXs='acodeX-server' # Start AcodeX Server
 alias lsa='logo-ls -lAh'
 alias l='logo-ls -ahDt'
@@ -32,8 +33,8 @@ alias tdel='task delete' # Delete Task from Taskwarrior
 alias tl='task entry.after:now-1wk list' # List Tasks created in the last week
 alias tla='task list' # List all Tasks
 alias b='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME' #Git bare alias
-alias ba='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME add' # Git bare add
-alias bam='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME commit -am' #Git bare commit -am
+alias ba='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME add -p' # Git bare add
+alias bam='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME commit -pm' #Git bare commit -am
 alias bs='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME status' # Git barestatus
 alias bad='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME diff' # Git bare diff
 alias bpu='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push' # Git bare push

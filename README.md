@@ -1,4 +1,8 @@
-# Update and Upgrade Packages
+# My Termux Dotfiles
+
+    prerequisites: Unexpected Keyboard, Termux:styles
+
+## Update and Upgrade Packages
 
     apt update && apt upgrade -y
 
