@@ -47,7 +47,7 @@ call plug#end()
   let g:indent_blankline_use_treesitter = v:true
   nnoremap <C-n> :NERDTree<CR>
 
-  ""autocmd VimLeave * wshada!
+  " autocmd VimLeave * wshada!
 
 
 "Coc Lightbulb{{{
