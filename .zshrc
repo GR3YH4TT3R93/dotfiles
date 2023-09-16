@@ -156,3 +156,4 @@ zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main brackets pattern cursor)
+export PATH="$PATH":~/.local/bin

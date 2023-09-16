@@ -1,7 +1,6 @@
 "Plugins {{{
 call plug#begin()
 	Plug 'navarasu/onedark.nvim'
-  ""Plug 'sheerun/vim-polyglot'
   Plug 'preservim/nerdtree'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -18,6 +17,9 @@ call plug#begin()
   Plug 'HiPhish/rainbow-delimiters.nvim'
   Plug 'farmergreg/vim-lastplace'
   Plug 'ThePrimeagen/vim-be-good'
+	Plug 'tpope/vim-commentary'
+	Plug 'tpope/vim-surround'
+	Plug 'tpope/vim-repeat'
 call plug#end()
 "}}}
 
@@ -28,7 +30,7 @@ call plug#end()
   set scrolloff=999
   set foldmethod=marker
   set nocompatible
-  set listchars=tab:\⎸\
+  set listchars=tab:\⎸\ 
   set list
   set wrap linebreak
   set breakindent
@@ -56,8 +58,8 @@ hi default link LightBulbQuickFixVirtualText LightBulbDefaultVirtualText
 hi default LightBulbDefaultSign guifg=#FDD164
 hi default link LightBulbQuickFixSign LightBulbDefaultSignLine
 " numhl
-hi default LightBulbDefaultSignLine guifg=#FDD164
-hi default link LightBulbQuickFixSignLine LightBulbDefaultSignLine
+"hi default LightBulbDefaultSignLine guifg=#FDD164
+"hi default link LightBulbQuickFixSignLine LightBulbDefaultSignLine
   "}}}
 "}}}
 
@@ -102,6 +104,10 @@ au FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsco
 "Fix Completions{{{ 
 autocmd Filetype vue setlocal iskeyword+=-
 "}}}
+
+vnoremap <f10> :CocCommand volar.action.nuxt<CR>
+nnoremap <f10> :CocCommand volar.action.nuxt<CR>
+inoremap <f10> :CocCommand volar.action.nuxt<CR>
 "}}}
 
 "Coc Tailwind CSS{{{ 
@@ -112,12 +118,6 @@ au FileType html let b:coc_root_patterns = ['.git', '.env', 'tailwind.config.js'
 let g:python3_host_prog = '/data/data/com.termux/files/usr/bin/python3'
 let g:loaded_perl_provider = 0
 "}}}
-
-" Cut, Copy Paste{{{ 
-  vnoremap <C-x> :!termux-clipboard-set<CR>
-  vnoremap <C-c> :w !termux-clipboard-set<CR><CR>
-  inoremap <C-v> <ESC> :read !termux-clipboard-get<CR>
-  "}}}
 
 " Change Tabs using vim motions{{{
 vnoremap  <C-l> gt
@@ -164,23 +164,30 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 "}}}
 
 " Write, Quit, eXit{{{
-  " Control-W Save
-  nnoremap <C-W> :w<CR>
-  vnoremap <C-W> <esc> :w<CR>
-  "imap <C-W> <esc>:w<CR>
-  " Save + back into insert 
-  inoremap <C-W> <esc> :w<CR>a
- 
-  " Control-t
-  nnoremap <C-Q> :q!<CR>
-  vnoremap <C-Q> <esc> :q!<CR>
-  inoremap <C-Q> <esc> :q!<CR>
- 
-  " force exit
-  nnoremap <C-X> :x<CR>
-  vnoremap <C-X> <esc> :x<CR>
-  inoremap <C-X> <esc> :x<CR>
-  "}}}
+" Control-W Save
+nnoremap <C-W> :w<CR>
+vnoremap <C-W> <esc> :w<CR>
+"imap <C-W> <esc>:w<CR>
+" Save + back into insert 
+inoremap <C-W> <esc> :w<CR>a
+
+" Control-t
+nnoremap <C-Q> :q!<CR>
+vnoremap <C-Q> <esc> :q!<CR>
+inoremap <C-Q> <esc> :q!<CR>
+
+" force exit
+nnoremap <C-X> :x<CR>
+vnoremap <C-X> <esc> :x<CR>
+inoremap <C-X> <esc> :x<CR>
+"}}}
+
+" Move Line Up, Down{{{
+nnoremap <S-Up> :m-2<CR>
+nnoremap <S-Down> :m+<CR>
+inoremap <S-Up> <Esc>:m-2<CR>
+inoremap <S-Down> <Esc>:m+<CR>
+"}}}
 
 " Nvim Space Folding{{{
   nnoremap <silent><nowait> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -287,11 +294,11 @@ vim.g.rainbow_delimiters = {
     highlight = {
         'RainbowDelimiterRed',
         'RainbowDelimiterYellow',
-        'RainbowDelimiterBlue',
-        'RainbowDelimiterOrange',
         'RainbowDelimiterGreen',
-        'RainbowDelimiterViolet',
         'RainbowDelimiterCyan',
+        'RainbowDelimiterBlue',
+        'RainbowDelimiterViolet',
+        'RainbowDelimiterPurple',
     },
 }
 --}}}
@@ -352,12 +359,12 @@ vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
 require("indent_blankline").setup {
     space_char_blankline = " ",
     char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
-        "IndentBlanklineIndent3",
-        "IndentBlanklineIndent4",
-        "IndentBlanklineIndent5",
-        "IndentBlanklineIndent6",
+      "IndentBlanklineIndent1",
+      "IndentBlanklineIndent2",
+      "IndentBlanklineIndent3",
+      "IndentBlanklineIndent4",
+      "IndentBlanklineIndent5",
+      "IndentBlanklineIndent6",
     },
 }
 --"}}}
@@ -366,7 +373,7 @@ require("indent_blankline").setup {
 require('nvim-cursorline').setup {
   cursorline = {
     enable = true,
-    timeout = 250,
+    timeout = 225,
     number = false,
   },
   cursorword = {
