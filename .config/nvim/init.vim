@@ -1,6 +1,6 @@
 "Plugins {{{
 call plug#begin()
-	Plug 'navarasu/onedark.nvim'
+  Plug 'navarasu/onedark.nvim'
   Plug 'preservim/nerdtree'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -13,13 +13,13 @@ call plug#begin()
   Plug 'kshenoy/vim-signature'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'ryanoasis/vim-devicons'
-	Plug 'nvim-tree/nvim-web-devicons'
+  Plug 'nvim-tree/nvim-web-devicons'
   Plug 'HiPhish/rainbow-delimiters.nvim'
   Plug 'farmergreg/vim-lastplace'
   Plug 'ThePrimeagen/vim-be-good'
-	Plug 'tpope/vim-commentary'
-	Plug 'tpope/vim-surround'
-	Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-repeat'
 call plug#end()
 "}}}
 
@@ -36,8 +36,8 @@ call plug#end()
   set breakindent
   set breakindentopt=shift:2
   colorscheme onedark
-	set tabstop=2
-	set shiftwidth=2
+  set tabstop=2
+  set shiftwidth=2
   set softtabstop=2
   let g:airline_theme='onedark'
   let g:airline_powerline_fonts = 1
