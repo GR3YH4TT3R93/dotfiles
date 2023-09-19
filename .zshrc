@@ -156,4 +156,15 @@ zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main brackets pattern cursor)
+
+# pnpm
+export PNPM_HOME="/data/data/com.termux/files/home/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$PATH":~/.local/bin

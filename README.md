@@ -62,6 +62,11 @@
 
     git clone https://github.com/bobthecow/git-flow-completion ~/.oh-my-zsh/custom/plugins/git-flow-completion
 
+### Zsh Vi Mode
+
+    git clone https://github.com/jeffreytse/zsh-vi-mode \
+    $ZSH_CUSTOM/plugins/zsh-vi-mode
+
 ## Clone Dotfiles
 
 ### Fork Repo and replace git clone url with your own
