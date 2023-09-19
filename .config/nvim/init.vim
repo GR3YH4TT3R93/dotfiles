@@ -1,8 +1,6 @@
 "Plugins {{{
 call plug#begin()
   Plug 'navarasu/onedark.nvim'
-  Plug 'preservim/nerdtree'
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'honza/vim-snippets'
   Plug 'vim-airline/vim-airline'
@@ -20,6 +18,13 @@ call plug#begin()
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
+  Plug 'fedepujol/move.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
+  Plug 'rcarriga/nvim-notify'
+  Plug 'romgrk/barbar.nvim'
+  Plug 'MunifTanjim/nui.nvim'
+  Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v2.x' }
 call plug#end()
 "}}}
 
@@ -35,17 +40,17 @@ call plug#end()
   set wrap linebreak
   set breakindent
   set breakindentopt=shift:2
-  colorscheme onedark
+  set autoindent
+  set expandtab
   set tabstop=2
   set shiftwidth=2
   set softtabstop=2
+  set clipboard+=unnamedplus
+  colorscheme onedark
   let g:airline_theme='onedark'
   let g:airline_powerline_fonts = 1
-  let g:NERDTreeDirArrowExpandable = ''
-  let g:NERDTreeDirArrowCollapsible = ''
-  let NERDTreeShowHidden=1
   let g:indent_blankline_use_treesitter = v:true
-  nnoremap <C-n> :NERDTree<CR>
+  nnoremap <silent><C-n> :Neotree toggle<CR>
 
   " autocmd VimLeave * wshada!
 
@@ -63,45 +68,51 @@ hi default link LightBulbQuickFixSign LightBulbDefaultSignLine
   "}}}
 "}}}
 
-" CoC Extensions{{{
-let g:coc_global_extensions = [
-      \'@statiolake/coc-extension-auto-installer',
-      \'@raidou/coc-prettier-v3',
-      \'@yaegassy/coc-volar',
-      \'@yaegassy/coc-volar-tools',
-      \'@yaegassy/coc-vitest',
-      \'@yaegassy/coc-typescript-vue-plugin',
-      \'@yaegassy/coc-tailwindcss3',
-      \'coc-go',
-      \'coc-markdownlint',
-      \'coc-highlight',
-      \'coc-python',
-      \'coc-explorer',
-      \'coc-json', 
-      \'coc-git',
-      \'coc-tsserver',
-      \'coc-sh',
-      \'coc-lua',
-      \'coc-vimlsp',
-      \'coc-ultisnips',
-      \'coc-ultisnips-select',
-      \'coc-typos',
-      \'coc-snippets',
-      \'coc-marketplace',
-      \'coc-node_modules',
-      \'coc-html',
-      \'coc-html-css-support',
-      \'coc-eslint',
-      \'coc-emmet',
-      \]
+" Providers{{{
+let g:python3_host_prog = '/data/data/com.termux/files/usr/bin/python3'
+let g:loaded_perl_provider = 0
 "}}}
 
-"COC Volar{{{  
- 
-"Set File Types{{{ 
-au FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsconfig.json', 'jsconfig.json', 'vite.config.ts', 'vite.config.js', 'vue.config.js', 'nuxt.config.ts']"}}}
+" CoC Extensions{{{
+let g:coc_global_extensions = [
+  \'@statiolake/coc-extension-auto-installer',
+  \'@raidou/coc-prettier-v3',
+  \'@yaegassy/coc-volar',
+  \'@yaegassy/coc-volar-tools',
+  \'@yaegassy/coc-vitest',
+  \'@yaegassy/coc-typescript-vue-plugin',
+  \'@yaegassy/coc-tailwindcss3',
+  \'coc-go',
+  \'coc-markdownlint',
+  \'coc-highlight',
+  \'coc-python',
+  \'coc-explorer',
+  \'coc-json', 
+  \'coc-git',
+  \'coc-tsserver',
+  \'coc-sh',
+  \'coc-lua',
+  \'coc-vimlsp',
+  \'coc-ultisnips',
+  \'coc-ultisnips-select',
+  \'coc-typos',
+  \'coc-snippets',
+  \'coc-marketplace',
+  \'coc-node_modules',
+  \'coc-html',
+  \'coc-html-css-support',
+  \'coc-eslint',
+  \'coc-emmet',
+\]
+"}}}
 
-"Fix Completions{{{ 
+"CoC Volar{{{
+
+"Set File Types{{{
+au FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsconfig.json', 'jsconfig.json', 'vite.config.ts', 'vite.config.js', 'vue.config.js', 'nuxt.config.ts']
+"}}}
+
+"Fix Completions{{{
 autocmd Filetype vue setlocal iskeyword+=-
 "}}}
 
@@ -110,31 +121,17 @@ nnoremap <f10> :CocCommand volar.action.nuxt<CR>
 inoremap <f10> :CocCommand volar.action.nuxt<CR>
 "}}}
 
-"Coc Tailwind CSS{{{ 
+"CoC Tailwind CSS{{{
 au FileType html let b:coc_root_patterns = ['.git', '.env', 'tailwind.config.js', 'tailwind.config.cjs']
 "}}}
 
-" Providers{{{
-let g:python3_host_prog = '/data/data/com.termux/files/usr/bin/python3'
-let g:loaded_perl_provider = 0
-"}}}
+" CoC Tab Completions{{{
 
-" Change Tabs using vim motions{{{
-vnoremap  <C-l> gt
-nnoremap  <C-l> gt
-inoremap  <C-l> <escape> gt<CR>
-
-vnoremap  <C-h> gT
-nnoremap  <C-h> gT
-inoremap  <C-h> <escape> gT<CR>
-"}}}
-
-" COC Tab Completions{{{  
-  inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ CheckBackspace() ? "\<TAB>" :
-      \ coc#refresh()
+inoremap <silent><expr> <TAB>
+  \ coc#pum#visible() ? coc#_select_confirm() :
+  \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ CheckBackspace() ? "\<TAB>" :
+  \ coc#refresh()
 
 function! CheckBackspace() abort
   let col = col('.') - 1
@@ -144,17 +141,28 @@ endfunction
 let g:coc_snippet_next = '<TAB>'
 "}}}
 
+"Use C to open CoC Config{{{
+function! SetupCommandAbbrs(from, to)
+  exec 'cnoreabbrev <expr> '.a:from
+\ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
+\ .'? ("'.a:to.'") : ("'.a:from.'"))'
+endfunction
+
+" Use C to open coc config
+call SetupCommandAbbrs('C', 'CocConfig')
+"}}}
+
 " Mappings for CoCList{{{
 " Show all diagnostics
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<CR>
 " Manage extensions
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<CR>
 " Show commands
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<CR>
 " Find symbol of current document
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<CR>
 " Search workspace symbols
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<CR>
 " Do default action for next item
 nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item
@@ -169,7 +177,7 @@ nnoremap <C-W> :w<CR>
 vnoremap <C-W> <esc> :w<CR>
 "imap <C-W> <esc>:w<CR>
 " Save + back into insert 
-inoremap <C-W> <esc> :w<CR>a
+inoremap <S-W> <esc> :w<CR>a
 
 " Control-t
 nnoremap <C-Q> :q!<CR>
@@ -182,53 +190,99 @@ vnoremap <C-X> <esc> :x<CR>
 inoremap <C-X> <esc> :x<CR>
 "}}}
 
-" Move Line Up, Down{{{
-nnoremap <S-Up> :m-2<CR>
-nnoremap <S-Down> :m+<CR>
-inoremap <S-Up> <Esc>:m-2<CR>
-inoremap <S-Down> <Esc>:m+<CR>
+" Move Lines and Blocks{{{
+
+" Normal-mode commands
+nnoremap <silent> <A-j> :MoveLine(1)<CR>
+nnoremap <silent> <A-k> :MoveLine(-1)<CR>
+nnoremap <silent> <A-l> :MoveHChar(1)<CR>
+nnoremap <silent> <A-h> :MoveHChar(-1)<CR>
+nnoremap <silent> <leader>wf :MoveWord(1)<CR>
+nnoremap <silent> <leader>wb :MoveWord(-1)<CR>
+
+" Visual-mode commands
+vnoremap <silent> <A-j> :MoveBlock(1)<CR>
+vnoremap <silent> <A-k> :MoveBlock(-1)<CR>
+vnoremap <silent> <A-l> :MoveHBlock(1)<CR>
+vnoremap <silent> <A-h> :MoveHBlock(-1)<CR>
 "}}}
 
 " Nvim Space Folding{{{
-  nnoremap <silent><nowait> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-  vnoremap <Space> zf
+  nnoremap <nowait><silent>  <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+  vnoremap <nowait><silent> <Space> zf
 "}}}
 
-" Start NERDTree when Vim is started without file arguments.{{{
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+" Telescope Keymaps{{{
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<CR>
+nnoremap <leader>fg <cmd>Telescope live_grep<CR>
+nnoremap <leader>fb <cmd>Telescope buffers<CR>
+nnoremap <leader>fh <cmd>Telescope help_tags<CR>
+
+" Using Lua functions
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<CR>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<CR>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<CR>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<CR>
 "}}}
 
-" Open the existing NERDTree on each new tab.{{{
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
-"}}}
+" BarBar Keymaps{{{
 
-" Highlight NERDTree folders and icons using exact match{{{
-let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
-let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
-"}}}
+" Move to previous/next
+nnoremap <silent>    <C-l> <Cmd>BufferPrevious<CR>
+nnoremap <silent>    <C-h> <Cmd>BufferNext<CR>
 
-" Close the tab if NERDTree is the only window remaining in it.{{{
-autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-"}}}
+" Re-order to previous/next
+nnoremap <silent>    <C-<> <Cmd>BufferMovePrevious<CR>
+nnoremap <silent>    <C->> <Cmd>BufferMoveNext<CR>
 
-" Exit Vim if NERDTree is the only window remaining in the only tab.{{{
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" Goto buffer in position...
+nnoremap <silent>    <A-1> <Cmd>BufferGoto 1<CR>
+nnoremap <silent>    <A-2> <Cmd>BufferGoto 2<CR>
+nnoremap <silent>    <A-3> <Cmd>BufferGoto 3<CR>
+nnoremap <silent>    <A-4> <Cmd>BufferGoto 4<CR>
+nnoremap <silent>    <A-5> <Cmd>BufferGoto 5<CR>
+nnoremap <silent>    <A-6> <Cmd>BufferGoto 6<CR>
+nnoremap <silent>    <A-7> <Cmd>BufferGoto 7<CR>
+nnoremap <silent>    <A-8> <Cmd>BufferGoto 8<CR>
+nnoremap <silent>    <A-9> <Cmd>BufferGoto 9<CR>
+nnoremap <silent>    <A-0> <Cmd>BufferLast<CR>
+
+" Pin/unpin buffer
+nnoremap <silent>    <A-p> <Cmd>BufferPin<CR>
+
+" Close buffer
+nnoremap <silent>    <A-c> <Cmd>BufferClose<CR>
+" Restore buffer
+nnoremap <silent>    <A-s-c> <Cmd>BufferRestore<CR>
+
+" Wipeout buffer
+"  :BufferWipeout
+" Close commands
+"  :BufferCloseAllButCurrent
+"  :BufferCloseAllButVisible
+"  :BufferCloseAllButPinned
+"  :BufferCloseAllButCurrentOrPinned
+"  :BufferCloseBuffersLeft
+"  :BufferCloseBuffersRight
+
+" Magic buffer-picking mode
+nnoremap <silent> <C-p>    <Cmd>BufferPick<CR>
+nnoremap <silent> <C-p>    <Cmd>BufferPickDelete<CR>
+
+" Sort automatically by...
+nnoremap <silent> <Space>bb <Cmd>BufferOrderByBufferNumber<CR>
+nnoremap <silent> <Space>bd <Cmd>BufferOrderByDirectory<CR>
+nnoremap <silent> <Space>bl <Cmd>BufferOrderByLanguage<CR>
+nnoremap <silent> <Space>bw <Cmd>BufferOrderByWindowNumber<CR>
+
+" Other:
+" :BarbarEnable - enables barbar (enabled by default)
+" :BarbarDisable - very bad command, should never be used
 "}}}
 
 "use Prettier to format document {{{
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
-"}}}
-
-"Use C to open Coc Config{{{
-function! SetupCommandAbbrs(from, to)
-  exec 'cnoreabbrev <expr> '.a:from
-        \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
-        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
-endfunction
-
-" Use C to open coc config
-call SetupCommandAbbrs('C', 'CocConfig')
 "}}}
 
 "Lua Configs{{{
@@ -263,11 +317,11 @@ require'nvim-treesitter.configs'.setup {
     disable = { "c", "rust" },
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
     disable = function(lang, buf)
-        local max_filesize = 100 * 1024 -- 100 KB
-        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-        if ok and stats and stats.size > max_filesize then
-            return true
-        end
+local max_filesize = 100 * 1024 -- 100 KB
+local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+if ok and stats and stats.size > max_filesize then
+    return true
+end
     end,
 
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -284,21 +338,21 @@ local rainbow_delimiters = require 'rainbow-delimiters'
 
 vim.g.rainbow_delimiters = {
     strategy = {
-        [''] = rainbow_delimiters.strategy['global'],
-        vim = rainbow_delimiters.strategy['local'],
+[''] = rainbow_delimiters.strategy['global'],
+vim = rainbow_delimiters.strategy['local'],
     },
     query = {
-        [''] = 'rainbow-delimiters',
-        lua = 'rainbow-blocks',
+[''] = 'rainbow-delimiters',
+lua = 'rainbow-blocks',
     },
     highlight = {
-        'RainbowDelimiterRed',
-        'RainbowDelimiterYellow',
-        'RainbowDelimiterGreen',
-        'RainbowDelimiterCyan',
-        'RainbowDelimiterBlue',
-        'RainbowDelimiterViolet',
-        'RainbowDelimiterPurple',
+'RainbowDelimiterRed',
+'RainbowDelimiterYellow',
+'RainbowDelimiterGreen',
+'RainbowDelimiterCyan',
+'RainbowDelimiterBlue',
+'RainbowDelimiterViolet',
+'RainbowDelimiterPurple',
     },
 }
 --}}}
@@ -410,5 +464,279 @@ require("autoclose").setup({
 })
 --}}}
 
+-- Vim Notify"{{{
+vim.notify = require("notify")
+--}}}
+
+require("neo-tree").setup({
+close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
+popup_border_style = "rounded",
+enable_git_status = true,
+enable_diagnostics = true,
+enable_normal_mode_for_inputs = false, -- Enable normal mode for input dialogs.
+open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
+sort_case_insensitive = false, -- used when sorting files and directories in the tree
+sort_function = nil , -- use a custom function for sorting files and directories in the tree 
+-- sort_function = function (a,b)
+--       if a.type == b.type then
+--   return a.path > b.path
+--       else
+--   return a.type > b.type
+--       end
+--   end , -- this sorts files and directories descendantly
+default_component_configs = {
+  container = {
+    enable_character_fade = true
+  },
+  indent = {
+    indent_size = 1,
+    padding = 1, -- extra padding on left hand side
+    -- indent guides
+    with_markers = true,
+    indent_marker = "│",
+    last_indent_marker = "└",
+    highlight = "NeoTreeIndentMarker",
+    -- expander config, needed for nesting files
+    with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
+    expander_collapsed = "",
+    expander_expanded = "",
+    expander_highlight = "NeoTreeExpander",
+  },
+  icon = {
+    folder_closed = "󰉋",
+    folder_open = "󰝰",
+    folder_empty = "󰷏",
+    -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
+    -- then these will never be used.
+    default = "*",
+    highlight = "NeoTreeFileIcon"
+  },
+  modified = {
+    symbol = "[+]",
+    highlight = "NeoTreeModified",
+  },
+  name = {
+    trailing_slash = false,
+    use_git_status_colors = true,
+    highlight = "NeoTreeFileName",
+  },
+  git_status = {
+    symbols = {
+      -- Change type
+      added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
+      modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
+      deleted   = "✖",-- this can only be used in the git_status source
+      renamed   = "󰁕",-- this can only be used in the git_status source
+      -- Status type
+      untracked = "",
+      ignored   = "",
+      unstaged  = "󰄱",
+      staged    = "",
+      conflict  = "",
+    }
+  },
+  -- If you don't want to use these columns, you can set `enabled = false` for each of them individually
+  file_size = {
+    enabled = true,
+    required_width = 64, -- min width of window required to show this column
+  },
+  type = {
+    enabled = true,
+    required_width = 122, -- min width of window required to show this column
+  },
+  last_modified = {
+    enabled = true,
+    required_width = 80, -- min width of window required to show this column
+  },
+  created = {
+    enabled = true,
+    required_width = 110, -- min width of window required to show this column
+  },
+  symlink_target = {
+    enabled = false,
+  },
+},
+-- A list of functions, each representing a global custom command
+-- that will be available in all sources (if not overridden in `opts[source_name].commands`)
+-- see `:h neo-tree-custom-commands-global`
+commands = {},
+window = {
+  position = "left",
+  width = 24,
+  mapping_options = {
+    noremap = true,
+    nowait = true,
+  },
+  mappings = {
+    ["<leader>"] = { 
+"toggle_node", 
+nowait = true, -- disable `nowait` if you have existing combos starting with this char that you want to use 
+    },
+    ["<2-LeftMouse>"] = "open",
+    ["<cr>"] = "open",
+    ["<esc>"] = "cancel", -- close preview or floating neo-tree window
+    ["P"] = { "toggle_preview", config = { use_float = true } },
+    ["l"] = "focus_preview",
+    ["S"] = "open_split",
+    ["s"] = "open_vsplit",
+    -- ["S"] = "split_with_window_picker",
+    -- ["s"] = "vsplit_with_window_picker",
+    ["t"] = "open_tabnew",
+    -- ["<cr>"] = "open_drop",
+    -- ["t"] = "open_tab_drop",
+    ["w"] = "open_with_window_picker",
+    --["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
+    ["C"] = "close_node",
+    -- ['C'] = 'close_all_subnodes',
+    ["z"] = "close_all_nodes",
+    --["Z"] = "expand_all_nodes",
+    ["a"] = { 
+      "add",
+      -- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
+      -- some commands may take optional config options, see `:h neo-tree-mappings` for details
+      config = {
+show_path = "none" -- "none", "relative", "absolute"
+      }
+    },
+    ["A"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
+    ["d"] = "delete",
+    ["r"] = "rename",
+    ["y"] = "copy_to_clipboard",
+    ["x"] = "cut_to_clipboard",
+    ["p"] = "paste_from_clipboard",
+    ["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
+    -- ["c"] = {
+    --  "copy",
+    --  config = {
+    --    show_path = "none" -- "none", "relative", "absolute"
+    --  }
+    --}
+    ["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
+    ["q"] = "close_window",
+    ["R"] = "refresh",
+    ["?"] = "show_help",
+    ["<"] = "prev_source",
+    [">"] = "next_source",
+    --["i"] = "show_file_details",
+  }
+},
+nesting_rules = {},
+filesystem = {
+  filtered_items = {
+    visible = false, -- when true, they will just be displayed differently than normal items
+    hide_dotfiles = true,
+    show_hidden_count = false,
+    hide_gitignored = true,
+    hide_hidden = true, -- only works on Windows for hidden files/directories
+    hide_by_name = {
+      --"node_modules"
+    },
+    hide_by_pattern = { -- uses glob style patterns
+      --"*.meta",
+      --"*/src/*/tsconfig.json",
+    },
+    always_show = { -- remains visible even if other settings would normally hide it
+      --".gitignored",
+    },
+    never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
+      --".DS_Store",
+      --"thumbs.db"
+    },
+    never_show_by_pattern = { -- uses glob style patterns
+      --".null-ls_*",
+    },
+  },
+  follow_current_file = {
+    enabled = true, -- This will find and focus the file in the active buffer every time
+    --       -- the current file is changed while the tree is open.
+    leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+  },
+  group_empty_dirs = false, -- when true, empty folders will be grouped together
+  hijack_netrw_behavior = "open_current", -- netrw disabled, opening a directory opens neo-tree
+  -- in whatever position is specified in window.position
+-- "open_current",  -- netrw disabled, opening a directory opens within the
+  -- window like netrw would, regardless of window.position
+-- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
+  use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
+  -- instead of relying on nvim autocmd events.
+  window = {
+    mappings = {
+      ["<bs>"] = "navigate_up",
+      ["."] = "set_root",
+      ["H"] = "toggle_hidden",
+      ["/"] = "fuzzy_finder",
+      ["D"] = "fuzzy_finder_directory",
+      ["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
+      -- ["D"] = "fuzzy_sorter_directory",
+      ["f"] = "filter_on_submit",
+      ["<c-x>"] = "clear_filter",
+      ["[g"] = "prev_git_modified",
+      ["]g"] = "next_git_modified",
+      ["o"] = { "show_help", nowait=false, config = { title = "Order by", prefix_key = "o" }},
+      --["oc"] = { "order_by_created", nowait = false },
+      --["od"] = { "order_by_diagnostics", nowait = false },
+      --["og"] = { "order_by_git_status", nowait = false },
+      --["om"] = { "order_by_modified", nowait = false },
+      --["on"] = { "order_by_name", nowait = false },
+      --["os"] = { "order_by_size", nowait = false },
+      --["ot"] = { "order_by_type", nowait = false },
+    },
+    fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
+      ["<down>"] = "move_cursor_down",
+      ["<C-n>"] = "move_cursor_down",
+      ["<up>"] = "move_cursor_up",
+      ["<C-p>"] = "move_cursor_up",
+    },
+  },
+
+  commands = {} -- Add a custom command or override a global one using the same function name
+},
+buffers = {
+  follow_current_file = {
+    enabled = true, -- This will find and focus the file in the active buffer every time
+    --      -- the current file is changed while the tree is open.
+    leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+  },
+  group_empty_dirs = true, -- when true, empty folders will be grouped together
+  show_unloaded = true,
+  window = {
+    mappings = {
+      ["bd"] = "buffer_delete",
+      ["<bs>"] = "navigate_up",
+      ["."] = "set_root",
+      ["o"] = { "show_help", nowait=false, config = { title = "Order by", prefix_key = "o" }},
+      ["oc"] = { "order_by_created", nowait = false },
+      ["od"] = { "order_by_diagnostics", nowait = false },
+      ["om"] = { "order_by_modified", nowait = false },
+      ["on"] = { "order_by_name", nowait = false },
+      ["os"] = { "order_by_size", nowait = false },
+      ["ot"] = { "order_by_type", nowait = false },
+    }
+  },
+},
+git_status = {
+  window = {
+    position = "float",
+    mappings = {
+      ["A"]  = "git_add_all",
+      ["gu"] = "git_unstage_file",
+      ["ga"] = "git_add_file",
+      ["gr"] = "git_revert_file",
+      ["gc"] = "git_commit",
+      ["gp"] = "git_push",
+      ["gg"] = "git_commit_and_push",
+      ["o"] = { "show_help", nowait=false, config = { title = "Order by", prefix_key = "o" }},
+      ["oc"] = { "order_by_created", nowait = false },
+      --["od"] = { "order_by_diagnostics", nowait = false },
+      ["om"] = { "order_by_modified", nowait = false },
+      ["on"] = { "order_by_name", nowait = false },
+      ["os"] = { "order_by_size", nowait = false },
+      ["ot"] = { "order_by_type", nowait = false },
+    }
+  }
+}
+})
+
+vim.cmd([[nnoremap <silent> \ :Neotree reveal<cr>]])
 EOF
 "}}}
