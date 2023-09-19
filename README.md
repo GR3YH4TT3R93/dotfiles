@@ -12,7 +12,7 @@
 
 ### Install pynvim
 
-    /data/data/com.termux/usr/bin/python3 -m pip install pynvim
+    python -m pip install pynvim
 
 ### Install neovim npm package
 
@@ -80,7 +80,7 @@
 
 ## Install Nvim Plugins
 
-    :PlugInstall
+    e # open editor
 
 ## Custom Unexpected Keyboard Config
 
