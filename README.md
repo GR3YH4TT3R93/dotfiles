@@ -6,9 +6,9 @@
 
     apt update && apt upgrade -y
 
-## Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls
+## Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior
 
-    apt update && apt install nala zsh termux-api git gh neovim nodejs python-pip ruby wget logo-ls -y
+    apt update && apt install nala zsh termux-api git gh neovim nodejs python-pip ruby wget logo-ls timewarrior taskwarrior -y
 
 ### Install pynvim
 
