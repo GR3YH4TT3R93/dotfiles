@@ -1,11 +1,11 @@
-" Install vim-plug if not found{{{
+" Install vim-plug if not found {{{
 if empty(glob('"${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim'))
   silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 "}}}
 
-"Plugins {{{
+"Plugins  {{{
 call plug#begin()
   Plug 'navarasu/onedark.nvim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -35,13 +35,13 @@ call plug#begin()
 call plug#end()
 "}}}
 
-" Run PlugInstall if there are missing plugins{{{
+" Run PlugInstall if there are missing plugins {{{
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync | source $MYVIMRC
 \| endif
 "}}}
 
-" Theme{{{
+" Theme {{{
   set encoding=UTF-8
   set number relativenumber
   set cursorline
@@ -68,7 +68,7 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   " autocmd VimLeave * wshada!
 
 
-"Coc Lightbulb{{{
+"Coc Lightbulb {{{
 " virtual text
 hi default LightBulbDefaultVirtualText guifg=#FDD164
 hi default link LightBulbQuickFixVirtualText LightBulbDefaultVirtualText
@@ -81,12 +81,12 @@ hi default link LightBulbQuickFixSign LightBulbDefaultSignLine
   "}}}
 "}}}
 
-" Providers{{{
+" Providers {{{
 let g:python3_host_prog = '/data/data/com.termux/files/usr/bin/python3'
 let g:loaded_perl_provider = 0
 "}}}
 
-" CoC Extensions{{{
+" CoC Extensions {{{
 let g:coc_global_extensions = [
   \'@statiolake/coc-extension-auto-installer',
   \'@raidou/coc-prettier-v3',
@@ -119,13 +119,13 @@ let g:coc_global_extensions = [
 \]
 "}}}
 
-"CoC Volar{{{
+"CoC Volar {{{
 
-"Set File Types{{{
+"Set File Types {{{
 au FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsconfig.json', 'jsconfig.json', 'vite.config.ts', 'vite.config.js', 'vue.config.js', 'nuxt.config.ts']
 "}}}
 
-"Fix Completions{{{
+"Fix Completions {{{
 autocmd Filetype vue setlocal iskeyword+=-
 "}}}
 
@@ -134,11 +134,11 @@ nnoremap <f10> :CocCommand volar.action.nuxt<CR>
 inoremap <f10> :CocCommand volar.action.nuxt<CR>
 "}}}
 
-"CoC Tailwind CSS{{{
+"CoC Tailwind CSS {{{
 au FileType html let b:coc_root_patterns = ['.git', '.env', 'tailwind.config.js', 'tailwind.config.cjs']
 "}}}
 
-" CoC Tab Completions{{{
+" CoC Tab Completions {{{
 
 inoremap <silent><expr> <TAB>
   \ coc#pum#visible() ? coc#_select_confirm() :
@@ -154,7 +154,7 @@ endfunction
 let g:coc_snippet_next = '<TAB>'
 "}}}
 
-"Use C to open CoC Config{{{
+"Use :C to open CoC Config {{{
 function! SetupCommandAbbrs(from, to)
   exec 'cnoreabbrev <expr> '.a:from
 \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
@@ -165,7 +165,7 @@ endfunction
 call SetupCommandAbbrs('C', 'CocConfig')
 "}}}
 
-" Mappings for CoCList{{{
+" Mappings for CoCList {{{
 " Show all diagnostics
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<CR>
 " Manage extensions
@@ -184,7 +184,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 "}}}
 
-" Write, Quit, eXit{{{
+" Write, Quit, eXit {{{
 " Control-W Save
 nnoremap <C-W> :w<CR>
 vnoremap <C-W> <esc> :w<CR>
@@ -203,7 +203,7 @@ vnoremap <C-X> <esc> :wq<CR>
 inoremap <C-X> <esc> :wq<CR>
 "}}}
 
-" Move Lines and Blocks{{{
+" Move Lines and Blocks {{{
 
 " Normal-mode commands
 nnoremap <silent> <A-j> :MoveLine(1)<CR>
@@ -220,12 +220,12 @@ vnoremap <silent> <A-l> :MoveHBlock(1)<CR>
 vnoremap <silent> <A-h> :MoveHBlock(-1)<CR>
 "}}}
 
-" Nvim Space Folding{{{
+" Nvim Space Folding {{{
   nnoremap <nowait><silent>  <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
   vnoremap <nowait><silent> <Space> zf
 "}}}
 
-" Telescope Keymaps{{{
+" Telescope Keymaps {{{
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<CR>
 nnoremap <leader>fg <cmd>Telescope live_grep<CR>
@@ -239,7 +239,7 @@ nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<CR>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<CR>
 "}}}
 
-" BarBar Keymaps{{{
+" BarBar Keymaps {{{
 
 " Move to previous/next
 nnoremap <silent>    <C-l> <Cmd>BufferPrevious<CR>
@@ -298,10 +298,10 @@ nnoremap <silent> <Space>bw <Cmd>BufferOrderByWindowNumber<CR>
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 "}}}
 
-"Lua Configs{{{
+"Lua Configs {{{
 lua <<EOF
 
--- TreeSitter{{{
+-- TreeSitter {{{ 
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
@@ -346,7 +346,7 @@ end
 }
 --}}}
 
--- Rainbow Delimiters{{{
+-- Rainbow Delimiters {{{
 local rainbow_delimiters = require 'rainbow-delimiters'
 
 vim.g.rainbow_delimiters = {
@@ -370,7 +370,7 @@ lua = 'rainbow-blocks',
 }
 --}}}
 
--- Web DevIcons{{{
+-- Web DevIcons {{{
 require'nvim-web-devicons'.setup {
  -- your personnal icons can go here (to override)
  -- you can specify color or cterm_color instead of specifying both of them
@@ -415,7 +415,7 @@ require'nvim-web-devicons'.setup {
 }
 --}}}
 
--- Rainbow Blank Line"{{{
+-- Rainbow Blank Line" {{{
 vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
@@ -436,7 +436,7 @@ require("indent_blankline").setup {
 }
 --"}}}
 
--- Cursor Line"{{{
+-- Cursor Line" {{{
 require('nvim-cursorline').setup {
   cursorline = {
     enable = true,
@@ -451,7 +451,7 @@ require('nvim-cursorline').setup {
 }
 --}}}
 
--- Close Symbols"{{{
+-- Close Symbols" {{{
 require("autoclose").setup({
   keys = {
     ["("] = { escape = false, close = true, pair = "()" },
@@ -477,11 +477,11 @@ require("autoclose").setup({
 })
 --}}}
 
--- Vim Notify"{{{
+-- Vim Notify" {{{
 vim.notify = require("notify")
 --}}}
 
--- NeoTree"{{{
+-- NeoTree" {{{
 require("neo-tree").setup({
 close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
 popup_border_style = "rounded",
