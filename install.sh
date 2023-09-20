@@ -36,41 +36,41 @@
 
 # Install Powerlevel10k
 
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k"
 
 # Install Oh My Zsh plugins
 
 # Auto-Suggestions
 
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
 
 # Completions
 
-    git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
+    git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions"
 
 # History Substring Search
 
-    git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+    git clone https://github.com/zsh-users/zsh-history-substring-search "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search"
 
 # Syntax Highlighting
 
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 
 # Git Flow Completions
 
-    git clone https://github.com/bobthecow/git-flow-completion ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/git-flow-completion
+    git clone https://github.com/bobthecow/git-flow-completion "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/git-flow-completion"
 
 # Zsh Vi Mode
 
-    git clone https://github.com/jeffreytse/zsh-vi-mode ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-vi-mode
+    git clone https://github.com/jeffreytse/zsh-vi-mode "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-vi-mode"
 
 # reset .zshrc
     mv .zshrc.pre-oh-my-zsh .zshrc
 
 # Clean Install files
 
-    rm -rf .shell.pre-oh-my-zsh install.sh
+    rm -rf .shell.pre-oh-my-zsh
 
 # Stop Tracking install.sh
 
-    git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME rm --cached install.sh
+    git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" rm install.sh
