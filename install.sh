@@ -17,6 +17,9 @@
 
     gem install neovim
 
+# Update Gem
+    gem update --system
+
 # Set up GitHub auth
 
     gh auth login
