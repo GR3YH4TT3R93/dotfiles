@@ -1,14 +1,8 @@
-"Auto Install Plugins{{{
-" Install vim-plug if not found
+" Install vim-plug if not found{{{
 if empty(glob('"${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim'))
   silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
-
-" Run PlugInstall if there are missing plugins
-autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \| PlugInstall --sync | source $MYVIMRC
-\| endif
 "}}}
 
 "Plugins {{{
@@ -39,6 +33,12 @@ call plug#begin()
   Plug 'MunifTanjim/nui.nvim'
   Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v2.x' }
 call plug#end()
+"}}}
+
+" Run PlugInstall if there are missing plugins{{{
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
 "}}}
 
 " Theme{{{
@@ -190,17 +190,17 @@ nnoremap <C-W> :w<CR>
 vnoremap <C-W> <esc> :w<CR>
 "imap <C-W> <esc>:w<CR>
 " Save + back into insert 
-inoremap <S-W> <esc> :w<CR>a
+" inoremap <M-W> <esc> :w<CR>a
 
-" Control-t
+" Control-Q Quit without save
 nnoremap <C-Q> :q!<CR>
 vnoremap <C-Q> <esc> :q!<CR>
 inoremap <C-Q> <esc> :q!<CR>
 
-" force exit
-nnoremap <C-X> :x<CR>
-vnoremap <C-X> <esc> :x<CR>
-inoremap <C-X> <esc> :x<CR>
+" Control-X Exit
+nnoremap <C-X> :wq<CR>
+vnoremap <C-X> <esc> :wq<CR>
+inoremap <C-X> <esc> :wq<CR>
 "}}}
 
 " Move Lines and Blocks{{{
@@ -301,7 +301,7 @@ command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 "Lua Configs{{{
 lua <<EOF
 
--- TreeSitter Config"{{{
+-- TreeSitter{{{
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
@@ -370,7 +370,7 @@ lua = 'rainbow-blocks',
 }
 --}}}
 
--- Web DevIcons Config{{{
+-- Web DevIcons{{{
 require'nvim-web-devicons'.setup {
  -- your personnal icons can go here (to override)
  -- you can specify color or cterm_color instead of specifying both of them
@@ -415,7 +415,7 @@ require'nvim-web-devicons'.setup {
 }
 --}}}
 
--- Colored Blank Line"{{{
+-- Rainbow Blank Line"{{{
 vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
