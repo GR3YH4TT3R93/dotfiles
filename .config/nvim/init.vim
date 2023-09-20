@@ -301,7 +301,7 @@ command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 "Lua Configs {{{
 lua <<EOF
 
--- TreeSitter {{{ 
+-- TreeSitter {{{
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
