@@ -1,7 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 # Install script for My Termux Dotfiles
 
-# Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, Htop
+# Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, htop
 
     apt update && apt install nala -y && nala install zsh termux-api gh neovim nodejs python-pip ruby wget logo-ls timewarrior taskwarrior htop -y
 
@@ -66,3 +66,7 @@
 
 # reset .zshrc
     mv .zshrc.pre-oh-my-zsh .zshrc
+
+# Clean Install files
+
+    rm -rf .shell.pre-oh-my-zsh install.sh
