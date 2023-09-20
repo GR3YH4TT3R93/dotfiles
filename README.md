@@ -1,6 +1,6 @@
 # My Termux Dotfiles
 
-prerequisites: Unexpected Keyboard, Termux:styles
+Prerequisites: Unexpected Keyboard, Termux:styles
 
 ## Update and Upgrade Packages, Install Git
 
