@@ -32,7 +32,9 @@
 
 # Install Oh My Zsh
 
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+
+    install.sh
 
 # Install Powerlevel10k
 
