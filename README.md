@@ -10,7 +10,7 @@ prerequisites: Unexpected Keyboard, Termux:styles
 
 ### Fork Repo and replace git clone url with your own
 
-    rm .termux/termux.properties .zshrc
+    rm -rf .termux/termux.properties
     git clone --bare https://github.com/GR3YH4TT3R93/dotfiles.git ~/GitHub/dotfiles
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
@@ -18,6 +18,8 @@ prerequisites: Unexpected Keyboard, Termux:styles
 ## Run Install Script
 
     bash install.sh
+
+## Press Ctrl+d to exit zsh and continue script after oh-my-zsh script completes
 
 ## Restart Termux
 
