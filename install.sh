@@ -70,3 +70,7 @@
 # Clean Install files
 
     rm -rf .shell.pre-oh-my-zsh install.sh
+
+# Stop Tracking install.sh
+
+    git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME rm --cached install.sh
