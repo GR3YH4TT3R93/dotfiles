@@ -77,13 +77,21 @@
 
     termux-setup-storage
 
-# Setup Git
+# Set Up Git Credentials
+echo "Time to set up your Git credentials!"
 
-    echo Time to set up your Git Credentials!
-    read -r 'Username: ' username
-    read -r 'Email: ' email
-    git config --system user.name "$username"
-    git config --system user.email "$email"
+# Prompt the user for their Git username
+read -p "Enter your Git username: " username
+
+# Prompt the user for their Git email
+read -p "Enter your Git email: " email
+
+# Set the Git username and email globally
+git config --global user.name "$username"
+git config --global user.email "$email"
+
+echo "Git credentials configured successfully!"
+
 
 # Finish Setup
 
