@@ -87,7 +87,7 @@ read -p "Enter your Git username: " username
 read -p "Enter your Git email: " email
 
 # Prompt the user to choose between global and system-wide configuration
-read -p "Would you like to set your Git configuration globally or system-wide? (Yes/No): " choice
+read -p "Would you like to set your Git configuration system-wide? (Yes/No): " choice
 
 if [ "$choice" = "no" ] || [ "$choice" = "N" ] || [ "$choice" = "n" ]; then
     # Set the Git username and email globally
