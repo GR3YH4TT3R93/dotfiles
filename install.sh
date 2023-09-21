@@ -73,3 +73,6 @@
     git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" mv install.sh ~/.termux/install.sh
     git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" mv README.md ~/.termux/README.md
 
+# Enable Storage
+
+    termux-setup-storage
