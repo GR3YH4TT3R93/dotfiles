@@ -68,6 +68,8 @@
 
     git clone https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plugins/magic-enter"
 
-# Stop Tracking install.sh
+# Hide README.md install.sh
 
-    git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" rm install.sh
+    git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" mv install.sh ~/.termux/install.sh
+    git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" mv README.md ~/.termux/README.md
+
