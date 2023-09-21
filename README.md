@@ -48,7 +48,7 @@ Prerequisites: Unexpected Keyboard, Termux:styles
         <key key0="s" key3="{" key4="}"/>
         <key key0="d" key3="[" key4="]"/>
         <key key0="f" key3="(" key4=")"/>
-        <key key0="g" key3="/" key4="\\"/>
+        <key key0="g" key3="/" key4="\" key7="|"/>
         <key key0="h" key3="&lt;" key4=">"/>
         <key key0="j" key3="+" key4="="/>
         <key key0="k" key3="_" key4="-"/>
