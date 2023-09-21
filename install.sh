@@ -86,11 +86,22 @@ read -p "Enter your Git username: " username
 # Prompt the user for their Git email
 read -p "Enter your Git email: " email
 
-# Set the Git username and email globally
-git config --global user.name "$username"
-git config --global user.email "$email"
+# Prompt the user to choose between global and system-wide configuration
+read -p "Would you like to set your Git configuration globally or system-wide? (Yes/No): " choice
 
-echo "Git credentials configured successfully!"
+if [ "$choice" = "no" ] || [ "$choice" = "N" ] || [ "$choice" = "n" ]; then
+    # Set the Git username and email globally
+    git config --global user.name "$username"
+    git config --global user.email "$email"
+    echo "Git credentials configured globally!"
+elif [ "$choice" = "yes" ] || [ "$choice" = "Y" ] || [ "$choice" = "y" ]; then
+    # Set the Git username and email system-wide
+    sudo git config --system user.name "$username"
+    sudo git config --system user.email "$email"
+    echo "Git credentials configured system-wide!"
+else
+    echo "Invalid choice. Git credentials not configured."
+fi
 
 
 # Finish Setup
