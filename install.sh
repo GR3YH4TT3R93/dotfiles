@@ -76,3 +76,15 @@
 # Enable Storage
 
     termux-setup-storage
+
+# Setup Git
+
+    echo Time to set up your Git Credentials!
+    read -r 'Username: ' username
+    read -r 'Email: ' email
+    git config --system user.name "$username"
+    git config --system user.email "$email"
+
+# Finish Setup
+
+echo Setup Complete! Press Ctrl+D for changes to take effect.
