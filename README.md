@@ -17,7 +17,7 @@ Prerequisites: Unexpected Keyboard, Termux:styles
 
 ## Run Install Script
 
-    bash install.sh
+    ~/install.sh
 
 ## Press Ctrl+d to exit zsh and continue script after oh-my-zsh script completes
 
