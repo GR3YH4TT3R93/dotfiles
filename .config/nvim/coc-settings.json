@@ -38,6 +38,7 @@
   "eslint.run": "onType",
   "eslint.autoFixOnSave": true,
   "eslint.quiet": true,
+  "eslint.packageManager": "pnpm",
   "lightbulb.text": {
     "default": "",
     "quickfix": ""
