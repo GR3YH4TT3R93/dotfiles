@@ -63,6 +63,9 @@
 # Zsh Vi Mode
 
     git clone https://github.com/jeffreytse/zsh-vi-mode "${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh/custom}}/plugins/zsh-vi-mode"
+# Magic Enter
+
+    git clone https://github.com/GR3YH4TT3R93/magic-enter "${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh/custom}}/plugins/magic-enter"
 
 # reset .zshrc
     mv .zshrc.pre-oh-my-zsh .zshrc
