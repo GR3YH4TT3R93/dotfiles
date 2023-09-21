@@ -96,8 +96,8 @@ if [ "$choice" = "no" ] || [ "$choice" = "N" ] || [ "$choice" = "n" ]; then
     echo "Git credentials configured globally!"
 elif [ "$choice" = "yes" ] || [ "$choice" = "Y" ] || [ "$choice" = "y" ]; then
     # Set the Git username and email system-wide
-    sudo git config --system user.name "$username"
-    sudo git config --system user.email "$email"
+    git config --system user.name "$username"
+    git config --system user.email "$email"
     echo "Git credentials configured system-wide!"
 else
     echo "Invalid choice. Git credentials not configured."
