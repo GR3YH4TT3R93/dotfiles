@@ -1,82 +1,71 @@
 #!/data/data/com.termux/files/usr/bin/bash
 # Install script for My Termux Dotfiles
 
-# Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, htop
+# Set Up Storage
+termux-setup-storage
 
-    apt update && apt upgrade -y && apt update && apt install nala -y && nala install zsh termux-api gh neovim nodejs python-pip ruby wget logo-ls timewarrior taskwarrior htop -y
+# Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, htop
+apt update && apt upgrade -y && apt update && apt install nala -y && nala install zsh termux-api gh neovim nodejs python-pip ruby wget logo-ls timewarrior taskwarrior htop -y
 
 # Install pynvim
-
-    python -m pip install pynvim
+python -m pip install pynvim
 
 # Install neovim npm package
-
-    npm install -g pnpm neovim
+npm install -g pnpm neovim
 
 # Install neovim gem package
-
-    gem install neovim
+gem install neovim
 
 # Update Gem
-    gem update --system
+gem update --system
 
 # Set up GitHub auth
-
-    gh auth login
+gh auth login
 
 # Install MOTD
-
-    rm /data/data/com.termux/files/usr/etc/motd
-    git clone https://github.com/GR3YH4TT3R93/termux-motd.git /data/data/com.termux/files/usr/etc/motd
-    echo "/data/data/com.termux/files/usr/etc/motd/init.sh" >> /data/data/com.termux/files/usr/etc/zprofile
+rm /data/data/com.termux/files/usr/etc/motd
+git clone https://github.com/GR3YH4TT3R93/termux-motd.git /data/data/com.termux/files/usr/etc/motd
+echo "/data/data/com.termux/files/usr/etc/motd/init.sh" >> /data/data/com.termux/files/usr/etc/zprofile
 
 # Install Oh My Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/GR3YH4TT3R93/ohmyzsh/master/tools/install.sh)"
 
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/GR3YH4TT3R93/ohmyzsh/master/tools/install.sh)"
+# Clean up excess files
+rm .shell.pre-oh-my-zsh
 
 # Set the ZSH_CUSTOM variable
-    ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
-# Install Powerlevel10k
+ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
+# Install Powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
 
 # Install Oh My Zsh plugins
 # Auto-Suggestions
-
-    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
 
 # Completions
-
-    git clone https://github.com/zsh-users/zsh-completions "$ZSH_CUSTOM/plugins/zsh-completions"
+git clone https://github.com/zsh-users/zsh-completions "$ZSH_CUSTOM/plugins/zsh-completions"
 
 # History Substring Search
-
-    git clone https://github.com/zsh-users/zsh-history-substring-search "$ZSH_CUSTOM/plugins/zsh-history-substring-search"
+git clone https://github.com/zsh-users/zsh-history-substring-search "$ZSH_CUSTOM/plugins/zsh-history-substring-search"
 
 # Syntax Highlighting
-
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
 
 # Git Flow Completions
-
-    git clone https://github.com/bobthecow/git-flow-completion "$ZSH_CUSTOM/plugins/git-flow-completion"
+git clone https://github.com/bobthecow/git-flow-completion "$ZSH_CUSTOM/plugins/git-flow-completion"
 
 # Zsh Vi Mode
+git clone https://github.com/jeffreytse/zsh-vi-mode "$ZSH_CUSTOM/plugins/zsh-vi-mode"
 
-    git clone https://github.com/jeffreytse/zsh-vi-mode "$ZSH_CUSTOM/plugins/zsh-vi-mode"
 # Magic Enter
-
-    git clone https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plugins/magic-enter"
+git clone https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plugins/magic-enter"
 
 
 # Hide README.md install.sh
+git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" mv .install.sh ~/.termux/install.sh
+git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" mv README.md ~/.termux/README.md
 
-    git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" mv .install.sh ~/.termux/install.sh
-    git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" mv README.md ~/.termux/README.md
-
-# Enable Storage
-
-    termux-setup-storage
 
 # Set Up Git Credentials
 echo "Time to set up your Git credentials!"
@@ -91,38 +80,37 @@ read -p "Enter your Git email: " email
 read -p "Would you like to set your Git configuration system-wide? (Yes/No): " choice
 
 if [ "$choice" = "no" ] || [ "$choice" = "N" ] || [ "$choice" = "n" ]; then
-    # Set the Git username and email globally
-    git config --global user.name "$username"
-    git config --global user.email "$email"
-    git config --global push.autoSetupRerune true
-    git config --global core.editor nvim
-    git config --global init.defaultBranch main
-    git config --global color.status auto
-    git config --global color.branch auto
-    git config --global color.interactive auto
-    git config --global color.diff auto
-    git config --global status.short true
-    echo "Git credentials configured globally!"
+# Set the Git username and email globally
+git config --global user.name "$username"
+git config --global user.email "$email"
+git config --global push.autoSetupRerune true
+git config --global core.editor nvim
+git config --global init.defaultBranch main
+git config --global color.status auto
+git config --global color.branch auto
+git config --global color.interactive auto
+git config --global color.diff auto
+git config --global status.short true
+echo "Git credentials configured globally!"
 elif [ "$choice" = "yes" ] || [ "$choice" = "Y" ] || [ "$choice" = "y" ]; then
-    # Set the Git username and email system-wide
-    git config --system user.name "$username"
-    git config --system user.email "$email"
-    git config --system push.autoSetupRemote true
-    git config --system fetch.prune true
-    git config --system core.editor "nvim"
-    git config --system init.defaultBranch main
-    git config --system color.status auto
-    git config --system color.branch auto
-    git config --system color.interactive auto
-    git config --system color.diff auto
-    git config --system status.short true
-    cat ~/.gitconfig >> /data/data/com.termux/files/usr/etc/gitconfig
-    rm ~/.gitconfig
-    echo "Git credentials configured system-wide!"
+# Set the Git username and email system-wide
+git config --system user.name "$username"
+git config --system user.email "$email"
+git config --system push.autoSetupRemote true
+git config --system fetch.prune true
+git config --system core.editor "nvim"
+git config --system init.defaultBranch main
+git config --system color.status auto
+git config --system color.branch auto
+git config --system color.interactive auto
+git config --system color.diff auto
+git config --system status.short true
+cat ~/.gitconfig >> /data/data/com.termux/files/usr/etc/gitconfig
+rm ~/.gitconfig
+echo "Git credentials configured system-wide!"
 else
-    echo "Invalid choice. Git credentials not configured."
+echo "Invalid choice. Git credentials not configured."
 fi
 
 # Finish Setup
-
 echo Setup Complete! Press Ctrl+D for changes to take effect.
