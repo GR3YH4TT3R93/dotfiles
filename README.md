@@ -15,7 +15,6 @@ Prerequisites: Unexpected Keyboard, Termux:styles
     git clone --bare https://github.com/GR3YH4TT3R93/dotfiles.git ~/GitHub/dotfiles
     ## REPLACE THIS URL ⬆️
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout
-    git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push --set-upstream origin main
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
 
 ## Clone Dotfiles as Normal Repo
