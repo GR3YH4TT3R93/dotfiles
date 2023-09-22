@@ -6,22 +6,23 @@ Prerequisites: Unexpected Keyboard, Termux:styles
 
     apt update && apt install git
 
-## Clone Dotfiles
+## Clone Dotfiles As Bare Repo
 
 ### Fork Repo and replace git clone url with your own
 
     rm -rf .termux/termux.properties
     git clone --bare https://github.com/GR3YH4TT3R93/dotfiles.git ~/GitHub/dotfiles
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout
+    git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push --set-upstream origin main
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
+
+## Clone Dotfiles as Normal Repo
+
+    git clone https://github.com/GR3YH4TT3R93/dotfiles.git
 
 ## Run Install Script
 
     ~/install.sh
-
-## Press Ctrl+d to exit zsh and continue script after oh-my-zsh script completes
-
-## Restart Termux
 
 ## Install Nvim Plugins
 
