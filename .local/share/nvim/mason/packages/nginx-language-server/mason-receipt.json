@@ -1,1 +1,0 @@
-{"schema_version":"1.1","name":"nginx-language-server","links":{"share":{},"bin":{"nginx-language-server":"venv\/bin\/nginx-language-server"},"opt":{}},"primary_source":{"type":"registry+v1","id":"pkg:pypi\/nginx-language-server@0.8.0"},"metrics":{"start_time":1692435269870,"completion_time":1692435278301},"secondary_sources":[]}
