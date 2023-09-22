@@ -16,6 +16,7 @@ Prerequisites: Unexpected Keyboard, Termux:styles
     ## REPLACE THIS URL ⬆️
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
+    ~/.termux/install.sh
 
 ## Clone Dotfiles as Normal Repo
 
@@ -23,7 +24,7 @@ Prerequisites: Unexpected Keyboard, Termux:styles
 
 ## Run Install Script
 
-    ~/.install.sh
+    ~/.termux/install.sh
 
 ## Install Nvim Plugins
 
