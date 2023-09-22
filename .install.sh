@@ -94,16 +94,32 @@ if [ "$choice" = "no" ] || [ "$choice" = "N" ] || [ "$choice" = "n" ]; then
     # Set the Git username and email globally
     git config --global user.name "$username"
     git config --global user.email "$email"
+    git config --global push.autoSetupRerune true
+    git config --global core.editor nvim
+    git config --global init.defaultBranch main
+    git config --global color.status auto
+    git config --global color.branch auto
+    git config --global color.interactive auto
+    git config --global color.diff auto
+    git config --global status.short true
     echo "Git credentials configured globally!"
 elif [ "$choice" = "yes" ] || [ "$choice" = "Y" ] || [ "$choice" = "y" ]; then
     # Set the Git username and email system-wide
     git config --system user.name "$username"
     git config --system user.email "$email"
+    git config --system push.autoSetupRemote true
+    git config --system fetch.prune true
+    git config --system core.editor "nvim"
+    git config --system init.defaultBranch main
+    git config --system color.status auto
+    git config --system color.branch auto
+    git config --system color.interactive auto
+    git config --system color.diff auto
+    git config --system status.short true
     echo "Git credentials configured system-wide!"
 else
     echo "Invalid choice. Git credentials not configured."
 fi
-
 
 # Finish Setup
 
