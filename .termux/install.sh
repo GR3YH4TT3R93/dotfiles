@@ -17,7 +17,7 @@ termux-setup-storage
 
 # Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, htop
 apt update && apt upgrade -y || error_exit "${RED}Failed to update packages.${ENDCOLOR}"
-apt install nala zsh termux-api gh neovim nodejs python-pip ruby wget logo-ls timewarrior taskwarrior htop -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
+apt update && apt install nala zsh termux-api gh neovim nodejs python-pip ruby wget logo-ls timewarrior taskwarrior htop -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
 
 # Install pynvim, pnpm and neovim npm package, and neovim gem package
 python -m pip install pynvim || error_exit "${RED}Failed to install pynvim.${ENDCOLOR}"
