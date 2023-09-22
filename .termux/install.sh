@@ -3,7 +3,6 @@
 # Set custom variables
 ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 RED="\e[31m"
-YELLOW="\e[33m"
 GREEN="\e[32m"
 ENDCOLOR="\e[0m"
 
@@ -17,7 +16,8 @@ termux-setup-storage
 
 # Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, htop
 apt update && apt upgrade -y || error_exit "${RED}Failed to update packages.${ENDCOLOR}"
-apt update && apt install nala zsh termux-api gh neovim nodejs python-pip ruby wget logo-ls timewarrior taskwarrior htop -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
+apt update && apt install nala -y
+nala install zsh termux-api gh neovim nodejs python-pip ruby wget logo-ls timewarrior taskwarrior htop -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
 
 # Install pynvim, pnpm and neovim npm package, and neovim gem package
 python -m pip install pynvim || error_exit "${RED}Failed to install pynvim.${ENDCOLOR}"
@@ -68,7 +68,7 @@ git clone https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plugins/magic
 git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" mv README.md ~/.termux/README.md || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
 
 # Set Up Git Credentials
-echo "Time to set up your Git credentials!"
+echo -e "${GREEN}Time to set up your Git credentials!${ENDCOLOR}"
 
 # Prompt the user for their Git username
 read -p "Enter your Git username: " username
@@ -102,6 +102,7 @@ else
   git config --global user.name "$username"
   git config --global user.email "$email"
   git config --global push.autoSetupRerun true
+  git config --system fetch.prune true
   git config --global core.editor nvim
   git config --global init.defaultBranch main
   git config --global color.status auto
