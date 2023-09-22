@@ -4,7 +4,7 @@ Prerequisites: Unexpected Keyboard, Termux:styles
 
 ## Update and Upgrade Packages, Install Git
 
-    apt update && apt upgrade -y && apt update && apt install git
+    apt update && apt install git
 
 ## Clone Dotfiles
 
