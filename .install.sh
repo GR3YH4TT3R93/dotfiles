@@ -116,6 +116,7 @@ elif [ "$choice" = "yes" ] || [ "$choice" = "Y" ] || [ "$choice" = "y" ]; then
     git config --system color.interactive auto
     git config --system color.diff auto
     git config --system status.short true
+    cat ~/.gitconfig >> /data/data/com.termux/files/usr/etc/gitconfig
     echo "Git credentials configured system-wide!"
 else
     echo "Invalid choice. Git credentials not configured."
