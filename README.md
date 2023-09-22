@@ -23,7 +23,7 @@ Prerequisites: Unexpected Keyboard, Termux:styles
 
 ## Run Install Script
 
-    ~/install.sh
+    ~/.install.sh
 
 ## Install Nvim Plugins
 

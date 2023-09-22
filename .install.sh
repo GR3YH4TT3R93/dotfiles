@@ -11,7 +11,7 @@
 
 # Install neovim npm package
 
-    npm install -g neovim
+    npm install -g pnpm neovim
 
 # Install neovim gem package
 
