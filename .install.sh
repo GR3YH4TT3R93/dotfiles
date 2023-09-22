@@ -70,7 +70,7 @@
 
 # Configure Auto Setup Remote
 
-    git config --global push.autoSetupRemote
+    git config --global push.autoSetupRemote true
 
 # Hide README.md install.sh
 
