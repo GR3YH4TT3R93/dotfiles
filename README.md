@@ -8,10 +8,12 @@ Prerequisites: Unexpected Keyboard, Termux:styles
 
 ## Clone Dotfiles As Bare Repo
 
-### Fork Repo and replace git clone url with your own
+### ⚠️ Fork Repo and replace git clone url with your own! ⚠️
 
     rm -rf .termux/termux.properties
+    ## REPLACE THIS URL ⬇️
     git clone --bare https://github.com/GR3YH4TT3R93/dotfiles.git ~/GitHub/dotfiles
+    ## REPLACE THIS URL ⬆️
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push --set-upstream origin main
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
