@@ -2,9 +2,9 @@
 
 Prerequisites: Unexpected Keyboard, Termux:styles
 
-## Update and Upgrade Packages, Install Git
+## Update and Upgrade Packages, Install Git and gh
 
-    apt update && apt install git
+    apt update && apt install git gh
 
 ## Clone Dotfiles As Bare Repo
 
