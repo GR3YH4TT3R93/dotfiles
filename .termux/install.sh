@@ -149,8 +149,8 @@ if [ -e "$file_path" ]; then
         echo "${RED}File exists but is not readable. Cannot execute Git command.${ENDCOLOR}"
     fi
 else
-    echo "${GREEN}moving...${ENDCOLOR}"
-    git mv README.md ~/.termux/README.md || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
+    echo "${GREEN}Removing...${ENDCOLOR}"
+    rm -rf README.md .git || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
 fi
 
 # Finish Setup
