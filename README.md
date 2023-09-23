@@ -20,11 +20,11 @@ Prerequisites: Unexpected Keyboard, Termux:styles
 
 ## Clone Dotfiles as Normal Repo
 
-    git clone https://github.com/GR3YH4TT3R93/dotfiles.git
+    git clone https://github.com/GR3YH4TT3R93/dotfiles.git #/your/location/here
 
 ## Run Install Script
 
-    ~/.termux/install.sh
+    ~/your/location/here/.termux/install.sh
 
 ## Install Nvim Plugins
 
