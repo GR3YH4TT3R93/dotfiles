@@ -35,7 +35,8 @@ Prerequisites: Unexpected Keyboard, Termux:styles
 
     regular:
     git init
-    git remote set-url https://your.git.fork/repo
+    git config --local status.showUntrackedFiles no
+    git remote add origin https://your.git.fork/repo
 
 ## Install Nvim Plugins
 
