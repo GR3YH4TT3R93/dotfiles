@@ -15,6 +15,58 @@ function error_exit {
 # Set Up Storage
 termux-setup-storage
 
+# Set up GitHub auth
+gh auth login || error_exit "${RED}Failed to set up GitHub auth.${ENDCOLOR}"
+
+# Set Up Git Credentials
+echo -e "${YELLOW}Time to set up your Git credentials!${ENDCOLOR}"
+
+# Prompt the user for their Git username
+read -rp "${GREEN}Enter your Git username${ENDCOLOR}: " username
+
+# Prompt the user for their Git email
+read -rp "${GREEN}Enter your Git email${ENDCOLOR}: " email
+
+# Prompt the user to choose between global and system-wide configuration
+read -rp "Would you like to set your Git configuration system-wide? (Yes/No): " choice
+
+if [[ "$choice" == [Yy]* ]]; then
+  # Set the Git username and email system-wide
+  git config --system user.name "$username"
+  git config --system user.email "$email"
+  git config --system push.autoSetupRemote true
+  git config --system fetch.prune true
+  git config --system core.editor nvim
+  git config --system init.defaultBranch main
+  git config --system color.status auto
+  git config --system color.branch auto
+  git config --system color.interactive auto
+  git config --system color.diff auto
+  git config --system status.short true
+  # Transfer gh helper config to system config
+  cat "$HOME/.gitconfig" >> "/data/data/com.termux/files/usr/etc/gitconfig"
+  # Clean up unnecessary file
+  rm "$HOME/.gitconfig"
+  echo -e "${GREEN}Git credentials configured system-wide.${ENDCOLOR}"
+else
+  # Set the Git username and email globally
+  git config --global user.name "$username"
+  git config --global user.email "$email"
+  git config --global push.autoSetupRerun true
+  git config --system fetch.prune true
+  git config --global core.editor nvim
+  git config --global init.defaultBranch main
+  git config --global color.status auto
+  git config --global color.branch auto
+  git config --global color.interactive auto
+  git config --global color.diff auto
+  git config --global status.short true
+  echo -e "${GREEN}Git credentials configured globally.${ENDCOLOR}"
+fi
+
+
+echo -e "${GREEN}Time to install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, and htop!${ENDCOLOR}"
+
 # Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, htop
 apt update && apt upgrade -y || error_exit "${RED}Failed to update packages.${ENDCOLOR}"
 apt update && apt install nala -y
@@ -26,8 +78,6 @@ npm install -g pnpm neovim || error_exit "${RED}Failed to install neovim npm pac
 gem install neovim || error_exit "${RED}Failed to install neovim gem package.${ENDCOLOR}"
 gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
 
-# Set up GitHub auth
-gh auth login || error_exit "${RED}Failed to set up GitHub auth.${ENDCOLOR}"
 
 # Install MOTD
 rm /data/data/com.termux/files/usr/etc/motd
