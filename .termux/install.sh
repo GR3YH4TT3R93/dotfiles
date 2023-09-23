@@ -64,6 +64,8 @@ else
   echo -e "${GREEN}Git credentials configured globally.${ENDCOLOR}"
 fi
 
+# Clean Up .bash_history
+rm ~/.bash_history
 
 echo -e "${GREEN}Time to install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, and htop!${ENDCOLOR}"
 
