@@ -16,6 +16,7 @@ Prerequisites: Unexpected Keyboard, Termux:styles
     ## REPLACE THIS URL ⬆️
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
+    ## THE NEXT LINE AUTOMATICALLY RUNS INSTALLER REMOVE IF YOU WANT TO RUN IT MANUALLY
     ~/.termux/install.sh
 
 ## Clone Dotfiles as Normal Repo
@@ -30,10 +31,11 @@ Prerequisites: Unexpected Keyboard, Termux:styles
 ## For both methods set new remote!
 
     bare:
-    b remote set-url https://your.github.fork/repo
+    b remote set-url https://your.git.fork/repo
 
     regular:
-    git remote set-url https://your.github.fork/repo
+    git init
+    git remote set-url https://your.git.fork/repo
 
 ## Install Nvim Plugins
 
