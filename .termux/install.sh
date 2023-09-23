@@ -137,18 +137,19 @@ sleep 1
 git clone https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plugins/magic-enter" || error_exit "${RED}Failed to install magic-enter.${ENDCOLOR}"
 
 # Hide README.md
-echo "${GREEN}Hiding README.md in ~/.termux ${ENDCOLOR}"
 file_path="$HOME/GitHub/dotfiles"
 
 # Check if the file exists and is readable
 if [ -e "$file_path" ]; then
     if [ -r "$file_path" ]; then
+        echo "${GREEN}Hiding README.md in ~/.termux ${ENDCOLOR}"
         echo "${GREEN}moving...${ENDCOLOR}"
         git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" mv README.md ~/.termux/README.md || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
     else
         echo "${RED}File exists but is not readable. Cannot execute Git command.${ENDCOLOR}"
     fi
 else
+    echo "${YELLOW}Deletinging README.md and .git folder ${ENDCOLOR}"
     echo "${GREEN}Removing...${ENDCOLOR}"
     rm -rf README.md .git || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
 fi
