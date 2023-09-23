@@ -2,10 +2,10 @@
 # Install script for My Termux Dotfiles
 # Set custom variables
 ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
-RED=$"^[[31m"
-GREEN=$"^[[32m"
-YELLOW=$"^[[33m"
-ENDCOLOR=$"^[[0m"
+RED=$'\e[31m'
+GREEN=$'\e[32m'
+YELLOW=$'\e[33m'
+ENDCOLOR=$'\e[0m'
 
 function error_exit {
   echo -e "${RED}Error: $1${ENDCOLOR}" >&2
