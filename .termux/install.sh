@@ -2,9 +2,10 @@
 # Install script for My Termux Dotfiles
 # Set custom variables
 ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
-RED="\e[31m"
-GREEN="\e[32m"
-ENDCOLOR="\e[0m"
+RED=$"\e[31m"
+GREEN=$"\e[32m"
+YELLOW=$"\e[33m"
+ENDCOLOR=$"\e[0m"
 
 function error_exit {
   echo -e "${RED}Error: $1${ENDCOLOR}" >&2
@@ -68,16 +69,16 @@ git clone https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plugins/magic
 git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" mv README.md ~/.termux/README.md || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
 
 # Set Up Git Credentials
-echo -e "${GREEN}Time to set up your Git credentials!${ENDCOLOR}"
+echo -e "${YELLOW}Time to set up your Git credentials!${ENDCOLOR}"
 
 # Prompt the user for their Git username
-read -p "Enter your Git username: " username
+read -rp "${GREEN}Enter your Git username${ENDCOLOR}: " username
 
 # Prompt the user for their Git email
-read -p "Enter your Git email: " email
+read -rp "${GREEN}Enter your Git email${ENDCOLOR}: " email
 
 # Prompt the user to choose between global and system-wide configuration
-read -p "Would you like to set your Git configuration system-wide? (Yes/No): " choice
+read -rp "Would you like to set your Git configuration system-wide? (Yes/No): " choice
 
 if [[ "$choice" == [Yy]* ]]; then
   # Set the Git username and email system-wide
