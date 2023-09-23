@@ -20,11 +20,19 @@ Prerequisites: Unexpected Keyboard, Termux:styles
 
 ## Clone Dotfiles as Normal Repo
 
-    git clone https://github.com/GR3YH4TT3R93/dotfiles.git #/your/location/here
+    git clone https://github.com/GR3YH4TT3R93/dotfiles.git ~/
 
 ## Run Install Script
 
-    ~/your/location/here/.termux/install.sh
+    ~/.termux/install.sh
+
+## For both methods set new remote!
+
+    bare:
+    b remote set-url https://your.github.fork/repo
+
+    regular:
+    git remote set-url https://your.github.fork/repo
 
 ## Install Nvim Plugins
 
