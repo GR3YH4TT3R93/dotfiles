@@ -20,6 +20,7 @@ Prerequisites: Unexpected Keyboard, Termux:styles
 
 ## Clone Dotfiles as Normal Repo
 
+    rm -rf .termux
     git clone https://github.com/GR3YH4TT3R93/dotfiles.git ~/
 
 ## Run Install Script
