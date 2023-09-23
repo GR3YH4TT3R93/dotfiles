@@ -25,6 +25,7 @@ call plug#begin()
   Plug 'romgrk/barbar.nvim'
   Plug 'MunifTanjim/nui.nvim'
   Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v2.x' }
+  Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
 "}}}
 
@@ -35,30 +36,34 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 "}}}
 
 " Theme {{{
-  set encoding=UTF-8
-  set number relativenumber
-  set cursorline
-  set scrolloff=999
-  set foldmethod=marker
-  set nocompatible
-  set listchars=tab:\⎸\ 
-  set list
-  set wrap linebreak
-  set breakindent
-  set breakindentopt=shift:2
-  set autoindent
-  set expandtab
-  set tabstop=2
-  set shiftwidth=2
-  set softtabstop=2
-  set clipboard+=unnamedplus
-  colorscheme onedark
-  let g:airline_theme='onedark'
-  let g:airline_powerline_fonts = 1
-  let g:indent_blankline_use_treesitter = v:true
-  nnoremap <silent><C-n> :Neotree toggle<CR>
+set encoding=UTF-8
+set number relativenumber
+set cursorline
+set scrolloff=999
+set foldmethod=marker
+set nocompatible
+set list listchars=tab:\⎸\ 
+set wrap linebreak
+set breakindent breakindentopt=shift:2
+set autoindent
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set clipboard+=unnamedplus
+colorscheme onedark
+let g:airline_theme='onedark'
+let g:airline_powerline_fonts = 1
+let g:indent_blankline_use_treesitter = v:true
+let g:strip_whitespace_on_save = 1
+let g:better_whitespace_skip_empty_lines=1
+let g:strip_whitespace_confirm=0
+let g:strip_only_modified_lines=1
+let g:strip_whitelines_at_eof=1
+let g:show_spaces_that_precede_tabs=1
+nnoremap <silent><C-n> :Neotree toggle<CR>
 
-  " autocmd VimLeave * wshada!
+" autocmd VimLeave * wshada!
 
 
 "Coc Lightbulb {{{
@@ -93,7 +98,7 @@ let g:coc_global_extensions = [
   \'coc-highlight',
   \'coc-python',
   \'coc-explorer',
-  \'coc-json', 
+  \'coc-json',
   \'coc-git',
   \'coc-tsserver',
   \'coc-sh',
@@ -182,7 +187,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 nnoremap <C-W> :w<CR>
 vnoremap <C-W> <esc> :w<CR>
 "imap <C-W> <esc>:w<CR>
-" Save + back into insert 
+" Save + back into insert
 " inoremap <M-W> <esc> :w<CR>a
 
 " Control-Q Quit without save
@@ -211,6 +216,11 @@ vnoremap <silent> <A-j> :MoveBlock(1)<CR>
 vnoremap <silent> <A-k> :MoveBlock(-1)<CR>
 vnoremap <silent> <A-l> :MoveHBlock(1)<CR>
 vnoremap <silent> <A-h> :MoveHBlock(-1)<CR>
+"}}}
+
+" Navigate to the previous or next trailing whitespace{{{
+nnoremap ]w :NextTrailingWhitespace<CR>
+nnoremap [w :PrevTrailingWhitespace<CR>
 "}}}
 
 " Nvim Space Folding {{{
@@ -483,7 +493,7 @@ enable_diagnostics = true,
 enable_normal_mode_for_inputs = false, -- Enable normal mode for input dialogs.
 open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
 sort_case_insensitive = false, -- used when sorting files and directories in the tree
-sort_function = nil , -- use a custom function for sorting files and directories in the tree 
+sort_function = nil , -- use a custom function for sorting files and directories in the tree
 -- sort_function = function (a,b)
 --       if a.type == b.type then
 --   return a.path > b.path
@@ -575,9 +585,9 @@ window = {
     nowait = true,
   },
   mappings = {
-    ["<leader>"] = { 
-"toggle_node", 
-nowait = true, -- disable `nowait` if you have existing combos starting with this char that you want to use 
+    ["<leader>"] = {
+"toggle_node",
+nowait = true, -- disable `nowait` if you have existing combos starting with this char that you want to use
     },
     ["<2-LeftMouse>"] = "open",
     ["<cr>"] = "open",
@@ -597,7 +607,7 @@ nowait = true, -- disable `nowait` if you have existing combos starting with thi
     -- ['C'] = 'close_all_subnodes',
     ["z"] = "close_all_nodes",
     --["Z"] = "expand_all_nodes",
-    ["a"] = { 
+    ["a"] = {
       "add",
       -- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
       -- some commands may take optional config options, see `:h neo-tree-mappings` for details
