@@ -28,7 +28,7 @@ read -rp "${GREEN}Enter your Git username${ENDCOLOR}: " username
 read -rp "${GREEN}Enter your Git email${ENDCOLOR}: " email
 
 # Prompt the user to choose between global and system-wide configuration
-read -rp "Would you like to set your Git configuration system-wide? (Yes/No): " choice
+read -rp "${GREEN}Would you like to set your Git configuration system-wide? (Yes/No)${ENDCOLOR}: " choice
 
 if [[ "$choice" == [Yy]* ]]; then
   # Set the Git username and email system-wide
@@ -64,10 +64,9 @@ else
   echo -e "${GREEN}Git credentials configured globally.${ENDCOLOR}"
 fi
 
-# Clean Up .bash_history
-rm ~/.bash_history
 
 echo -e "${GREEN}Time to install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, and htop!${ENDCOLOR}"
+sleep 5
 
 # Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, htop
 apt update && apt upgrade -y || error_exit "${RED}Failed to update packages.${ENDCOLOR}"
@@ -80,41 +79,61 @@ npm install -g pnpm neovim || error_exit "${RED}Failed to install neovim npm pac
 gem install neovim || error_exit "${RED}Failed to install neovim gem package.${ENDCOLOR}"
 gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
 
-
 # Install MOTD
+echo "${GREEN}Installing MOTD${ENDCOLOR}"
+sleep 2
 rm /data/data/com.termux/files/usr/etc/motd
 git clone https://github.com/GR3YH4TT3R93/termux-motd.git /data/data/com.termux/files/usr/etc/motd
 echo "/data/data/com.termux/files/usr/etc/motd/init.sh" >> /data/data/com.termux/files/usr/etc/zprofile
 
 # Install Oh My Zsh
+echo "${GREEN}Installing Oh-My-Zsh${ENDCOLOR}"
+sleep 2
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/GR3YH4TT3R93/ohmyzsh/master/tools/install.sh)"
 
 # Clean up excess files
 rm ".shell.pre-oh-my-zsh"
 
 # Install Powerlevel10k
+echo -e "${GREEN}Installing Powerlevel10k${ENDCOLOR}"
+sleep 2
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k" || error_exit "${RED}Failed to install Powerlevel10k.${ENDCOLOR}"
 
 # Install Oh My Zsh plugins
+echo -e "${GREEN}Installing Zsh Plugins${ENDCOLOR}"
+sleep 2
 # Auto-Suggestions
+echo -e "${GREEN}Installing Zsh Auto-Suggestions${ENDCOLOR}"
+sleep 1
 git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions" || error_exit "${RED}Failed to install zsh-autosuggestions.${ENDCOLOR}"
 
 # Completions
+echo -e "${GREEN}Installing Zsh Completions${ENDCOLOR}"
+sleep 1
 git clone https://github.com/zsh-users/zsh-completions "$ZSH_CUSTOM/plugins/zsh-completions" || error_exit "${RED}Failed to install zsh-completions.${ENDCOLOR}"
 
 # History Substring Search
+echo -e "${GREEN}Installing History Substring Search${ENDCOLOR}"
+sleep 1
 git clone https://github.com/zsh-users/zsh-history-substring-search "$ZSH_CUSTOM/plugins/zsh-history-substring-search" || error_exit "${RED}Failed to install zsh-history-substring-search.${ENDCOLOR}"
 
 # Syntax Highlighting
+echo -e "${GREEN}Installing Syntax Highlighting${ENDCOLOR}"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" || error_exit "${RED}Failed to install zsh-syntax-highlighting.${ENDCOLOR}"
 
 # Git Flow Completions
+echo -e "${GREEN}Installing Git Flow Completions${ENDCOLOR}"
+sleep 1
 git clone https://github.com/bobthecow/git-flow-completion "$ZSH_CUSTOM/plugins/git-flow-completion" || error_exit "${RED}Failed to install git-flow-completion.${ENDCOLOR}"
 
 # Zsh Vi Mode
+echo -e "${GREEN}Installing Zsh Vi Mode${ENDCOLOR}"
+sleep 1
 git clone https://github.com/jeffreytse/zsh-vi-mode "$ZSH_CUSTOM/plugins/zsh-vi-mode" || error_exit "${RED}Failed to install zsh-vi-mode.${ENDCOLOR}"
 
 # Magic Enter
+echo -e "${GREEN}Installing Magic-Enter"
+sleep 1
 git clone https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plugins/magic-enter" || error_exit "${RED}Failed to install magic-enter.${ENDCOLOR}"
 
 # Hide README.md
