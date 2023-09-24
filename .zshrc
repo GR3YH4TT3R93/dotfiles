@@ -100,16 +100,30 @@ plugins=(
 	zsh-interactive-cd
 	zsh-syntax-highlighting
 	zsh-vi-mode
-	)
+)
 
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 fpath+=~/.cargo/bin
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-ZVM_VI_SURROUND_BINDKEY='classic'
+function zvm_config() {
+  # Surround operating mode (verb->s->surround)
+  ZVM_VI_SURROUND_BINDKEY='classic'
+  # Always starting with insert mode for each command line
+  ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+  # Retrieve default cursor styles
+  local ncur=$(zvm_cursor_style $ZVM_NORMAL_MODE_CURSOR)
+  local icur=$(zvm_cursor_style $ZVM_INSERT_MODE_CURSOR)
+  # Append your custom color for your cursor
+  ZVM_INSERT_MODE_CURSOR=$icur'\e\e]12;#61afef\a'
+  ZVM_NORMAL_MODE_CURSOR=$ncur'\e\e]12;#98c379\a'
+  # ZVM_VI_HIGHLIGHT_FOREGROUND=#98c379
+  ZVM_VI_HIGHLIGHT_BACKGROUND=#c678dd
+  ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline
+  ZVM_TERM=xterm-256color
+}
+source $ZSH/oh-my-zsh.sh
 
 # Hide Ctrl commands
 # [[ -o interactive ]] && stty -echoctl
