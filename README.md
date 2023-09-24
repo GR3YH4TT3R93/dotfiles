@@ -1,6 +1,10 @@
 # My Termux Dotfiles
 
-Prerequisites: Unexpected Keyboard, Termux:styles
+### Requirements
+
+- figlet (termux-banner only)
+- [FiraCode NerdFont](https://github.com/tonsky/FiraCode) (disk-space progress bar ligatures)
+- [Unexpected Keyboard](https://f-droid.org/packages/juloo.keyboard2/)
 
 ## Update and Upgrade Packages, Install Git and gh
 
