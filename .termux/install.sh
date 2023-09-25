@@ -169,6 +169,16 @@ else
   echo "${RED}Skipping${ENDCOLOR}"
   sed -i '/magic-enter/d' ~/.zshrc
 fi
+
+# Make sure user wants Neovim config
+read -rp "${YELLOW}Would you like to keep the included Neovim Config? (Yes/No)${ENDCOLOR}: " neovim
+
+if [[ "$neovim" == [Nn]* ]]; then
+  echo "${RED}Removing Neovim Config!${ENDCOLOR}"
+  echo "${YELLOW}You will now need to configure neovim yourself!${ENDCOLOR}"
+  rm -rf ~/.config/nvim ~/.local/share/nvim/
+fi
+
 # Hide README.md
 file_path="$HOME/GitHub/dotfiles"
 
