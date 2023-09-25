@@ -65,7 +65,7 @@ else
 fi
 
 
-echo -e "${GREEN}Time to install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, and htop!${ENDCOLOR}"
+echo -e "${GREEN}Time to install Nala Package Manager, Zsh, Termux Clipboard, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, and htop!${ENDCOLOR}"
 sleep 5
 
 # Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, htop
@@ -100,58 +100,104 @@ sleep 2
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k" || error_exit "${RED}Failed to install Powerlevel10k.${ENDCOLOR}"
 
 # Install Oh My Zsh plugins
-echo -e "${GREEN}Installing Zsh Plugins${ENDCOLOR}"
+echo -e "${GREEN}Time to choose your Zsh plugins!${ENDCOLOR}"
 sleep 2
+# Ask if user wants to install zsh plugins
+
 # Auto-Suggestions
-echo -e "${GREEN}Installing Zsh Auto-Suggestions${ENDCOLOR}"
-sleep 1
-git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions" || error_exit "${RED}Failed to install zsh-autosuggestions.${ENDCOLOR}"
+read -rp "${YELLOW}Would You Like Auto-Suggestions? (Yes/No)${ENDCOLOR}: " suggestions
+
+if [[ "$suggestions" == [Yy]* ]]; then
+  echo -e "${GREEN}Installing Zsh Auto-Suggestions${ENDCOLOR}"
+  sleep 1
+  git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions" || error_exit "${RED}Failed to install zsh-autosuggestions.${ENDCOLOR}"
+else
+  echo "${YELLOW}Skipping${ENDCOLOR}"
+  sed -i '/zsh-auto-suggestions/d' ~/.zshrc
+fi
 
 # Completions
-echo -e "${GREEN}Installing Zsh Completions${ENDCOLOR}"
-sleep 1
-git clone https://github.com/zsh-users/zsh-completions "$ZSH_CUSTOM/plugins/zsh-completions" || error_exit "${RED}Failed to install zsh-completions.${ENDCOLOR}"
+read -rp "${YELLOW}How about completions? (Yes/No)${ENDCOLOR}: " completions
+
+if [[ "$completions" == [Yy]* ]]; then
+  echo -e "${GREEN}Installing Zsh Completions${ENDCOLOR}"
+  sleep 1
+  git clone https://github.com/zsh-users/zsh-completions "$ZSH_CUSTOM/plugins/zsh-completions" || error_exit "${RED}Failed to install zsh-completions.${ENDCOLOR}"
+else
+  echo "${YELLOW}Skipping${ENDCOLOR}"
+  sed -i '/zsh-completions/d' ~/.zshrc
+fi
 
 # History Substring Search
-echo -e "${GREEN}Installing History Substring Search${ENDCOLOR}"
-sleep 1
-git clone https://github.com/zsh-users/zsh-history-substring-search "$ZSH_CUSTOM/plugins/zsh-history-substring-search" || error_exit "${RED}Failed to install zsh-history-substring-search.${ENDCOLOR}"
+read -rp "${YELLOW}History Substring Search? (Yes/No)${ENDCOLOR}: " substring
+
+if [[ "$substring" == [Yy]* ]]; then
+  echo -e "${GREEN}Installing History Substring Search${ENDCOLOR}"
+  sleep 1
+  git clone https://github.com/zsh-users/zsh-history-substring-search "$ZSH_CUSTOM/plugins/zsh-history-substring-search" || error_exit "${RED}Failed to install zsh-history-substring-search.${ENDCOLOR}"
+else
+  echo "${YELLOW}Skipping${ENDCOLOR}"
+  sed -i '/zsh-history-substring-search/d' ~/.zshrc
+fi
 
 # Syntax Highlighting
-echo -e "${GREEN}Installing Syntax Highlighting${ENDCOLOR}"
-git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" || error_exit "${RED}Failed to install zsh-syntax-highlighting.${ENDCOLOR}"
+read -rp "${YELLOW}Syntax Highlighting? (Yes/No)${ENDCOLOR}: " highlighting
+if [[ "$highlighting" == [Yy]* ]]; then
+  echo -e "${GREEN}Installing Syntax Highlighting${ENDCOLOR}"
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" || error_exit "${RED}Failed to install zsh-syntax-highlighting.${ENDCOLOR}"
+else
+  echo "${YELLOW}Skipping${ENDCOLOR}"
+  sed -i '/zsh-syntax-highlighting/d' ~/.zshrc
+fi
 
+read -rp "${GREEN}Git Flow Completions? (Yes/No)${ENDCOLOR}: " git
 # Git Flow Completions
-echo -e "${GREEN}Installing Git Flow Completions${ENDCOLOR}"
-sleep 1
-git clone https://github.com/bobthecow/git-flow-completion "$ZSH_CUSTOM/plugins/git-flow-completion" || error_exit "${RED}Failed to install git-flow-completion.${ENDCOLOR}"
+if [[ "$git" == [Yy]* ]]; then
+  echo -e "${GREEN}Installing Git Flow Completions${ENDCOLOR}"
+  sleep 1
+  git clone https://github.com/bobthecow/git-flow-completion "$ZSH_CUSTOM/plugins/git-flow-completion" || error_exit "${RED}Failed to install git-flow-completion.${ENDCOLOR}"
+else
+  echo "${YELLOW}Skipping${ENDCOLOR}"
+  sed -i '/git-flow-completions/d'
+fi
 
 # Zsh Vi Mode
-echo -e "${GREEN}Installing Zsh Vi Mode${ENDCOLOR}"
-sleep 1
-git clone https://github.com/jeffreytse/zsh-vi-mode "$ZSH_CUSTOM/plugins/zsh-vi-mode" || error_exit "${RED}Failed to install zsh-vi-mode.${ENDCOLOR}"
+read -rp "${YELLOW}Zsh Vi Mode? (Yes/No)${ENDCOLOR}: " vi
+if [[ "$vi" == [Yy]* ]]; then
+  echo -e "${GREEN}Installing Zsh Vi Mode${ENDCOLOR}"
+  sleep 1
+  git clone https://github.com/jeffreytse/zsh-vi-mode "$ZSH_CUSTOM/plugins/zsh-vi-mode" || error_exit "${RED}Failed to install zsh-vi-mode.${ENDCOLOR}"
+else
+  echo "${YELLOW}Skipping${ENDCOLOR}"
+  sed -i '/zsh-vi-mode/d'
+fi
 
 # Magic Enter
-echo -e "${GREEN}Installing Magic-Enter${ENDCOLOR}"
-sleep 1
-git clone https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plugins/magic-enter" || error_exit "${RED}Failed to install magic-enter.${ENDCOLOR}"
-
+read -rp "${YELLOW}Magic Enter? (Yes/No)${ENDCOLOR}: " magic
+if [[ "$magic" == [Yy]* ]]; then
+  echo -e "${GREEN}Installing Magic-Enter${ENDCOLOR}"
+  sleep 1
+  git clone https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plugins/magic-enter" || error_exit "${RED}Failed to install magic-enter.${ENDCOLOR}"
+else
+  echo "${YELLOW}Skipping${ENDCOLOR}"
+  sed -i '/magic-enter/d'
+fi
 # Hide README.md
 file_path="$HOME/GitHub/dotfiles"
 
 # Check if the file exists and is readable
 if [ -e "$file_path" ]; then
-    if [ -r "$file_path" ]; then
-        echo "${GREEN}Hiding README.md in ~/.termux ${ENDCOLOR}"
-        echo "${GREEN}moving...${ENDCOLOR}"
-        git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" mv README.md ~/.termux/README.md || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
-    else
-        echo "${RED}File exists but is not readable. Cannot execute Git command.${ENDCOLOR}"
-    fi
+  if [ -r "$file_path" ]; then
+    echo "${GREEN}Hiding README.md in ~/.termux ${ENDCOLOR}"
+    echo "${GREEN}moving...${ENDCOLOR}"
+    git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" mv README.md ~/.termux/README.md || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
+  else
+    echo "${RED}File exists but is not readable. Cannot execute Git command.${ENDCOLOR}"
+  fi
 else
-    echo "${YELLOW}Deletinging README.md and .git folder ${ENDCOLOR}"
-    echo "${GREEN}Removing...${ENDCOLOR}"
-    rm -rf README.md .git || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
+  echo "${YELLOW}Deletinging README.md and .git folder ${ENDCOLOR}"
+  echo "${GREEN}Removing...${ENDCOLOR}"
+  rm -rf README.md .git || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
 fi
 
 # Finish Setup
