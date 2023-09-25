@@ -8,7 +8,7 @@
 
 ## Update and Upgrade Packages, Install Git and gh
 
-    apt update && apt install git gh
+    apt update && apt install git gh zsh -y
 
 ## Clone Dotfiles As Bare Repo
 
