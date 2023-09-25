@@ -65,20 +65,6 @@ else
 fi
 
 
-echo -e "${GREEN}Time to install Nala Package Manager, Zsh, Termux Clipboard, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, and htop!${ENDCOLOR}"
-sleep 5
-
-# Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, htop
-apt update && apt upgrade -y || error_exit "${RED}Failed to update packages.${ENDCOLOR}"
-apt update && apt install nala -y
-nala install zsh termux-api gh neovim nodejs python-pip ruby wget logo-ls timewarrior taskwarrior htop -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
-
-# Install pynvim, pnpm and neovim npm package, and neovim gem package
-python -m pip install pynvim || error_exit "${RED}Failed to install pynvim.${ENDCOLOR}"
-npm install -g pnpm neovim || error_exit "${RED}Failed to install neovim npm package.${ENDCOLOR}"
-gem install neovim || error_exit "${RED}Failed to install neovim gem package.${ENDCOLOR}"
-gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
-
 # Install MOTD
 echo "${GREEN}Installing MOTD${ENDCOLOR}"
 sleep 2
@@ -150,7 +136,7 @@ else
   sed -i '/zsh-syntax-highlighting/d' ~/.zshrc
 fi
 
-read -rp "${GREEN}Git Flow Completions? (Yes/No)${ENDCOLOR}: " git
+read -rp "${YELLOW}Git Flow Completions? (Yes/No)${ENDCOLOR}: " git
 # Git Flow Completions
 if [[ "$git" == [Yy]* ]]; then
   echo -e "${GREEN}Installing Git Flow Completions${ENDCOLOR}"
@@ -188,7 +174,7 @@ file_path="$HOME/GitHub/dotfiles"
 # Check if the file exists and is readable
 if [ -e "$file_path" ]; then
   if [ -r "$file_path" ]; then
-    echo "${GREEN}Hiding README.md in ~/.termux ${ENDCOLOR}"
+    echo "${YELLOW}Hiding README.md in ~/.termux ${ENDCOLOR}"
     echo "${GREEN}moving...${ENDCOLOR}"
     git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" mv README.md ~/.termux/README.md || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
   else
@@ -199,6 +185,20 @@ else
   echo "${GREEN}Removing...${ENDCOLOR}"
   rm -rf README.md .git || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
 fi
+
+echo -e "${GREEN}Time to install Nala Package Manager, Zsh, Termux Clipboard, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, and htop!${ENDCOLOR}"
+sleep 5
+
+# Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, htop
+apt update && apt upgrade -y || error_exit "${RED}Failed to update packages.${ENDCOLOR}"
+apt update && apt install nala -y
+nala install zsh termux-api gh neovim nodejs python-pip ruby wget logo-ls timewarrior taskwarrior htop -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
+
+# Install pynvim, pnpm and neovim npm package, and neovim gem package
+python -m pip install pynvim || error_exit "${RED}Failed to install pynvim.${ENDCOLOR}"
+npm install -g pnpm neovim || error_exit "${RED}Failed to install neovim npm package.${ENDCOLOR}"
+gem install neovim || error_exit "${RED}Failed to install neovim gem package.${ENDCOLOR}"
+gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
 
 # Finish Setup
 echo -e "${GREEN}Setup Complete! Press Ctrl+D for changes to take effect.${ENDCOLOR}"
