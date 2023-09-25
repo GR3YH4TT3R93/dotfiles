@@ -156,6 +156,7 @@ if [[ "$vi" == [Yy]* ]]; then
 else
   echo "${RED}Skipping${ENDCOLOR}"
   sed -i '/zsh-vi-mode/d' ~/.zshrc
+  sed -i 's/\{.*\}//g' ~/.zshrc
 fi
 
 # Magic Enter
