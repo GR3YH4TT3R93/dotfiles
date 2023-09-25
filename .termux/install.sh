@@ -99,7 +99,7 @@ if [[ "$suggestions" == [Yy]* ]]; then
   git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions" || error_exit "${RED}Failed to install zsh-autosuggestions.${ENDCOLOR}"
 else
   echo "${RED}Skipping${ENDCOLOR}"
-  sed -i '/zsh-auto-suggestions/d' ~/.zshrc
+  sed -i '/zsh-autosuggestions/d' ~/.zshrc
 fi
 
 # Completions
