@@ -144,7 +144,7 @@ if [[ "$git" == [Yy]* ]]; then
   git clone https://github.com/bobthecow/git-flow-completion "$ZSH_CUSTOM/plugins/git-flow-completion" || error_exit "${RED}Failed to install git-flow-completion.${ENDCOLOR}"
 else
   echo "${YELLOW}Skipping${ENDCOLOR}"
-  sed -i '/git-flow-completions/d'
+  sed -i '/git-flow-completions/d' ~/.zshrc
 fi
 
 # Zsh Vi Mode
@@ -155,7 +155,7 @@ if [[ "$vi" == [Yy]* ]]; then
   git clone https://github.com/jeffreytse/zsh-vi-mode "$ZSH_CUSTOM/plugins/zsh-vi-mode" || error_exit "${RED}Failed to install zsh-vi-mode.${ENDCOLOR}"
 else
   echo "${YELLOW}Skipping${ENDCOLOR}"
-  sed -i '/zsh-vi-mode/d'
+  sed -i '/zsh-vi-mode/d' ~/.zshrc
 fi
 
 # Magic Enter
@@ -166,7 +166,7 @@ if [[ "$magic" == [Yy]* ]]; then
   git clone https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plugins/magic-enter" || error_exit "${RED}Failed to install magic-enter.${ENDCOLOR}"
 else
   echo "${YELLOW}Skipping${ENDCOLOR}"
-  sed -i '/magic-enter/d'
+  sed -i '/magic-enter/d' ~/.zshrc
 fi
 # Hide README.md
 file_path="$HOME/GitHub/dotfiles"
