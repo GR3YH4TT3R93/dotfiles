@@ -20,8 +20,8 @@
     ## REPLACE THIS URL ⬆️
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
-    ## THE NEXT LINE AUTOMATICALLY RUNS INSTALLER REMOVE IF YOU WANT TO RUN IT MANUALLY
-    ~/.termux/install.sh
+    ## THE NEXT LINE AUTOMATICALLY RUNS THE AUTO-INSTALLER REMOVE IF YOU WANT TO RUN IT MANUALLY
+    ~/.termux/autoinstall.sh
 
 ## Clone Dotfiles as Normal Repo
 
@@ -30,7 +30,11 @@
 
 ## Run Install Script
 
+    # Manual, you choose!
     ~/.termux/install.sh
+
+    # Auto, installs everything with minimal interaction
+    ~/.termux/autoinstall.sh
 
 ## For both methods set new remote!
 
