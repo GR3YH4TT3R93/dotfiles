@@ -98,7 +98,7 @@ if [[ "$suggestions" == [Yy]* ]]; then
   sleep 1
   git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions" || error_exit "${RED}Failed to install zsh-autosuggestions.${ENDCOLOR}"
 else
-  echo "${YELLOW}Skipping${ENDCOLOR}"
+  echo "${RED}Skipping${ENDCOLOR}"
   sed -i '/zsh-auto-suggestions/d' ~/.zshrc
 fi
 
@@ -110,7 +110,7 @@ if [[ "$completions" == [Yy]* ]]; then
   sleep 1
   git clone https://github.com/zsh-users/zsh-completions "$ZSH_CUSTOM/plugins/zsh-completions" || error_exit "${RED}Failed to install zsh-completions.${ENDCOLOR}"
 else
-  echo "${YELLOW}Skipping${ENDCOLOR}"
+  echo "${RED}Skipping${ENDCOLOR}"
   sed -i '/zsh-completions/d' ~/.zshrc
 fi
 
@@ -122,7 +122,7 @@ if [[ "$substring" == [Yy]* ]]; then
   sleep 1
   git clone https://github.com/zsh-users/zsh-history-substring-search "$ZSH_CUSTOM/plugins/zsh-history-substring-search" || error_exit "${RED}Failed to install zsh-history-substring-search.${ENDCOLOR}"
 else
-  echo "${YELLOW}Skipping${ENDCOLOR}"
+  echo "${RED}Skipping${ENDCOLOR}"
   sed -i '/zsh-history-substring-search/d' ~/.zshrc
 fi
 
@@ -132,7 +132,7 @@ if [[ "$highlighting" == [Yy]* ]]; then
   echo -e "${GREEN}Installing Syntax Highlighting${ENDCOLOR}"
   git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" || error_exit "${RED}Failed to install zsh-syntax-highlighting.${ENDCOLOR}"
 else
-  echo "${YELLOW}Skipping${ENDCOLOR}"
+  echo "${RED}Skipping${ENDCOLOR}"
   sed -i '/zsh-syntax-highlighting/d' ~/.zshrc
 fi
 
@@ -143,8 +143,8 @@ if [[ "$git" == [Yy]* ]]; then
   sleep 1
   git clone https://github.com/bobthecow/git-flow-completion "$ZSH_CUSTOM/plugins/git-flow-completion" || error_exit "${RED}Failed to install git-flow-completion.${ENDCOLOR}"
 else
-  echo "${YELLOW}Skipping${ENDCOLOR}"
-  sed -i '/git-flow-completions/d' ~/.zshrc
+  echo "${RED}Skipping${ENDCOLOR}"
+  sed -i '/git-flow-completion/d' ~/.zshrc
 fi
 
 # Zsh Vi Mode
@@ -154,7 +154,7 @@ if [[ "$vi" == [Yy]* ]]; then
   sleep 1
   git clone https://github.com/jeffreytse/zsh-vi-mode "$ZSH_CUSTOM/plugins/zsh-vi-mode" || error_exit "${RED}Failed to install zsh-vi-mode.${ENDCOLOR}"
 else
-  echo "${YELLOW}Skipping${ENDCOLOR}"
+  echo "${RED}Skipping${ENDCOLOR}"
   sed -i '/zsh-vi-mode/d' ~/.zshrc
 fi
 
@@ -165,7 +165,7 @@ if [[ "$magic" == [Yy]* ]]; then
   sleep 1
   git clone https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plugins/magic-enter" || error_exit "${RED}Failed to install magic-enter.${ENDCOLOR}"
 else
-  echo "${YELLOW}Skipping${ENDCOLOR}"
+  echo "${RED}Skipping${ENDCOLOR}"
   sed -i '/magic-enter/d' ~/.zshrc
 fi
 # Hide README.md
