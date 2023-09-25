@@ -65,6 +65,20 @@ else
 fi
 
 
+echo -e "${GREEN}Time to install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, and htop!${ENDCOLOR}"
+sleep 5
+
+# Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, htop
+apt update && apt upgrade -y || error_exit "${RED}Failed to update packages.${ENDCOLOR}"
+apt update && apt install nala -y
+nala install zsh termux-api gh neovim nodejs python-pip ruby wget logo-ls timewarrior taskwarrior htop -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
+
+# Install pynvim, pnpm and neovim npm package, and neovim gem package
+python -m pip install pynvim || error_exit "${RED}Failed to install pynvim.${ENDCOLOR}"
+npm install -g pnpm neovim || error_exit "${RED}Failed to install neovim npm package.${ENDCOLOR}"
+gem install neovim || error_exit "${RED}Failed to install neovim gem package.${ENDCOLOR}"
+gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
+
 # Install MOTD
 echo "${GREEN}Installing MOTD${ENDCOLOR}"
 sleep 2
@@ -86,98 +100,41 @@ sleep 2
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k" || error_exit "${RED}Failed to install Powerlevel10k.${ENDCOLOR}"
 
 # Install Oh My Zsh plugins
-echo -e "${GREEN}Time to choose your Zsh plugins!${ENDCOLOR}"
+echo -e "${GREEN}Installing Zsh Plugins${ENDCOLOR}"
 sleep 2
-# Ask if user wants to install zsh plugins
-
 # Auto-Suggestions
-read -rp "${YELLOW}Would You Like Auto-Suggestions? (Yes/No)${ENDCOLOR}: " suggestions
-
-if [[ "$suggestions" == [Yy]* ]]; then
-  echo -e "${GREEN}Installing Zsh Auto-Suggestions${ENDCOLOR}"
-  sleep 1
-  git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions" || error_exit "${RED}Failed to install zsh-autosuggestions.${ENDCOLOR}"
-else
-  echo "${RED}Skipping${ENDCOLOR}"
-  sed -i '/zsh-autosuggestions/d' ~/.zshrc
-fi
+echo -e "${GREEN}Installing Zsh Auto-Suggestions${ENDCOLOR}"
+sleep 1
+git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions" || error_exit "${RED}Failed to install zsh-autosuggestions.${ENDCOLOR}"
 
 # Completions
-read -rp "${YELLOW}How about completions? (Yes/No)${ENDCOLOR}: " completions
-
-if [[ "$completions" == [Yy]* ]]; then
-  echo -e "${GREEN}Installing Zsh Completions${ENDCOLOR}"
-  sleep 1
-  git clone https://github.com/zsh-users/zsh-completions "$ZSH_CUSTOM/plugins/zsh-completions" || error_exit "${RED}Failed to install zsh-completions.${ENDCOLOR}"
-else
-  echo "${RED}Skipping${ENDCOLOR}"
-  sed -i '/zsh-completions/d' ~/.zshrc
-fi
+echo -e "${GREEN}Installing Zsh Completions${ENDCOLOR}"
+sleep 1
+git clone https://github.com/zsh-users/zsh-completions "$ZSH_CUSTOM/plugins/zsh-completions" || error_exit "${RED}Failed to install zsh-completions.${ENDCOLOR}"
 
 # History Substring Search
-read -rp "${YELLOW}History Substring Search? (Yes/No)${ENDCOLOR}: " substring
-
-if [[ "$substring" == [Yy]* ]]; then
-  echo -e "${GREEN}Installing History Substring Search${ENDCOLOR}"
-  sleep 1
-  git clone https://github.com/zsh-users/zsh-history-substring-search "$ZSH_CUSTOM/plugins/zsh-history-substring-search" || error_exit "${RED}Failed to install zsh-history-substring-search.${ENDCOLOR}"
-else
-  echo "${RED}Skipping${ENDCOLOR}"
-  sed -i '/zsh-history-substring-search/d' ~/.zshrc
-fi
+echo -e "${GREEN}Installing History Substring Search${ENDCOLOR}"
+sleep 1
+git clone https://github.com/zsh-users/zsh-history-substring-search "$ZSH_CUSTOM/plugins/zsh-history-substring-search" || error_exit "${RED}Failed to install zsh-history-substring-search.${ENDCOLOR}"
 
 # Syntax Highlighting
-read -rp "${YELLOW}Syntax Highlighting? (Yes/No)${ENDCOLOR}: " highlighting
-if [[ "$highlighting" == [Yy]* ]]; then
-  echo -e "${GREEN}Installing Syntax Highlighting${ENDCOLOR}"
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" || error_exit "${RED}Failed to install zsh-syntax-highlighting.${ENDCOLOR}"
-else
-  echo "${RED}Skipping${ENDCOLOR}"
-  sed -i '/zsh-syntax-highlighting/d' ~/.zshrc
-fi
+echo -e "${GREEN}Installing Syntax Highlighting${ENDCOLOR}"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" || error_exit "${RED}Failed to install zsh-syntax-highlighting.${ENDCOLOR}"
 
-read -rp "${YELLOW}Git Flow Completions? (Yes/No)${ENDCOLOR}: " git
 # Git Flow Completions
-if [[ "$git" == [Yy]* ]]; then
-  echo -e "${GREEN}Installing Git Flow Completions${ENDCOLOR}"
-  sleep 1
-  git clone https://github.com/bobthecow/git-flow-completion "$ZSH_CUSTOM/plugins/git-flow-completion" || error_exit "${RED}Failed to install git-flow-completion.${ENDCOLOR}"
-else
-  echo "${RED}Skipping${ENDCOLOR}"
-  sed -i '/git-flow-completion/d' ~/.zshrc
-fi
+echo -e "${GREEN}Installing Git Flow Completions${ENDCOLOR}"
+sleep 1
+git clone https://github.com/bobthecow/git-flow-completion "$ZSH_CUSTOM/plugins/git-flow-completion" || error_exit "${RED}Failed to install git-flow-completion.${ENDCOLOR}"
 
 # Zsh Vi Mode
-read -rp "${YELLOW}Zsh Vi Mode? (Yes/No)${ENDCOLOR}: " vi
-if [[ "$vi" == [Yy]* ]]; then
-  echo -e "${GREEN}Installing Zsh Vi Mode${ENDCOLOR}"
-  sleep 1
-  git clone https://github.com/jeffreytse/zsh-vi-mode "$ZSH_CUSTOM/plugins/zsh-vi-mode" || error_exit "${RED}Failed to install zsh-vi-mode.${ENDCOLOR}"
-else
-  echo "${RED}Skipping${ENDCOLOR}"
-  sed -i '/zsh-vi-mode/d' ~/.zshrc
-  sed -i '/^function zvm_config() {/,/^}$/d' ~/.zshrc
-fi
+echo -e "${GREEN}Installing Zsh Vi Mode${ENDCOLOR}"
+sleep 1
+git clone https://github.com/jeffreytse/zsh-vi-mode "$ZSH_CUSTOM/plugins/zsh-vi-mode" || error_exit "${RED}Failed to install zsh-vi-mode.${ENDCOLOR}"
 
 # Magic Enter
-read -rp "${YELLOW}Magic Enter? (Yes/No)${ENDCOLOR}: " magic
-if [[ "$magic" == [Yy]* ]]; then
-  echo -e "${GREEN}Installing Magic-Enter${ENDCOLOR}"
-  sleep 1
-  git clone https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plugins/magic-enter" || error_exit "${RED}Failed to install magic-enter.${ENDCOLOR}"
-else
-  echo "${RED}Skipping${ENDCOLOR}"
-  sed -i '/magic-enter/d' ~/.zshrc
-fi
-
-# Make sure user wants Neovim config
-read -rp "${YELLOW}Would you like to keep the included Neovim Config? (Yes/No)${ENDCOLOR}: " neovim
-
-if [[ "$neovim" == [Nn]* ]]; then
-  echo "${RED}Removing Neovim Config!${ENDCOLOR}"
-  echo "${YELLOW}You will now need to configure neovim yourself!${ENDCOLOR}"
-  rm -rf ~/.config/nvim ~/.local/share/nvim/
-fi
+echo -e "${GREEN}Installing Magic-Enter${ENDCOLOR}"
+sleep 1
+git clone https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plugins/magic-enter" || error_exit "${RED}Failed to install magic-enter.${ENDCOLOR}"
 
 # Hide README.md
 file_path="$HOME/GitHub/dotfiles"
@@ -185,7 +142,7 @@ file_path="$HOME/GitHub/dotfiles"
 # Check if the file exists and is readable
 if [ -e "$file_path" ]; then
   if [ -r "$file_path" ]; then
-    echo "${YELLOW}Hiding README.md in ~/.termux ${ENDCOLOR}"
+    echo "${GREEN}Hiding README.md in ~/.termux ${ENDCOLOR}"
     echo "${GREEN}moving...${ENDCOLOR}"
     git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" mv README.md ~/.termux/README.md || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
   else
@@ -196,20 +153,6 @@ else
   echo "${GREEN}Removing...${ENDCOLOR}"
   rm -rf README.md .git || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
 fi
-
-echo -e "${GREEN}Time to install Nala Package Manager, Termux Clipboard, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, and htop!${ENDCOLOR}"
-sleep 5
-
-# Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, htop
-apt update && apt upgrade -y || error_exit "${RED}Failed to update packages.${ENDCOLOR}"
-apt update && apt install nala -y
-nala install termux-api gh neovim nodejs python-pip ruby wget logo-ls timewarrior taskwarrior htop -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
-
-# Install pynvim, pnpm and neovim npm package, and neovim gem package
-python -m pip install pynvim || error_exit "${RED}Failed to install pynvim.${ENDCOLOR}"
-npm install -g pnpm neovim || error_exit "${RED}Failed to install neovim npm package.${ENDCOLOR}"
-gem install neovim || error_exit "${RED}Failed to install neovim gem package.${ENDCOLOR}"
-gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
 
 # Finish Setup
 echo -e "${GREEN}Setup Complete! Press Ctrl+D for changes to take effect.${ENDCOLOR}"
