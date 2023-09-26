@@ -210,7 +210,8 @@ python -m pip install pynvim || error_exit "${RED}Failed to install pynvim.${END
 npm install -g pnpm neovim || error_exit "${RED}Failed to install neovim npm package.${ENDCOLOR}"
 gem install neovim || error_exit "${RED}Failed to install neovim gem package.${ENDCOLOR}"
 gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
-luarocks install mpack lpeg || error_exit "${RED}Failed to install mpack and lpeg.${ENDCOLOR}"
+luarocks install mpack || error_exit "${RED}Failed to install mpack${ENDCOLOR}"
+luarocks install lpeg || error_exit "${RED}Failed to install lpeg.${ENDCOLOR}"
 
 # Finish Setup
 echo -e "${GREEN}Setup Complete! Press Ctrl+D for changes to take effect.${ENDCOLOR}"
