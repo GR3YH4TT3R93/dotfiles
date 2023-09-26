@@ -110,6 +110,11 @@
       cmake --build build_dir -j8
       cmake --install build_dir
 
+- Clean up Install files
+
+      cd
+      rm -rf neovim
+
 # 📚 Usage
 
 Use `ESC` or `CTRL-[` to enter `Normal mode`.
