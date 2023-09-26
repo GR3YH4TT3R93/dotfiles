@@ -100,6 +100,12 @@
 
 - Apply patches [funcs.c](https://github.com/termux/termux-packages/blob/07659c278ea102b65b5ea58dc0b2c3e6ec15e5f1/packages/neovim/src-nvim-eval-funcs.c.patch#L4) and [stdpaths.c](https://github.com/termux/termux-packages/blob/1a939447bf9ab7504cab423ebaad39595827171d/packages/neovim/src-nvim-os-stdpaths.c.patch#L4)
 
+      e ./src/nvim/eval/funcs.c # line 3118
+
+      e ./src/nvim/os/stdpaths.c # Line 55 & 56
+
+- Build and Install
+
       cmake -S . -B build_dir -D CMAKE_INSTALL_PREFIX=$PREFIX
       cmake --build build_dir -j8
       cmake --install build_dir
