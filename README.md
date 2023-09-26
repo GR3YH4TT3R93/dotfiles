@@ -90,6 +90,19 @@
       </row>
     </keyboard>
 
+# Building Neovim from source
+
+- Clone repo
+
+  git clone https://github.com/neovim/neovim --depth 1 -b v0.9.2
+  nvim/ # or cd nvim
+
+- Apply patches [funcs.c](https://github.com/termux/termux-packages/blob/07659c278ea102b65b5ea58dc0b2c3e6ec15e5f1/packages/neovim/src-nvim-eval-funcs.c.patch#L4) and [stdpaths.c](https://github.com/termux/termux-packages/blob/1a939447bf9ab7504cab423ebaad39595827171d/packages/neovim/src-nvim-os-stdpaths.c.patch#L4)
+
+  cmake -S . -B build_dir -D CMAKE_INSTALL_PREFIX=$PREFIX
+  cmake --build build_dir -j8
+  cmake --install build_dir
+
 # 📚 Usage
 
 Use `ESC` or `CTRL-[` to enter `Normal mode`.
