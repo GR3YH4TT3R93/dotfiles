@@ -69,7 +69,7 @@ echo -e "${GREEN}Time to install Nala Package Manager, Z Shell, Termux Clipboard
 sleep 5
 
 # Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, htop
-apt update && apt upgrade -y || error_exit "${RED}Failed to update packages.${ENDCOLOR}"
+yes | apt update && apt upgrade || error_exit "${RED}Failed to update packages.${ENDCOLOR}"
 apt update && apt install nala -y
 nala install zsh termux-api gh neovim nodejs python-pip ruby wget logo-ls timewarrior taskwarrior htop -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
 
