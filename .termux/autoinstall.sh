@@ -138,6 +138,11 @@ echo -e "${GREEN}Installing Magic-Enter${ENDCOLOR}"
 sleep 1
 git clone https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plugins/magic-enter" || error_exit "${RED}Failed to install magic-enter.${ENDCOLOR}"
 
+# You Should Use
+echo -e "${GREEN}Installing You Should Use (alias suggestions)${ENDCOLOR}"
+sleep 1
+git clone https://github.com/MichaelAquilina/zsh-you-should-use "$ZSH_CUSTOM/plugins/you-should-use" || error_exit "${RED}Failed to install You Should Use.${ENDCOLOR}"
+
 # Hide README.md
 file_path="$HOME/GitHub/dotfiles"
 
