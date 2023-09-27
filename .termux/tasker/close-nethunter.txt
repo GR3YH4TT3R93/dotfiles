@@ -1,3 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/zsh
-
-am startservice -a com.termux.service_stop com.termux/.app.TermuxService
