@@ -16,7 +16,7 @@ function error_exit {
 termux-setup-storage
 
 # Update Packages
-pkg update && yes | pkg upgrade || error_exit "${RED}Failed to update packages.${ENDCOLOR}"
+apt update && yes | apt upgrade || error_exit "${RED}Failed to update packages.${ENDCOLOR}"
 
 
 # Set up GitHub auth
