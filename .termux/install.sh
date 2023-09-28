@@ -66,6 +66,7 @@ if [[ "$choice" == [Yy]* ]]; then
   rm "$HOME/.gitconfig"
   echo "Your public key (id_ed25519.pub) is:"
   cat ~/.ssh/id_ed25519.pub
+  echo "${YELLOW}Make sure to add your public key to your Git hosting provider.${ENDCOLOR}"
   sleep 25
   echo -e "${GREEN}Git credentials configured system-wide.${ENDCOLOR}"
 else
@@ -85,13 +86,13 @@ else
   git config --global color.interactive auto
   git config --global color.diff auto
   git config --global status.short true
-  echo "Your public key (id_ed25519.pub) is:"
+  echo "${YELLOW}Your public key (id_ed25519.pub) is${ENDCOLOR}:"
   cat ~/.ssh/id_ed25519.pub
+  echo "${YELLOW}Make sure to add your public key to your Git hosting provider.${ENDCOLOR}"
   sleep 25
   echo -e "${GREEN}Git credentials configured globally.${ENDCOLOR}"
 fi
 
-echo "Make sure to add your public key to your Git hosting provider."
 
 # Install MOTD
 echo "${GREEN}Installing MOTD${ENDCOLOR}"
