@@ -30,10 +30,23 @@ read -rp "${GREEN}Enter your Git email${ENDCOLOR}: " email
 # Prompt the user to choose between global and system-wide configuration
 read -rp "${GREEN}Would you like to set your Git configuration system-wide? (Yes/No)${ENDCOLOR}: " choice
 
+# Set Up SSH Key
+if [ ! -f ~/.ssh/id_ed25519 ]; then
+  # Generate an Ed25519 SSH key pair
+  ssh-keygen -t ed25519 -C "$email"
+  # Check if an SSH key pair already exists
+  eval "$(ssh-agent -s)"
+  ssh-add ~/.ssh/id_ed25519
+fi
+
 if [[ "$choice" == [Yy]* ]]; then
   # Set the Git username and email system-wide
   git config --system user.name "$username"
   git config --system user.email "$email"
+  git config --system gpg.format ssh
+  git config --system user.signingkey ~/.ssh/id_ed25519.pub
+  git config --system commit.gpgsign true
+  git config --system tag.gpgsign true
   git config --system push.autoSetupRemote true
   git config --system fetch.prune true
   git config --system core.editor nvim
@@ -47,13 +60,20 @@ if [[ "$choice" == [Yy]* ]]; then
   cat "$HOME/.gitconfig" >> "/data/data/com.termux/files/usr/etc/gitconfig"
   # Clean up unnecessary file
   rm "$HOME/.gitconfig"
+  echo "Your public key (id_ed25519.pub) is:"
+  cat ~/.ssh/id_ed25519.pub
+  sleep 25
   echo -e "${GREEN}Git credentials configured system-wide.${ENDCOLOR}"
 else
   # Set the Git username and email globally
   git config --global user.name "$username"
   git config --global user.email "$email"
+  git config --global gpg.format ssh
+  git config --global user.signingkey ~/.ssh/id_ed25519.pub
+  git config --global commit.gpgsign true
+  git config --global tag.gpgsign true
   git config --global push.autoSetupRerun true
-  git config --system fetch.prune true
+  git config --global fetch.prune true
   git config --global core.editor nvim
   git config --global init.defaultBranch main
   git config --global color.status auto
@@ -61,8 +81,13 @@ else
   git config --global color.interactive auto
   git config --global color.diff auto
   git config --global status.short true
+  echo "Your public key (id_ed25519.pub) is:"
+  cat ~/.ssh/id_ed25519.pub
+  sleep 30
   echo -e "${GREEN}Git credentials configured globally.${ENDCOLOR}"
 fi
+
+echo "Make sure to add your public key to your Git hosting provider."
 
 
 echo -e "${GREEN}Time to install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, LuaRocks, LuaJIT, ripgrep, fd, wget, gettext, logo-ls, Timewarrior, Taskwarrior, and htop!${ENDCOLOR}"
