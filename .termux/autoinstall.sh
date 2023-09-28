@@ -15,6 +15,10 @@ function error_exit {
 # Set Up Storage
 termux-setup-storage
 
+# Update & Upgrade
+pkg update && yes | pkg upgrade || error_exit "${RED}Failed to update packages.${ENDCOLOR}"
+pkg install gh zsh openssh -y
+
 # Set up GitHub auth
 gh auth login || error_exit "${RED}Failed to set up GitHub auth.${ENDCOLOR}"
 
@@ -90,13 +94,12 @@ fi
 echo "Make sure to add your public key to your Git hosting provider."
 
 
-echo -e "${GREEN}Time to install Nala Package Manager, Z Shell, Termux Clipboard, Neovim, NodeJS, Python-pip, Ruby, LuaRocks, LuaJIT, ripgrep, fd, wget, gettext, logo-ls, Timewarrior, Taskwarrior, and htop!${ENDCOLOR}"
+echo -e "${GREEN}Time to install Nala Package Manager, Z Shell, Termux Clipboard, Neovim, NodeJS, Python-pip, Ruby, LuaRocks, LuaJIT, ripgrep, fd, wget, gettext, logo-ls, ncurses-utils, Timewarrior, Taskwarrior, and htop!${ENDCOLOR}"
 sleep 5
 
 # Install Nala Package Manager, Z Shell, Termux Clipboard, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, htop
-apt update && yes | apt upgrade || error_exit "${RED}Failed to update packages.${ENDCOLOR}"
-apt update && apt install nala -y
-nala install zsh termux-api neovim nodejs python-pip ruby luarocks luajit ripgrep fd wget gettext logo-ls timewarrior taskwarrior htop -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
+pkg update && pkg install nala -y
+nala install zsh termux-api neovim nodejs python-pip ruby luarocks luajit ripgrep fd wget gettext logo-ls ncurses-utils timewarrior taskwarrior htop -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
 
 # Install pynvim, pnpm and neovim npm package, and neovim gem package
 python -m pip install pynvim || error_exit "${RED}Failed to install pynvim.${ENDCOLOR}"
