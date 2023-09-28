@@ -253,4 +253,3 @@ luarocks install lpeg || error_exit "${RED}Failed to install lpeg.${ENDCOLOR}"
 
 # Finish Setup
 echo -e "${GREEN}Setup Complete! Press Ctrl+D for changes to take effect.${ENDCOLOR}"
-test
