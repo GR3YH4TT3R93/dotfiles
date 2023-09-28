@@ -33,10 +33,10 @@ read -rp "${GREEN}Would you like to set your Git configuration system-wide? (Yes
 # Set Up SSH Key
 if [ ! -f ~/.ssh/id_ed25519 ]; then
   # Generate an Ed25519 SSH key pair
-  ssh-keygen -t ed25519 -C "$email"
+  HOME=/data/data/com.termux/files/home ssh-keygen -t ed25519 -C "$email"
   # Check if an SSH key pair already exists
   eval "$(ssh-agent -s)"
-  ssh-add ~/.ssh/id_ed25519
+  HOME=/data/data/com.termux/files/home ssh-add ~/.ssh/id_ed25519
 fi
 
 if [[ "$choice" == [Yy]* ]]; then
