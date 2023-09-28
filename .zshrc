@@ -114,15 +114,20 @@ function zvm_config() {
   # Always starting with insert mode for each command line
   ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
   # Retrieve default cursor styles
-  local ncur=$(zvm_cursor_style $ZVM_NORMAL_MODE_CURSOR)
   local icur=$(zvm_cursor_style $ZVM_INSERT_MODE_CURSOR)
+  local ncur=$(zvm_cursor_style $ZVM_NORMAL_MODE_CURSOR)
+  local vcur=$(zvm_cursor_style $ZVM_VISUAL_MODE_CURSOR)
+  local vlcur=$(zvm_cursor_style $ZVM_VISUAL_LINE_MODE_CURSOR)
   # Append your custom color for your cursor
-  ZVM_INSERT_MODE_CURSOR=$icur'\e\e]12;#61afef\a'
+  ZVM_INSERT_MODE_CURSOR=$icur'\e\e]12;#4fa6ed\a'
   ZVM_NORMAL_MODE_CURSOR=$ncur'\e\e]12;#98c379\a'
-  # ZVM_VI_HIGHLIGHT_FOREGROUND=#98c379
+  ZVM_VISUAL_MODE_CURSOR=$vcur'\e\e]12;#c678dd\a'
+  ZVM_VISUAL_LINE_MODE_CURSOR=$vvcur'\e\e]12;#c678dd\a'
+  ZVM_VI_HIGHLIGHT_FOREGROUND=#cccccc
   ZVM_VI_HIGHLIGHT_BACKGROUND=#c678dd
   ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline
   ZVM_TERM=xterm-256color
+  ZVM_VI_EDITOR='nvim'
 }
 source $ZSH/oh-my-zsh.sh
 
