@@ -5,6 +5,8 @@
   "colors.enable": true,
   "volar.autoCreateQuotes": true,
   "volar.autoClosingTags": true,
+  "vue.autoInsert.dotValue": true,
+  "vue.server.fullCompletionList": true,
   "vue.inlayHints.missingProps": true,
   "vue.inlayHints.inlineHandlerLeading": true,
   "vue.inlayHints.optionsWrapper": true,
@@ -38,11 +40,8 @@
   "eslint.run": "onType",
   "eslint.autoFixOnSave": true,
   "eslint.quiet": true,
+  "eslint.format.enable": false,
   "eslint.packageManager": "pnpm",
-  "lightbulb.text": {
-    "default": "",
-    "quickfix": ""
-  },
   "suggest.completionItemKindLabels": {
     "method": "  ",
     "function": "  ",
