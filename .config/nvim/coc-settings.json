@@ -39,7 +39,7 @@
   "prettier.embeddedLanguageFormatting": "auto",
   "eslint.run": "onType",
   "eslint.autoFixOnSave": true,
-  "eslint.quiet": true,
+  "eslint.quiet": false,
   "eslint.format.enable": false,
   "eslint.packageManager": "pnpm",
   "suggest.completionItemKindLabels": {
