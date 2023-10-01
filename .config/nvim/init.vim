@@ -36,7 +36,11 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 "}}}
 
 " Theme {{{
-set encoding=UTF-8
+set encoding=utf-8
+set nobackup
+set nowritebackup
+set updatetime=250
+set signcolumn=yes
 set number relativenumber
 set cursorline
 set scrolloff=999
