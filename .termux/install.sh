@@ -199,16 +199,6 @@ else
   sed -i '/magic-enter/d' ~/.zshrc
 fi
 
-# You Should Use
-read -rp "${YELLOW}You-Should-Use? (alias suggestions)${ENDCOLOR}" ysu
-if [[ "$ysu" == [Yy]* ]]; then
-  echo -e "${GREEN}Installing You-Should-Use${ENDCOLOR}"
-  git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "$ZSH_CUSTOM/plugins/you-should-use" || error_exit "${RED}Failed to install You-Should-Use.${ENDCOLOR}"
-else
-  echo "${RED}skipping${ENDCOLOR}"
-  sed -i '/you-should-use/d' ~/.zshrc
-fi
-
 # Make sure user wants Neovim config
 read -rp "${YELLOW}Would you like to keep the included Neovim Config? (Yes/No)${ENDCOLOR}: " neovim
 

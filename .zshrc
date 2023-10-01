@@ -94,7 +94,6 @@ plugins=(
   pre-commit
   safe-paste
   web-search
-  you-should-use
   zsh-autosuggestions
   zsh-completions
   zsh-history-substring-search
