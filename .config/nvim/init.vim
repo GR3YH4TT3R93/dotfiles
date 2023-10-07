@@ -26,6 +26,7 @@ call plug#begin()
   Plug 'MunifTanjim/nui.nvim'
   Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v2.x' }
   Plug 'ntpeters/vim-better-whitespace'
+  Plug 'kdheepak/lazygit.nvim'
 call plug#end()
 "}}}
 
@@ -186,6 +187,10 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 "}}}
 
+" setup mapping to call :LazyGit{{{
+nnoremap <silent> <leader>gg :LazyGit<CR>
+"}}}
+
 " Write, Quit, eXit {{{
 " Control-W Save
 nnoremap <C-W> :w<CR>
@@ -233,17 +238,14 @@ nnoremap [w :PrevTrailingWhitespace<CR>
 "}}}
 
 " Telescope Keymaps {{{
-" Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<CR>
 nnoremap <leader>fg <cmd>Telescope live_grep<CR>
+nnoremap <leader>fr <cmd>Telescope lazygit<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<CR>
 
-" Using Lua functions
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<CR>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<CR>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<CR>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<CR>
+"Track any buffer that is in a git repo
+autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
 "}}}
 
 " BarBar Keymaps {{{
@@ -767,6 +769,10 @@ git_status = {
 })
 
 vim.cmd([[nnoremap <silent> \ :Neotree reveal<cr>]])
+--}}}
+
+-- LazyGit Telescope Extension"{{{
+require('telescope').load_extension('lazygit')
 --}}}
 
 EOF
