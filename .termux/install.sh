@@ -17,7 +17,7 @@ termux-setup-storage
 
 # Update Packages
 apt update && yes | apt upgrade || error_exit "${RED}Failed to update packages.${ENDCOLOR}"
-
+apt install gh zsh openssh -y
 
 # Set up GitHub auth
 gh auth login || error_exit "${RED}Failed to set up GitHub auth.${ENDCOLOR}"
