@@ -313,7 +313,7 @@ lua <<EOF
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "vue", "typescript", "html", "css", "java", "javascript", "json", "git_config", },
+  ensure_installed = { "c", "cpp", "lua", "vim", "vimdoc", "markdown", "diff",  "query", "vue", "typescript", "html", "css", "java", "javascript", "json", "jsonc", "git_config", "gitcommit", "gitignore", "bash", "python", "go", "rust" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
