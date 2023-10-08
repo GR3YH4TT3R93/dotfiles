@@ -54,6 +54,7 @@ if [[ "$choice" == [Yy]* ]]; then
   git config --system push.autoSetupRemote true
   git config --system fetch.prune true
   git config --system core.editor nvim
+  git config --system core.autocrlf input
   git config --system init.defaultBranch main
   git config --system color.status auto
   git config --system color.branch auto
@@ -80,6 +81,7 @@ else
   git config --global push.autoSetupRerun true
   git config --global fetch.prune true
   git config --global core.editor nvim
+  git config --global core.autocrlf input
   git config --global init.defaultBranch main
   git config --global color.status auto
   git config --global color.branch auto
