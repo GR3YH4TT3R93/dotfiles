@@ -1,4 +1,4 @@
-"Plugins  {{{
+"Plugins {{{
 call plug#begin()
   Plug 'navarasu/onedark.nvim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -7,7 +7,7 @@ call plug#begin()
   Plug 'vim-airline/vim-airline-themes'
   Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'yamatsum/nvim-cursorline'
-  Plug 'm4xshen/autoclose.nvim'
+  Plug 'windwp/nvim-autopairs'
   Plug 'kshenoy/vim-signature'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'ryanoasis/vim-devicons'
@@ -16,7 +16,6 @@ call plug#begin()
   Plug 'farmergreg/vim-lastplace'
   Plug 'ThePrimeagen/vim-be-good'
   Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
   Plug 'fedepujol/move.nvim'
   Plug 'nvim-lua/plenary.nvim'
@@ -187,7 +186,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 "}}}
 
-" setup mapping to call :LazyGit{{{
+" setup mapping to call :LazyGit {{{
 nnoremap <silent> <leader>gg :LazyGit<CR>
 "}}}
 
@@ -424,7 +423,7 @@ require'nvim-web-devicons'.setup {
 }
 --}}}
 
--- Rainbow Blank Line" {{{
+-- Rainbow Blank Line " {{{
 local highlight = {
     "RainbowRed",
     "RainbowYellow",
@@ -453,7 +452,7 @@ require("ibl").setup { indent = { highlight = highlight } }
 hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 --"}}}
 
--- Cursor Line" {{{
+-- Cursor Line " {{{
 require('nvim-cursorline').setup {
   cursorline = {
     enable = true,
@@ -468,37 +467,72 @@ require('nvim-cursorline').setup {
 }
 --}}}
 
--- Close Symbols" {{{
-require("autoclose").setup({
-  keys = {
-    ["("] = { escape = false, close = true, pair = "()" },
-    ["["] = { escape = false, close = true, pair = "[]" },
-    ["{"] = { escape = false, close = true, pair = "{}" },
+-- Autopairs " {{{
+require("nvim-autopairs").setup {}
 
-    [">"] = { escape = true, close = false, pair = "<>" },
-    [")"] = { escape = true, close = false, pair = "()" },
-    ["]"] = { escape = true, close = false, pair = "[]" },
-    ["}"] = { escape = true, close = false, pair = "{}" },
+local remap = vim.api.nvim_set_keymap
+local npairs = require('nvim-autopairs')
+local Rule = require('nvim-autopairs.rule')
+npairs.setup({
+  map_cr=false,
+  check_ts = true,
+  ts_config = {
+    lua = {'string'},-- it will not add a pair on that treesitter node
+    javascript = {'template_string'},
+    java = false,-- don't check treesitter on java
+  }
+})
+local ts_conds = require('nvim-autopairs.ts-conds')
 
-    ['"'] = { escape = true, close = true, pair = '""' },
-    ["'"] = { escape = true, close = true, pair = "''" },
-    ["`"] = { escape = true, close = true, pair = "``" },
-  },
-  options = {
-    disabled_filetypes = { "text" },
-    disable_when_touch = false,
-    touch_regex = "[%w(%[{]",
-    pair_spaces = false,
-    auto_indent = true,
+
+-- press % => %% only while inside a comment or string
+npairs.add_rules({
+  Rule("%", "%", "lua")
+    :with_pair(ts_conds.is_ts_node({'string','comment'})),
+  Rule("$", "$", "lua")
+  :with_pair(ts_conds.is_not_ts_node({'function'}))
+})
+-- skip it, if you use another global object
+_G.MUtils= {}
+
+-- new version for custom pum
+MUtils.completion_confirm=function()
+  if vim.fn["coc#pum#visible"]() ~= 0  then
+    return vim.fn["coc#pum#confirm"]()
+  else
+    return npairs.autopairs_cr()
+  end
+end
+
+remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
+
+npairs.setup({
+  fast_wrap = {},
+})
+
+-- change default fast_wrap
+npairs.setup({
+  fast_wrap = {
+    map = '<M-e>',
+    chars = { '{', '[', '(', '"', "'" },
+    pattern = [=[[%'%"%>%]%)%}%,]]=],
+    end_key = '$',
+    before_key = 'h',
+    after_key = 'l',
+    cursor_pos_before = true,
+    keys = 'qwertyuiopzxcvbnmasdfghjkl',
+    manual_position = true,
+    highlight = 'Search',
+    highlight_grey='Comment'
   },
 })
 --}}}
 
--- Vim Notify" {{{
+-- Vim Notify " {{{
 vim.notify = require("notify")
 --}}}
 
--- NeoTree" {{{
+-- NeoTree " {{{
 require("neo-tree").setup({
 close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
 popup_border_style = "rounded",
@@ -771,7 +805,7 @@ git_status = {
 vim.cmd([[nnoremap <silent> \ :Neotree reveal<cr>]])
 --}}}
 
--- LazyGit Telescope Extension"{{{
+-- LazyGit Telescope Extension "{{{
 require('telescope').load_extension('lazygit')
 --}}}
 
