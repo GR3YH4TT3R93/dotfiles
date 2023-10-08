@@ -226,7 +226,7 @@ vnoremap <silent> <A-l> :MoveHBlock(1)<CR>
 vnoremap <silent> <A-h> :MoveHBlock(-1)<CR>
 "}}}
 
-" Navigate to the previous or next trailing whitespace{{{
+" Navigate to the previous or next trailing whitespace {{{
 nnoremap ]w :NextTrailingWhitespace<CR>
 nnoremap [w :PrevTrailingWhitespace<CR>
 "}}}
@@ -243,7 +243,7 @@ nnoremap <leader>fr <cmd>Telescope lazygit<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<CR>
 
-"Track any buffer that is in a git repo
+" Track any buffer that is in a git repo
 autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
 "}}}
 
@@ -423,7 +423,7 @@ require'nvim-web-devicons'.setup {
 }
 --}}}
 
--- Rainbow Blank Line " {{{
+-- Rainbow Blank Line {{{
 local highlight = {
     "RainbowRed",
     "RainbowYellow",
@@ -452,7 +452,7 @@ require("ibl").setup { indent = { highlight = highlight } }
 hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 --"}}}
 
--- Cursor Line " {{{
+-- Cursor Line {{{
 require('nvim-cursorline').setup {
   cursorline = {
     enable = true,
@@ -467,7 +467,7 @@ require('nvim-cursorline').setup {
 }
 --}}}
 
--- Autopairs " {{{
+-- Autopairs {{{
 require("nvim-autopairs").setup {}
 
 local remap = vim.api.nvim_set_keymap
@@ -528,11 +528,11 @@ npairs.setup({
 })
 --}}}
 
--- Vim Notify " {{{
+-- Vim Notify {{{
 vim.notify = require("notify")
 --}}}
 
--- NeoTree " {{{
+-- NeoTree {{{
 require("neo-tree").setup({
 close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
 popup_border_style = "rounded",
@@ -805,7 +805,7 @@ git_status = {
 vim.cmd([[nnoremap <silent> \ :Neotree reveal<cr>]])
 --}}}
 
--- LazyGit Telescope Extension "{{{
+-- LazyGit Telescope Extension {{{
 require('telescope').load_extension('lazygit')
 --}}}
 
