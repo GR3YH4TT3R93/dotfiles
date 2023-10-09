@@ -55,6 +55,7 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set clipboard+=unnamedplus
+
 colorscheme onedark
 let g:airline_theme='onedark'
 let g:airline_powerline_fonts = 1
@@ -65,22 +66,8 @@ let g:strip_whitespace_confirm=0
 let g:strip_only_modified_lines=1
 let g:strip_whitelines_at_eof=1
 let g:show_spaces_that_precede_tabs=1
-nnoremap <silent><C-n> :Neotree toggle<CR>
 
 " autocmd VimLeave * wshada!
-
-
-"Coc Lightbulb {{{
-" virtual text
-hi default LightBulbDefaultVirtualText guifg=#FDD164
-hi default link LightBulbQuickFixVirtualText LightBulbDefaultVirtualText
-" sign
-hi default LightBulbDefaultSign guifg=#FDD164
-hi default link LightBulbQuickFixSign LightBulbDefaultSignLine
-" numhl
-"hi default LightBulbDefaultSignLine guifg=#FDD164
-"hi default link LightBulbQuickFixSignLine LightBulbDefaultSignLine
-  "}}}
 "}}}
 
 " Providers {{{
