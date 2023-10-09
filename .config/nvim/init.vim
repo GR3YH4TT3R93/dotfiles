@@ -75,6 +75,10 @@ let g:python3_host_prog = '/data/data/com.termux/files/usr/bin/python3'
 let g:loaded_perl_provider = 0
 "}}}
 
+" Toggle NeoTree {{{
+nnoremap <silent><C-n> :Neotree toggle<CR>
+"}}}
+
 " CoC Extensions {{{
 let g:coc_global_extensions = [
   \'@statiolake/coc-extension-auto-installer',
