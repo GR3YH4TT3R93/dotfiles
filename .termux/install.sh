@@ -236,7 +236,7 @@ apt update && apt install nala -y
 nala install termux-api gh neovim nodejs python-pip ruby luarocks luajit ripgrep fd lazygit wget gettext logo-ls ncurses-utils timewarrior taskwarrior htop -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
 
 # Install pynvim, pnpm and neovim npm package, and neovim gem package
-python -m pip install pynvim || error_exit "${RED}Failed to install pynvim.${ENDCOLOR}"
+pip install pynvim || error_exit "${RED}Failed to install pynvim.${ENDCOLOR}"
 npm install -g pnpm neovim || error_exit "${RED}Failed to install neovim npm package.${ENDCOLOR}"
 gem install neovim || error_exit "${RED}Failed to install neovim gem package.${ENDCOLOR}"
 gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
