@@ -96,12 +96,12 @@ fi
 echo "${YELLOW}Make sure to add your public key to your Git hosting provider.${ENDCOLOR}"
 
 
-echo -e "${GREEN}Time to install Nala Package Manager, Termux Clipboard, Neovim, NodeJS, Python-pip, Ruby, LuaRocks, LuaJIT, ripgrep, fd, LazyGit, wget, gettext, logo-ls, ncurses-utils, Timewarrior, Taskwarrior, and htop!${ENDCOLOR}"
+echo -e "${GREEN}Time to install Nala Package Manager, Termux Clipboard, Neovim, NodeJS, Python-pip, Ruby, LuaRocks, LuaJIT, ripgrep, fd, LazyGit, wget, gettext, logo-ls, ncurses-utils, libuv, Timewarrior, Taskwarrior, and htop!${ENDCOLOR}"
 sleep 5
 
 # Install Nala Package Manager, Z Shell, Termux Clipboard, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, htop
 pkg update && pkg install nala -y
-nala install termux-api neovim nodejs python-pip ruby luarocks luajit ripgrep fd lazygit wget gettext logo-ls ncurses-utils timewarrior taskwarrior htop -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
+nala install termux-api neovim nodejs python-pip ruby luarocks luajit ripgrep fd lazygit wget gettext logo-ls ncurses-utils libuv timewarrior taskwarrior htop -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
 
 # Install pynvim, pnpm and neovim npm package, and neovim gem package
 pip install pynvim || error_exit "${RED}Failed to install pynvim.${ENDCOLOR}"
