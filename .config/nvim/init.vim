@@ -46,7 +46,6 @@ set cursorline
 set scrolloff=999
 set foldmethod=marker
 set nocompatible
-set list listchars=tab:\⎸\ 
 set wrap linebreak
 set breakindent breakindentopt=shift:2
 set autoindent
@@ -62,7 +61,7 @@ let g:airline_powerline_fonts = 1
 let g:indent_blankline_use_treesitter = v:true
 let g:strip_whitespace_on_save = 1
 let g:better_whitespace_skip_empty_lines=1
-let g:strip_whitespace_confirm=0
+let g:strip_whitespace_confirm=1
 let g:strip_only_modified_lines=1
 let g:strip_whitelines_at_eof=1
 let g:show_spaces_that_precede_tabs=1
@@ -618,15 +617,15 @@ default_component_configs = {
 commands = {},
 window = {
   position = "left",
-  width = 24,
+  width = "35%",
   mapping_options = {
     noremap = true,
-    nowait = true,
+    nowait = false,
   },
   mappings = {
     ["<leader>"] = {
-"toggle_node",
-nowait = true, -- disable `nowait` if you have existing combos starting with this char that you want to use
+      "toggle_node",
+      nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
     },
     ["<2-LeftMouse>"] = "open",
     ["<cr>"] = "open",
@@ -651,7 +650,7 @@ nowait = true, -- disable `nowait` if you have existing combos starting with thi
       -- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
       -- some commands may take optional config options, see `:h neo-tree-mappings` for details
       config = {
-show_path = "none" -- "none", "relative", "absolute"
+        show_path = "none" -- "none", "relative", "absolute"
       }
     },
     ["A"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
@@ -713,7 +712,7 @@ filesystem = {
 -- "open_current",  -- netrw disabled, opening a directory opens within the
   -- window like netrw would, regardless of window.position
 -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
-  use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
+  use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
   -- instead of relying on nvim autocmd events.
   window = {
     mappings = {
