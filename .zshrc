@@ -104,7 +104,6 @@ plugins=(
 
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
-fpath+=~/.cargo/bin
 
 # User configuration
 function zvm_config() {
