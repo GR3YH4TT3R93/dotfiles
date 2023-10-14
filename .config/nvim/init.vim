@@ -707,7 +707,7 @@ filesystem = {
     leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
   },
   group_empty_dirs = false, -- when true, empty folders will be grouped together
-  hijack_netrw_behavior = "open_current", -- netrw disabled, opening a directory opens neo-tree
+  hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
   -- in whatever position is specified in window.position
 -- "open_current",  -- netrw disabled, opening a directory opens within the
   -- window like netrw would, regardless of window.position
