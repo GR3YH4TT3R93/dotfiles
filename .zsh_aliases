@@ -64,13 +64,14 @@ alias ta='task add' # Add Task to Taskwarrior
 alias tdel='task delete' # Delete Task from Taskwarrior
 alias tl='task entry.after:now-1wk list' # List Tasks created in the last week
 alias tla='task list' # List all Tasks
-alias b='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME' #Git bare alias
-alias ba='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME add' # Git bare add
-alias bam='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME commit -p -S -m' #Git bare commit Patch Sign Message
-alias bs='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME status' # Git bare status
-alias bad='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME diff' # Git bare diff
-alias bpu='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push' # Git bare push
-alias bpl='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME pull' # Git bare push
+alias b='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME' #Git Bare Alias
+alias ba='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME add' # Git Bare Add
+alias bam='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME commit -p -S -m' #Git Bare Commit Patch Sign Message
+alias bs='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME status' # Git Bare Status
+alias bad='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME diff' # Git Bare Diff
+alias bpu='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push' # Git Bare Push
+alias bpl='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME pull' # Git Bare Pull
 alias bcd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev' # Git Checkout Dev
 alias bcm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main' # Git Checkout Main
+alias bmd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge dev -m' # Git Bare Checkout Main & Merge Dev into Main
 alias gmd='git checkout main && git merge dev -m' # Git Chechout Main & Git Merge Dev into Main With Message
