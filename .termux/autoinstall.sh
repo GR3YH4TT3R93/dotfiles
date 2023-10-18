@@ -53,6 +53,7 @@ if [[ "$choice" == [Yy]* ]]; then
   git config --system gpg.format ssh
   git config --system user.signingkey ~/.ssh/id_ed25519.pub
   git config --system gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
+  git config --system log.showSignature true
   git config --system commit.gpgsign true
   git config --system tag.gpgsign true
   git config --system push.autoSetupRemote true
@@ -80,6 +81,7 @@ else
   git config --global gpg.format ssh
   git config --global user.signingkey ~/.ssh/id_ed25519.pub
   git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
+  git config --global log.showSignature true
   git config --global commit.gpgsign true
   git config --global tag.gpgsign true
   git config --global push.autoSetupRerun true
