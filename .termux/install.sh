@@ -71,9 +71,11 @@ if [[ "$choice" == [Yy]* ]]; then
   cat "$HOME/.gitconfig" >> "/data/data/com.termux/files/usr/etc/gitconfig"
   # Clean up unnecessary file
   rm "$HOME/.gitconfig"
-  echo "Your public key (id_ed25519.pub) is:"
+  # Provide Pubkey for gpgsigning
+  echo "${YELLOW}COPY THE FOLLOWING OUTPUT${ENDCOLOR}"
+  echo "${GREEN}Your public key (id_ed25519.pub) is${ENDCOLOR}:"
   cat ~/.ssh/id_ed25519.pub
-  echo "${YELLOW}Make sure to add your public key to your Git hosting provider.${ENDCOLOR}"
+  echo "${YELLOW}Make sure to add your public key to your Git hosting provider${ENDCOLOR}!"
   sleep 25
   echo -e "${GREEN}Git credentials configured system-wide.${ENDCOLOR}"
 else
@@ -97,13 +99,14 @@ else
   git config --global color.interactive auto
   git config --global color.diff auto
   git config --global status.short true
+  # Provide Pubkey for gpgsigning
+  echo "${YELLOW}COPY THE FOLLOWING OUTPUT${ENDCOLOR}"
   echo "${YELLOW}Your public key (id_ed25519.pub) is${ENDCOLOR}:"
   cat ~/.ssh/id_ed25519.pub
-  echo "${YELLOW}Make sure to add your public key to your Git hosting provider.${ENDCOLOR}"
+  echo "${YELLOW}Make sure to add your public key to your Git hosting provider${ENDCOLOR}!"
   sleep 25
   echo -e "${GREEN}Git credentials configured globally.${ENDCOLOR}"
 fi
-
 
 # Install MOTD
 echo "${GREEN}Installing MOTD${ENDCOLOR}"
