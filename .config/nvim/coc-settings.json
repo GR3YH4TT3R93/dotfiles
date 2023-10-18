@@ -41,6 +41,8 @@
   "eslint.run": "onType",
   "eslint.autoFixOnSave": true,
   "eslint.quiet": false,
+  "extension-auto-installer.autoCheckLanguageExtensions": "autoInstall",
+  "extension-auto-installer.autoCheckGlobalExtensions": "autoInstall",
   "eslint.format.enable": false,
   "eslint.packageManager": "pnpm",
   "tailwindCSS.emmetCompletions": true,
