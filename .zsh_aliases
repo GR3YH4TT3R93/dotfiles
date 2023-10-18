@@ -66,7 +66,7 @@ alias tl='task entry.after:now-1wk list' # List Tasks created in the last week
 alias tla='task list' # List all Tasks
 alias b='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME' #Git bare alias
 alias ba='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME add' # Git bare add
-alias bam='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME commit -p -S -m' #Git bare commit -pSm
+alias bam='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME commit -p -S -m' #Git bare commit Patch Sign Message
 alias bs='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME status' # Git bare status
 alias bad='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME diff' # Git bare diff
 alias bpu='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push' # Git bare push
