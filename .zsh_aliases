@@ -71,4 +71,4 @@ alias bs='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME status' # Git ba
 alias bad='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME diff' # Git bare diff
 alias bpu='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push' # Git bare push
 alias bpl='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME pull' # Git bare push
-
+alias gmd='git checkout main && git merge dev' # Git Chechout Main & Git Merge Dev into Main
