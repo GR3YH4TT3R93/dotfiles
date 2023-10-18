@@ -43,12 +43,16 @@ if [ ! -f ~/.ssh/id_ed25519 ]; then
   HOME=/data/data/com.termux/files/home ssh-add ~/.ssh/id_ed25519
 fi
 
+# Create file containing SSH public key for verifying signers
+awk '{ print $3 " " $1 " " $2 }' ~/.ssh/id_ed25519.pub >> ~/.ssh/allowed_signers
+
 if [[ "$choice" == [Yy]* ]]; then
   # Set the Git username and email system-wide
   git config --system user.name "$username"
   git config --system user.email "$email"
   git config --system gpg.format ssh
   git config --system user.signingkey ~/.ssh/id_ed25519.pub
+  git config --system gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
   git config --system commit.gpgsign true
   git config --system tag.gpgsign true
   git config --system push.autoSetupRemote true
@@ -75,6 +79,7 @@ else
   git config --global user.email "$email"
   git config --global gpg.format ssh
   git config --global user.signingkey ~/.ssh/id_ed25519.pub
+  git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
   git config --global commit.gpgsign true
   git config --global tag.gpgsign true
   git config --global push.autoSetupRerun true
