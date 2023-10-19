@@ -1,7 +1,7 @@
 "Plugins {{{
 call plug#begin()
   Plug 'navarasu/onedark.nvim'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   Plug 'honza/vim-snippets'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
@@ -9,7 +9,7 @@ call plug#begin()
   Plug 'yamatsum/nvim-cursorline'
   Plug 'windwp/nvim-autopairs'
   Plug 'kshenoy/vim-signature'
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'ryanoasis/vim-devicons'
   Plug 'nvim-tree/nvim-web-devicons'
   Plug 'HiPhish/rainbow-delimiters.nvim'
@@ -28,6 +28,8 @@ call plug#begin()
   Plug 'kdheepak/lazygit.nvim'
 call plug#end()
 "}}}
+
+command! UP PlugUpdate | CocUpdate
 
 " Run PlugInstall if there are missing plugins {{{
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
@@ -66,7 +68,7 @@ let g:strip_only_modified_lines=1
 let g:strip_whitelines_at_eof=1
 let g:show_spaces_that_precede_tabs=1
 
-" autocmd VimLeave * wshada!
+command! CM VimLeave * wshada!
 "}}}
 
 " Providers {{{
