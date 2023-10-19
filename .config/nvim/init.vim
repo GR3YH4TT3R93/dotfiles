@@ -29,12 +29,10 @@ call plug#begin()
 call plug#end()
 "}}}
 
-command! UP PlugUpdate | CocUpdate
-
 " Run PlugInstall if there are missing plugins {{{
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \| PlugInstall --sync | source $MYVIMRC
-\| endif
+      \| PlugInstall --sync | source $MYVIMRC
+      \| endif
 "}}}
 
 " Theme {{{
@@ -68,7 +66,8 @@ let g:strip_only_modified_lines=1
 let g:strip_whitelines_at_eof=1
 let g:show_spaces_that_precede_tabs=1
 
-command! CM VimLeave * wshada!
+" autocmd VimLeave * wshada!
+command! UP PlugUpdate | CocUpdate
 "}}}
 
 " Providers {{{
@@ -191,7 +190,7 @@ function! s:DiagnosticNotify() abort
   if get(l:info, 'error', 0)
     let l:level = 'error'
   endif
- 
+
   if get(l:info, 'error', 0)
     call add(l:msgs, ' Errors: ' . l:info['error'])
   endif
