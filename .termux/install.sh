@@ -67,6 +67,8 @@ if [[ "$choice" == [Yy]* ]]; then
   git config --system color.interactive auto
   git config --system color.diff auto
   git config --system status.short true
+  git config --system alias.assume-unchanged 'update-index --assume-unchanged'
+  git config --system alias.assume-changed 'update-index --no-assume-unchanged'
   # Transfer gh helper config to system config
   cat "$HOME/.gitconfig" >> "/data/data/com.termux/files/usr/etc/gitconfig"
   # Clean up unnecessary file
@@ -99,6 +101,8 @@ else
   git config --global color.interactive auto
   git config --global color.diff auto
   git config --global status.short true
+  git config --global alias.assume-unchanged 'update-index --assume-unchanged'
+  git config --global alias.assume-changed 'update-index --no-assume-unchanged'
   # Provide Pubkey for gpgsigning
   echo "${YELLOW}COPY THE FOLLOWING OUTPUT${ENDCOLOR}"
   echo "${YELLOW}Your public key (id_ed25519.pub) is${ENDCOLOR}:"
@@ -231,6 +235,7 @@ if [ -e "$file_path" ]; then
     echo "${YELLOW}Hiding README.md in ~/.termux ${ENDCOLOR}"
     echo "${GREEN}moving...${ENDCOLOR}"
     git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" mv README.md ~/.termux/README.md || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
+    git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" update-index --assume-unchanged README.md || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
   else
     echo "${RED}File exists but is not readable. Cannot execute Git command.${ENDCOLOR}"
   fi
