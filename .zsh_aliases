@@ -46,6 +46,7 @@ alias pb='pnpm build' # PNPM Create Bundle Package
 alias pcl='pnpm config list' # PNPM Config List
 alias pi='pnpm install' # PNPM Install from package.json
 alias pil='pnpm install --frozen-lockfile' # PNPM Lockfile not updated
+alias pin='pnpm install --no-lockfile' # PNPM Lockfile not generated
 alias pu='pnpm update' # PNPM Update Packages
 alias pr='pnpm run' # PNPM Run Script
 alias prm='pnpm remove' # PNPM Remove Package
