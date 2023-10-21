@@ -33,6 +33,7 @@ alias nfu='nala upgrade -y' # Nala Update & Full-Upgrade
 alias ni='nala install -y' # Nala Install
 alias nr='nala remove -y' # Nala Remove
 alias np='nala purge -y' # Nala Purge
+alias nc='nala clean' # Nala Clean
 alias na='nala autoremove -y' # Nala Auto Remove
 alias nh='nala history' # Nala History
 alias nl='nala list' # Nala List
