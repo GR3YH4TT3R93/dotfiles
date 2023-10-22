@@ -86,6 +86,7 @@ alias uwu='nala upgrade -y' # Nala upgrade -y
 alias 10k='p10k configure' # Configure Powerlevel10k
 alias e='nvim' # A highly customizable editor
 alias z='zsh' #The better shell
+alias tm='tmux' # Terminal Multiplexer
 alias ghb='cd ~/GitHub' # Jump to GitHub Projects
 alias ct='clear' # Clear Terminal
 alias cl='zsh /data/data/com.termux/files/usr/etc/motd/init.sh' # Clear terminal
