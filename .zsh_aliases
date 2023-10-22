@@ -77,8 +77,8 @@ alias bpl='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME pull' # Git Bar
 alias bcd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev' # Git Checkout Dev
 alias bcm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main' # Git Checkout Main
 alias bmd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge dev -m' # Git Bare Checkout Main & Merge Dev into Main
-alias buc='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume unchanged' # Git Bare Assume Unchanged
-alias bch='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume changed' # Git Bare Assume Changed
+alias buc='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume-unchanged' # Git Bare Assume Unchanged
+alias bch='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume-changed' # Git Bare Assume Changed
 
 #Random Aliases
 alias gmd='git checkout main && git merge dev -m' # Git Chechout Main & Git Merge Dev into Main With Message
