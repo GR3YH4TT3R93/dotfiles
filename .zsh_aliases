@@ -62,6 +62,7 @@ alias ts='task start' # Start Task in Taskwarrior
 alias tp='task stop' # End Task in Taskwarrior
 alias tc='task done' # Complete Task in Taskwarrior
 alias tl='task list' # List all Tasks
+alias tm='task modify' # Modify Task Attribute
 alias tlw='task entry.after:now-1wk list' # List Tasks created in the last week
 alias tlm='task entry.after:now-4wk list' # List Tasks created in the last month
 
@@ -85,7 +86,6 @@ alias uwu='nala upgrade -y' # Nala upgrade -y
 alias 10k='p10k configure' # Configure Powerlevel10k
 alias e='nvim' # A highly customizable editor
 alias z='zsh' #The better shell
-alias t='tmux' # Terminal Multiplexer
 alias ghb='cd ~/GitHub' # Jump to GitHub Projects
 alias ct='clear' # Clear Terminal
 alias cl='zsh /data/data/com.termux/files/usr/etc/motd/init.sh' # Clear terminal
