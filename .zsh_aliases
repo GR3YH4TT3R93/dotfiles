@@ -58,9 +58,14 @@ alias pau='pnpm audit' # PNPM Audit Vuln Deps
 alias pauf='pnpm audit --fix' # PNPM Fix Vuln Deps
 alias t='task' # Taskwarrior
 alias ta='task add' # Add Task to Taskwarrior
-alias tdel='task delete' # Delete Task from Taskwarrior
-alias tl='task entry.after:now-1wk list' # List Tasks created in the last week
-alias tla='task list' # List all Tasks
+alias td='task delete' # Delete Task from Taskwarrior
+alias tda='task purge' # Purge Tasks in Taskwarrior
+alias ts='task start' # Start Task in Taskwarrior
+alias tp='task stop' # End Task in Taskwarrior
+alias tc='task done' # Complete Task in Taskwarrior
+alias tl='task list' # List all Tasks
+alias tlw='task entry.after:now-1wk list' # List Tasks created in the last week
+alias tlm='task entry.after:now-4wk list' # List Tasks created in the last month
 alias b='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME' #Git Bare Alias
 alias ba='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME add' # Git Bare Add
 alias bam='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME commit -p -S -m' #Git Bare Commit Patch Sign Message
