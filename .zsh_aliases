@@ -1,6 +1,19 @@
-alias apt='nala' # Replace apt with nala
-alias a='apt-get' # APT Package Manager
-alias uwu='nala upgrade -y' # Nala update && Nala upgrade -y
+# Nala Aliases
+alias n='nala' # A faster, prettier front-end for libapt
+alias nf='nala fetch' # Nala Fastest Mirror
+alias nu='nala update' # Nala Update
+alias nfu='nala upgrade -y' # Nala Update & Full-Upgrade
+alias ni='nala install -y' # Nala Install
+alias nr='nala remove -y' # Nala Remove
+alias np='nala purge -y' # Nala Purge
+alias nc='nala clean' # Nala Clean
+alias na='nala autoremove -y' # Nala Auto Remove
+alias nh='nala history' # Nala History
+alias nl='nala list' # Nala List
+alias ns='nala search' # Nala Search
+alias nv='nala show' # Nala View Package Info
+
+# Bun Aliases
 alias bun='grun ~/.bun/bin/bun'
 alias bn='grun ~/.bun/bin/bun' # A complete toolkit for building JavaScript apps
 alias bni='grun ~/.bun/bin/bun install' # Bun Install
@@ -18,27 +31,10 @@ alias bnul='grun ~/.bun/bin/bun unlink' # Bun Unlink
 alias bnpm='grun ~/.bun/bin/bun pm' # Bun Package Manager
 alias bnb='grun ~/.bun/bin/bun build' # Bun Build
 alias bnup='grun ~/.bun/bin/bun upgrade' # Bun Upgrade
-alias 10k='p10k configure' # Configure Powerlevel10k
-alias e='nvim' # A highly customizable editor
-alias z='zsh' #The better shell
-alias t='tmux' # Terminal Multiplexer
-alias aXs='acodeX-server' # Start AcodeX Server
-alias ghb='cd ~/GitHub' # Jump to GitHub Projects
-alias ct='clear' # Clear Terminal
-alias cl='zsh /data/data/com.termux/files/usr/etc/motd/init.sh' # Clear terminal
-alias n='nala' # A faster, prettier front-end for libapt
-alias nf='nala fetch' # Nala Fastest Mirror
-alias nu='nala update' # Nala Update
-alias nfu='nala upgrade -y' # Nala Update & Full-Upgrade
-alias ni='nala install -y' # Nala Install
-alias nr='nala remove -y' # Nala Remove
-alias np='nala purge -y' # Nala Purge
-alias nc='nala clean' # Nala Clean
-alias na='nala autoremove -y' # Nala Auto Remove
-alias nh='nala history' # Nala History
-alias nl='nala list' # Nala List
-alias ns='nala search' # Nala Search
-alias nv='nala show' # Nala View Package Info
+alias bnli='grun ~/.bun/bin/bun lint' # Run Prettier & ESLint
+alias bnlf='grun ~/.bun/bin/bun lintfix' # Run Prettier & ESLint, Fix Errors
+
+# PNPM Aliases
 alias pi='pnpm install' # PNPM Install Packages from package.json
 alias p='pnpm' # PNPM Package Manager
 alias pa='pnpm add' # PNPM Add Package
@@ -56,6 +52,8 @@ alias plf='pnpm lintfix' # Run Prettier & ESLint, Fix Errors
 alias pt='pnpm test' # PNPM Run Test
 alias pau='pnpm audit' # PNPM Audit Vuln Deps
 alias pauf='pnpm audit --fix' # PNPM Fix Vuln Deps
+
+# Taskwarrior Aliases
 alias t='task' # Taskwarrior
 alias ta='task add' # Add Task to Taskwarrior
 alias td='task delete' # Delete Task from Taskwarrior
@@ -66,7 +64,9 @@ alias tc='task done' # Complete Task in Taskwarrior
 alias tl='task list' # List all Tasks
 alias tlw='task entry.after:now-1wk list' # List Tasks created in the last week
 alias tlm='task entry.after:now-4wk list' # List Tasks created in the last month
-alias b='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME' #Git Bare Alias
+
+# Git Bare Aliases
+alias b='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME' #Git Bare
 alias ba='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME add' # Git Bare Add
 alias bam='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME commit -p -S -m' #Git Bare Commit Patch Sign Message
 alias bs='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME status' # Git Bare Status
@@ -76,4 +76,17 @@ alias bpl='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME pull' # Git Bar
 alias bcd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev' # Git Checkout Dev
 alias bcm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main' # Git Checkout Main
 alias bmd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge dev -m' # Git Bare Checkout Main & Merge Dev into Main
+
+#Random Aliases
 alias gmd='git checkout main && git merge dev -m' # Git Chechout Main & Git Merge Dev into Main With Message
+alias apt='nala' # Replace apt with nala
+alias a='apt-get' # APT Package Manager
+alias uwu='nala upgrade -y' # Nala upgrade -y
+alias 10k='p10k configure' # Configure Powerlevel10k
+alias e='nvim' # A highly customizable editor
+alias z='zsh' #The better shell
+alias t='tmux' # Terminal Multiplexer
+alias ghb='cd ~/GitHub' # Jump to GitHub Projects
+alias ct='clear' # Clear Terminal
+alias cl='zsh /data/data/com.termux/files/usr/etc/motd/init.sh' # Clear terminal
+
