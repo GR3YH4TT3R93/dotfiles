@@ -780,11 +780,11 @@ default_component_configs = {
       deleted   = "✖",-- this can only be used in the git_status source
       renamed   = "󰁕",-- this can only be used in the git_status source
       -- Status type
-      untracked = "",
+      untracked = "󱪘",
       ignored   = "",
-      unstaged  = "󰄱",
-      staged    = "",
-      conflict  = "",
+      unstaged  = "󱪗",
+      staged    = "󱪝",
+      conflict  = "󱪟",
     }
   },
   -- If you don't want to use these columns, you can set `enabled = false` for each of them individually
