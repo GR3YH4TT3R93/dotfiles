@@ -128,8 +128,9 @@ nnoremap <f10> :CocCommand volar.action.nuxt<CR>
 inoremap <f10> :CocCommand volar.action.nuxt<CR>
 "}}}
 
-"CoC Tailwind CSS {{{
-au FileType html let b:coc_root_patterns = ['.git', '.env', 'tailwind.config.js', 'tailwind.config.cjs']
+
+ "CoC Tailwind CSS {{{
+au FileType vue let b:coc_root_patterns = ['.git', '.env', 'tailwind.config.js', 'tailwind.config.cjs']
 "}}}
 
 " CoC Tab Completions {{{
