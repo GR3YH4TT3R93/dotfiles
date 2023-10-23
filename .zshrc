@@ -176,9 +176,16 @@ fpath+=~/.zfunc
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main brackets pattern cursor)
 
 # pnpm
-# export PNPM_HOME="/data/data/com.termux/files/home/.local/share/pnpm"
-# case ":$PATH:" in
-#   *":$PNPM_HOME:"*) ;;
-#   *) export PATH="$PNPM_HOME:$PATH" ;;
-# esac
+export PNPM_HOME="/data/data/com.termux/files/home/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 # pnpm end
+
+export CARGO_BIN="/data/data/com.termux/files/home/.cargo/bin"
+case ":$PATH:" in
+  *":$CARGO_BIN:"*) ;;
+  *) export PATH="$CARGO_BIN:$PATH" ;;
+esac
+export MOCWORD_DATA="~/.cargo/mocword.sqlite"
