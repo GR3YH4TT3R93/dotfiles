@@ -230,21 +230,21 @@ nnoremap <silent> <leader>gg :LazyGit<CR>
 
 " Write, Quit, eXit {{{
 " Control-W Save
-nnoremap <C-W> :w<CR>
-vnoremap <C-W> <esc> :w<CR>
+nnoremap <silent><C-W> :w<CR>
+vnoremap <silent><C-W> <esc> :w<CR>
 "imap <C-W> <esc>:w<CR>
 " Save + back into insert
 " inoremap <M-W> <esc> :w<CR>a
 
 " Control-Q Quit without save
-nnoremap <C-Q> :q!<CR>
-vnoremap <C-Q> <esc> :q!<CR>
-inoremap <C-Q> <esc> :q!<CR>
+nnoremap <silent><C-Q> :q!<CR>
+vnoremap <silent><C-Q> <esc> :q!<CR>
+inoremap <silent><C-Q> <esc> :q!<CR>
 
 " Control-X Exit
-nnoremap <C-X> :wq<CR>
-vnoremap <C-X> <esc> :wq<CR>
-inoremap <C-X> <esc> :wq<CR>
+nnoremap <silent><C-X> :x<CR>
+vnoremap <silent><C-X> <esc> :x<CR>
+inoremap <silent><C-X> <esc> :x<CR>
 "}}}
 
 " Move Lines and Blocks {{{
