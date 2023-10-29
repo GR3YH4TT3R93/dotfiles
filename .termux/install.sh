@@ -234,8 +234,8 @@ if [ -e "$file_path" ]; then
   if [ -r "$file_path" ]; then
     echo "${YELLOW}Hiding README.md in ~/.termux ${ENDCOLOR}"
     echo "${GREEN}moving...${ENDCOLOR}"
-    git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" mv README.md ~/.termux/README.md || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
-    git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" update-index --assume-unchanged README.md || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
+    mv README.md ~/.termux/README.md || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
+    git --git-dir="$HOME/GitHub/dotfiles" --work-tree="$HOME" --assume-unchanged README.md || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
   else
     echo "${RED}File exists but is not readable. Cannot execute Git command.${ENDCOLOR}"
   fi
