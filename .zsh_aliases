@@ -78,7 +78,8 @@ alias bpu='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push' # Git Bar
 alias bpl='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME pull' # Git Bare Pull
 alias bcd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev' # Git Checkout Dev
 alias bcm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main' # Git Checkout Main
-alias bmd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge dev -m' # Git Bare Checkout Main & Merge Dev into Main
+alias bmd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge dev' # Git Bare Checkout Main & Merge Dev into Main
+alias bmm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge main' # Git Bare Checkout Main & Merge Dev into Main
 alias buc='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume-unchanged' # Git Bare Assume Specified File(s) Unchanged
 alias bch='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume-changed' # Git Bare Assume Specified File(s) Changed
 
