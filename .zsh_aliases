@@ -55,6 +55,11 @@ alias pt='pnpm test' # PNPM Run Test
 alias pau='pnpm audit' # PNPM Audit Vuln Deps
 alias pauf='pnpm audit --fix' # PNPM Fix Vuln Deps
 
+# Nuxt CLI Tool PNPM Aliases
+alias nux='pnpm nuxi' # Nuxt CLI Tool
+alias nuxc='pnpm nuxi cleanup' # Nuxi Cleanup generated nuxt files and caches
+alias nuxu='pnpm nuxi upgrade' # Nuxi Upgrade and Fix .nuxt & node_modules
+
 # Taskwarrior Aliases
 alias t='task' # Taskwarrior
 alias ta='task add' # Add Task to Taskwarrior
