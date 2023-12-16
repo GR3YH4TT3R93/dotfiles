@@ -71,10 +71,15 @@ alias tda='task purge' # Purge Tasks in Taskwarrior
 alias ts='task start' # Start Task in Taskwarrior
 alias tp='task stop' # End Task in Taskwarrior
 alias tc='task done' # Complete Task in Taskwarrior
-alias tl='task list' # List all Tasks
 alias tm='task modify' # Modify Task Attribute
-alias tlw='task entry.after:now-1wk list' # List Tasks created in the last week
-alias tlm='task entry.after:now-4wk list' # List Tasks created in the last month
+alias tl='task list' # List all Tasks
+alias tlw='task entry.after:now-1wk list' # List Tasks created in the last Week
+alias tlm='task entry.after:now-1m list' # List Tasks created in the last Month
+alias tly='task entry.after:now-1y list' # List Tasks created in the last Month
+alias tlc='task completed' # List all Tasks Completed
+alias tlcw='task end.after:today-1wk completed' # List all Tasks Completed in the Last Week
+alias tlcm='task end.after:today-1m completed' # List all Tasks Completed in the Last Month
+alias tlcy='task end.after:today-1y completed' # List all Tasks Completed in the Last Year
 
 # Git Bare Aliases
 alias b='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME' #Git Bare
