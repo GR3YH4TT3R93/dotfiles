@@ -102,13 +102,14 @@ alias bpl='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME pull' # Git Bar
 alias bcd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev' # Git Checkout Dev
 alias bcm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main' # Git Checkout Main
 alias bmd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge --no-ff -m "Merge branch '\''dev'\''" dev' # Git Bare Checkout Main & Merge Dev into Main
-alias bmm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge main' # Git Bare Checkout Dev & Merge Main into Dev
+alias bmm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge main && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push' # Git Bare Checkout Dev & Merge Main into Dev
 alias buc='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume-unchanged' # Git Bare Assume Specified File(s) Unchanged
 alias bch='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume-changed' # Git Bare Assume Specified File(s) Changed
 
 # Git Aliases
-alias gmd='git checkout main && git merge --no-ff -m "Merge branch '\''dev'\''" dev' # Git Chechout Main & Git Merge Dev into Main With Message
-alias gmm='git checkout dev && git merge main' # Git Chechout Dev & Git Merge Main into Dev
+alias gmd='git checkout main && git merge dev --no-ff -m "Merge branch '\''dev'\''" dev' # Git Chechout Main & Git Merge Dev into Main With Message
+alias gmt='git checkout main && git merge test --no-ff -m "Merge branch '\''test'\''"' # Git Chechout Main & Git Merge Dev into Main With Message
+alias gmm='git checkout dev && git merge main && git push && git checkout test && git merge main && git push' # Git Chechout Dev & Git Merge Main into Dev & Test
 alias gcpm='git commit -pm' # Git Commit Patch Message
 
 #Random Aliases
