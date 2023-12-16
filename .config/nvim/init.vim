@@ -629,7 +629,6 @@ require('nvim-cursorline').setup {
 
 -- Autopairs {{{
 require("nvim-autopairs").setup {}
-
 local remap = vim.api.nvim_set_keymap
 local npairs = require('nvim-autopairs')
 local Rule = require('nvim-autopairs.rule')

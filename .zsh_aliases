@@ -113,8 +113,6 @@ alias gmm='git checkout dev && git merge main && git push && git checkout test &
 alias gcpm='git commit -pm' # Git Commit Patch Message
 
 #Random Aliases
-alias apt='nala' # Replace apt with nala
-alias a='apt-get' # APT Package Manager
 alias uwu='nala upgrade -y' # Nala upgrade -y
 alias 10k='p10k configure' # Configure Powerlevel10k
 alias ou='omz update' # Manually Update Oh My Zsh
