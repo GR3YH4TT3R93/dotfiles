@@ -26,6 +26,7 @@ call plug#begin()
   Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v2.x' }
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'kdheepak/lazygit.nvim'
+  Plug 'fannheyward/telescope-coc.nvim'
 call plug#end()
 "}}}
 
@@ -333,7 +334,7 @@ function! s:StatusNotify() abort
 endfunction
 
 function! s:InitCoc() abort
-  execute "lua vim.notify('Initialized coc.nvim for LSP support', 'info', { title = 'LSP Status' })"
+  " execute "lua vim.notify('Initialized coc.nvim for LSP support', 'info', { title = 'LSP Status' })"
 endfunction
 
 " notifications
@@ -397,6 +398,10 @@ nnoremap <leader>fg <cmd>Telescope live_grep<CR>
 nnoremap <leader>fr <cmd>Telescope lazygit<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<CR>
+nnoremap <leader>fc <cmd>Telescope coc<CR>
+nnoremap <leader>fa <cmd>Telescope coc code_actions<CR>
+nnoremap <leader>fl <cmd>Telescope coc line_code_actions<CR>
+nnoremap <leader>fd <cmd>Telescope coc definitions<CR>
 
 " Track any buffer that is in a git repo
 autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
@@ -691,7 +696,7 @@ vim.notify = require("notify")
 local coc_status_record = {}
 
 function coc_status_notify(msg, level)
-  local notify_opts = { title = "LSP Status", timeout = 500, hide_from_history = true, on_close = reset_coc_status_record }
+  local notify_opts = { title = "LSP Status", timeout = 250, hide_from_history = true, on_close = reset_coc_status_record }
   -- if coc_status_record is not {} then add it to notify_opts to key called "replace"
   if coc_status_record ~= {} then
     notify_opts["replace"] = coc_status_record.id
@@ -706,7 +711,7 @@ end
 local coc_diag_record = {}
 
 function coc_diag_notify(msg, level)
-  local notify_opts = { title = "LSP Diagnostics", timeout = 500, on_close = reset_coc_diag_record }
+  local notify_opts = { title = "LSP Diagnostics", timeout = 250, on_close = reset_coc_diag_record }
   -- if coc_diag_record is not {} then add it to notify_opts to key called "replace"
   if coc_diag_record ~= {} then
     notify_opts["replace"] = coc_diag_record.id
@@ -995,6 +1000,16 @@ vim.cmd([[nnoremap <silent> \ :Neotree reveal<cr>]])
 -- LazyGit Telescope Extension {{{
 require('telescope').load_extension('lazygit')
 --}}}
+
+require("telescope").setup({
+  extensions = {
+    coc = {
+        theme = 'ivy',
+        prefer_locations = true, -- always use Telescope locations to preview definitions/declarations/implementations etc
+    }
+  },
+})
+require('telescope').load_extension('coc')
 
 EOF
 "}}}
