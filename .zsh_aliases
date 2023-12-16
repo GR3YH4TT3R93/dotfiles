@@ -35,21 +35,26 @@ alias bnli='grun ~/.bun/bin/bun lint' # Run Prettier & ESLint
 alias bnlf='grun ~/.bun/bin/bun lintfix' # Run Prettier & ESLint, Fix Errors
 
 # PNPM Aliases
-alias pi='pnpm install' # PNPM Install Packages from package.json
 alias p='pnpm' # PNPM Package Manager
 alias pa='pnpm add' # PNPM Add Package
+alias pad='pnpm add -D' # PNPM Add Dev Package
+alias pag='pnpm add -g' # PNPM Add Global Package
 alias pb='pnpm build' # PNPM Create Bundle Package
 alias pcl='pnpm config list' # PNPM Config List
 alias pi='pnpm install' # PNPM Install from package.json
 alias pid='pnpm install -D' # PNPM Install Dev Dependency
 alias pig='pnpm install -g' # PNPM Install Global Package
-alias pil='pnpm install --frozen-lockfile' # PNPM Lockfile not updated
+alias pif='pnpm install --frozen-lockfile' # PNPM Lockfile not updated
 alias pin='pnpm install --no-lockfile' # PNPM Lockfile not generated
+alias pii='pnpm install --ignore-scripts' # PNPM Update Packages
 alias pu='pnpm update' # PNPM Update Packages
+alias pug='pnpm update -g' # PNPM Update Packages
 alias puf='pnpm update --frozen-lockfile' # PNPM Lockfile not updated
 alias pun='pnpm update --no-lockfile' # PNPM Lockfile not generated
+alias pui='pnpm update --ignore-scripts' # PNPM Update Packages
 alias pr='pnpm run' # PNPM Run Script
 alias prm='pnpm remove' # PNPM Remove Package
+alias prmg='pnpm remove -g' # PNPM Remove Global Package
 alias psp='pnpm store prune' # PNPM Remove Unreferenced Packages Store
 alias prd='pnpm dev -o' # PNPM Run Dev
 alias pl='pnpm lint' # Run Prettier & ESLint
@@ -59,9 +64,14 @@ alias pau='pnpm audit' # PNPM Audit Vuln Deps
 alias pauf='pnpm audit --fix' # PNPM Fix Vuln Deps
 
 # Nuxt CLI Tool PNPM Aliases
-alias nux='pnpm nuxi' # Nuxt CLI Tool
-alias nuxc='pnpm nuxi cleanup' # Nuxi Cleanup generated nuxt files and caches
-alias nuxu='pnpm nuxi upgrade' # Nuxi Upgrade and Fix .nuxt & node_modules
+alias pnx='pnpm nuxi' # Nuxt CLI Tool
+alias pnxc='pnpm nuxi cleanup' # Nuxi Cleanup generated nuxt files and caches
+alias pnxu='pnpm nuxi upgrade' # Nuxi Upgrade and Fix .nuxt & node_modules
+
+# Nuxt CLI Tool Aliases
+alias nx='nuxi' # Nuxt CLI Tool
+alias nxc='nuxi cleanup' # Nuxi Cleanup generated nuxt files and caches
+alias nxu='nuxi upgrade' # Nuxi Upgrade and Fix .nuxt & node_modules
 
 # Taskwarrior Aliases
 alias t='task' # Taskwarrior
@@ -71,10 +81,15 @@ alias tda='task purge' # Purge Tasks in Taskwarrior
 alias ts='task start' # Start Task in Taskwarrior
 alias tp='task stop' # End Task in Taskwarrior
 alias tc='task done' # Complete Task in Taskwarrior
-alias tl='task list' # List all Tasks
 alias tm='task modify' # Modify Task Attribute
-alias tlw='task entry.after:now-1wk list' # List Tasks created in the last week
-alias tlm='task entry.after:now-4wk list' # List Tasks created in the last month
+alias tl='task list' # List all Tasks
+alias tlw='task entry.after:now-1wk list' # List Tasks created in the last Week
+alias tlm='task entry.after:now-1m list' # List Tasks created in the last Month
+alias tly='task entry.after:now-1y list' # List Tasks created in the last Month
+alias tlc='task completed' # List all Tasks Completed
+alias tlcw='task end.after:today-1wk completed' # List all Tasks Completed in the Last Week
+alias tlcm='task end.after:today-1m completed' # List all Tasks Completed in the Last Month
+alias tlcy='task end.after:today-1y completed' # List all Tasks Completed in the Last Year
 
 # Git Bare Aliases
 alias b='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME' #Git Bare
@@ -87,20 +102,20 @@ alias bpl='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME pull' # Git Bar
 alias bcd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev' # Git Checkout Dev
 alias bcm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main' # Git Checkout Main
 alias bmd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge --no-ff -m "Merge branch '\''dev'\''" dev' # Git Bare Checkout Main & Merge Dev into Main
-alias bmm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge main' # Git Bare Checkout Dev & Merge Main into Dev
+alias bmm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge main && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push' # Git Bare Checkout Dev & Merge Main into Dev
 alias buc='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume-unchanged' # Git Bare Assume Specified File(s) Unchanged
 alias bch='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume-changed' # Git Bare Assume Specified File(s) Changed
 
 # Git Aliases
-alias gmd='git checkout main && git merge --no-ff -m "Merge branch '\''dev'\''" dev' # Git Chechout Main & Git Merge Dev into Main With Message
-alias gmm='git checkout dev && git merge main' # Git Chechout Dev & Git Merge Main into Dev
+alias gmd='git checkout main && git merge dev --no-ff -m "Merge branch '\''dev'\''" dev' # Git Chechout Main & Git Merge Dev into Main With Message
+alias gmt='git checkout main && git merge test --no-ff -m "Merge branch '\''test'\''"' # Git Chechout Main & Git Merge Dev into Main With Message
+alias gmm='git checkout dev && git merge main && git push && git checkout test && git merge main && git push' # Git Chechout Dev & Git Merge Main into Dev & Test
 alias gcpm='git commit -pm' # Git Commit Patch Message
 
 #Random Aliases
-alias apt='nala' # Replace apt with nala
-alias a='apt-get' # APT Package Manager
 alias uwu='nala upgrade -y' # Nala upgrade -y
 alias 10k='p10k configure' # Configure Powerlevel10k
+alias ou='omz update' # Manually Update Oh My Zsh
 alias e='nvim' # A highly customizable editor
 alias z='zsh' #The better shell
 alias tm='tmux' # Terminal Multiplexer
