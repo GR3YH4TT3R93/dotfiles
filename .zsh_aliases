@@ -117,6 +117,7 @@ alias apt='nala' # Replace apt with nala
 alias a='apt-get' # APT Package Manager
 alias uwu='nala upgrade -y' # Nala upgrade -y
 alias 10k='p10k configure' # Configure Powerlevel10k
+alias ou='omz update' # Manually Update Oh My Zsh
 alias e='nvim' # A highly customizable editor
 alias z='zsh' #The better shell
 alias tm='tmux' # Terminal Multiplexer
