@@ -632,6 +632,7 @@ require("nvim-autopairs").setup {}
 local remap = vim.api.nvim_set_keymap
 local npairs = require('nvim-autopairs')
 local Rule = require('nvim-autopairs.rule')
+local cond = require 'nvim-autopairs.conds'
 npairs.setup({
   map_cr=false,
   check_ts = true,
@@ -665,10 +666,6 @@ end
 
 remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
 
-npairs.setup({
-  fast_wrap = {},
-})
-
 -- change default fast_wrap
 npairs.setup({
   fast_wrap = {
@@ -685,6 +682,26 @@ npairs.setup({
     highlight_grey='Comment'
   },
 })
+
+function rule2(a1,ins,a2,lang)
+  npairs.add_rule(
+    Rule(ins, ins, lang)
+      :with_pair(function(opts) return a1..a2 == opts.line:sub(opts.col - #a1, opts.col + #a2 - 1) end)
+      :with_move(cond.none())
+      :with_cr(cond.none())
+      :with_del(function(opts)
+        local col = vim.api.nvim_win_get_cursor(0)[2]
+        return a1..ins..ins..a2 == opts.line:sub(col - #a1 - #ins + 1, col + #ins + #a2) -- insert only works for #ins == 1 anyway
+      end)
+  )
+end
+
+rule2('(','*',')')
+rule2('(*',' ','*)')
+rule2('(',' ',')')
+rule2('{','*','}')
+rule2('{{',' ','}}','vue')
+rule2('{',' ','}')
 --}}}
 
 -- Vim Notify {{{
