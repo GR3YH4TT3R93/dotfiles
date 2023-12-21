@@ -107,7 +107,7 @@ alias buc='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume-unchange
 alias bch='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume-changed' # Git Bare Assume Specified File(s) Changed
 
 # Git Aliases
-alias gmd='git checkout main && git merge dev --no-ff -m "Merge branch '\''dev'\''" dev' # Git Chechout Main & Git Merge Dev into Main With Message
+alias gmd='git checkout test && git merge dev --no-ff -m "Merge branch '\''dev'\''" dev' # Git Chechout Test & Git Merge Dev into Test With Message
 alias gmt='git checkout main && git merge test --no-ff -m "Merge branch '\''test'\''"' # Git Chechout Main & Git Merge Dev into Main With Message
 alias gmm='git checkout dev && git merge main && git push && git checkout test && git merge main && git push' # Git Chechout Dev & Git Merge Main into Dev & Test
 alias gcpm='git commit -pm' # Git Commit Patch Message
