@@ -105,8 +105,6 @@ let g:coc_global_extensions = [
   \'coc-sh',
   \'coc-lua',
   \'coc-vimlsp',
-  \'coc-ultisnips',
-  \'coc-ultisnips-select',
   \'coc-typos',
   \'coc-snippets',
   \'coc-marketplace',
