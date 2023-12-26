@@ -639,7 +639,7 @@ require("nvim-autopairs").setup {}
 local remap = vim.api.nvim_set_keymap
 local npairs = require('nvim-autopairs')
 local Rule = require('nvim-autopairs.rule')
-local cond = require 'nvim-autopairs.conds'
+local cond = require('nvim-autopairs.conds')
 npairs.setup({
   map_cr=false,
   check_ts = true,
@@ -703,11 +703,12 @@ function rule2(a1,ins,a2,lang)
   )
 end
 
-rule2('(','*',')')
-rule2('(*',' ','*)')
+rule2('(','*',')','ocaml')
+rule2('(*',' ','*)','ocaml')
 rule2('(',' ',')')
 rule2('{','*','}')
 rule2('{{',' ','}}','vue')
+rule2('({',' ','})','vue')
 rule2('{',' ','}')
 --}}}
 
