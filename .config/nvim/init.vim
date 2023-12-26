@@ -155,6 +155,16 @@ endfunction
 let g:coc_snippet_next = '<TAB>'
 "}}}
 
+" CoC Multi-Line Cursor{{{
+nmap <expr> <silent> <C-d> <SID>select_current_word()
+function! s:select_current_word()
+  if !get(b:, 'coc_cursors_activated', 0)
+    return "\<Plug>(coc-cursors-word)"
+  endif
+  return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
+endfunc
+"}}}
+
 "Use :C to open CoC Config {{{
 function! SetupCommandAbbrs(from, to)
   exec 'cnoreabbrev <expr> '.a:from
