@@ -715,7 +715,7 @@ rule2('{',' ','}')
 vim.notify = require("notify")
 --}}}
 
--- CoC Integration with Vim Notify {{{
+-- CoC Vim Notify Extension {{{
 local coc_status_record = {}
 
 function coc_status_notify(msg, level)
@@ -745,6 +745,22 @@ end
 function reset_coc_diag_record(window)
   coc_diag_record = {}
 end
+--}}}
+
+-- CoC Telescope Extension {{{
+require("telescope").setup({
+  extensions = {
+    coc = {
+        theme = 'ivy',
+        prefer_locations = true, -- always use Telescope locations to preview definitions/declarations/implementations etc
+    }
+  },
+})
+require('telescope').load_extension('coc')
+--}}}
+
+-- LazyGit Telescope Extension {{{
+require('telescope').load_extension('lazygit')
 --}}}
 
 -- NeoTree {{{
