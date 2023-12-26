@@ -128,9 +128,12 @@ au FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsco
 autocmd Filetype vue setlocal iskeyword+=-
 "}}}
 
+" Use F10 to open Nuxt Dev Server {{{
 vnoremap <f10> :CocCommand volar.action.nuxt<CR>
 nnoremap <f10> :CocCommand volar.action.nuxt<CR>
 inoremap <f10> :CocCommand volar.action.nuxt<CR>
+"}}}
+
 "}}}
 
 " CoC Tailwind CSS {{{
