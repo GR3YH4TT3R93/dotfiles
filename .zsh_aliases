@@ -72,6 +72,7 @@ alias pnxu='pnpm nuxi upgrade' # Nuxi Upgrade and Fix .nuxt & node_modules
 alias nx='nuxi' # Nuxt CLI Tool
 alias nxc='nuxi cleanup' # Nuxi Cleanup generated nuxt files and caches
 alias nxu='nuxi upgrade' # Nuxi Upgrade and Fix .nuxt & node_modules
+alias nxd='nuxi dev -o' # Nuxi Run Dev and Open Browser
 
 # Taskwarrior Aliases
 alias t='task' # Taskwarrior
@@ -109,11 +110,12 @@ alias bch='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume-changed'
 # Git Aliases
 alias gmd='git checkout test && git merge dev --no-ff -m "Merge branch '\''dev'\''" dev' # Git Chechout Test & Git Merge Dev into Test With Message
 alias gmt='git checkout main && git merge test --no-ff -m "Merge branch '\''test'\''"' # Git Chechout Main & Git Merge Dev into Main With Message
-alias gmm='git checkout dev && git merge main && git push && git checkout test && git merge main && git push' # Git Chechout Dev & Git Merge Main into Dev & Test
+alias gmm='git checkout dev && git merge main && git push && git checkout test && git merge main && git push && git checkout dev' # Git Chechout Dev & Git Merge Main into Dev & Test
 alias gcpm='git commit -pm' # Git Commit Patch Message
 
 #Random Aliases
 alias uwu='nala upgrade -y' # Nala upgrade -y
+alias uu='apt update && apt upgrade'
 alias 10k='p10k configure' # Configure Powerlevel10k
 alias ou='omz update' # Manually Update Oh My Zsh
 alias e='nvim' # A highly customizable editor

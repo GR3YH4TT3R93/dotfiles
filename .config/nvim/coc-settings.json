@@ -9,7 +9,6 @@
   "volar.autoCreateQuotes": true,
   "volar.autoClosingTags": true,
   "vue.autoInsert.dotValue": true,
-  "vue.server.fullCompletionList": true,
   "vue.inlayHints.missingProps": true,
   "vue.inlayHints.inlineHandlerLeading": true,
   "vue.inlayHints.optionsWrapper": true,
@@ -49,7 +48,7 @@
   "extension-auto-installer.autoCheckLanguageExtensions": "autoInstall",
   "extension-auto-installer.autoCheckGlobalExtensions": "autoInstall",
   "tailwindCSS.emmetCompletions": true,
-  "tailwindCSS.lint.cssConflict": "error",
+  "codeLens.enable": true,
   "suggest.completionItemKindLabels": {
     "method": "  ",
     "function": "  ",
