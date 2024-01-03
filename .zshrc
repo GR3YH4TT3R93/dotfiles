@@ -120,7 +120,7 @@ function zvm_config() {
   ZVM_INSERT_MODE_CURSOR=$icur'\e\e]12;#4fa6ed\a'
   ZVM_NORMAL_MODE_CURSOR=$ncur'\e\e]12;#98c379\a'
   ZVM_VISUAL_MODE_CURSOR=$vcur'\e\e]12;#c678dd\a'
-  ZVM_VISUAL_LINE_MODE_CURSOR=$vvcur'\e\e]12;#c678dd\a'
+  ZVM_VISUAL_LINE_MODE_CURSOR=$vlcur'\e\e]12;#c678dd\a'
   ZVM_VI_HIGHLIGHT_FOREGROUND=#cccccc
   ZVM_VI_HIGHLIGHT_BACKGROUND=#c678dd
   ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline
