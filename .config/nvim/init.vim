@@ -521,6 +521,9 @@ end
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = true,
   },
+  indent = {
+    enable = true
+  },
 }
 --}}}
 
@@ -875,7 +878,7 @@ window = {
     ["<2-LeftMouse>"] = "open",
     ["<cr>"] = "open",
     ["<esc>"] = "cancel", -- close preview or floating neo-tree window
-    ["P"] = { "toggle_preview", config = { use_float = true } },
+    ["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
     ["l"] = "focus_preview",
     ["S"] = "open_split",
     ["s"] = "open_vsplit",
@@ -924,7 +927,7 @@ nesting_rules = {},
 filesystem = {
   filtered_items = {
     visible = false, -- when true, they will just be displayed differently than normal items
-    hide_dotfiles = true,
+    hide_dotfiles = false,
     show_hidden_count = false,
     hide_gitignored = true,
     hide_hidden = true, -- only works on Windows for hidden files/directories
