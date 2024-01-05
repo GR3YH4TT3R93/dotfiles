@@ -15,6 +15,7 @@ call plug#begin()
   Plug 'farmergreg/vim-lastplace'
   Plug 'ThePrimeagen/vim-be-good'
   Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-repeat'
   Plug 'fedepujol/move.nvim'
   Plug 'nvim-lua/plenary.nvim'
@@ -58,6 +59,9 @@ colorscheme onedark
 let g:airline_theme='onedark'
 let g:airline_powerline_fonts = 1
 let g:airline_highlighting_cache = 0
+let g:airline_detect_modified=1
+let g:airline_detect_paste=1
+let g:airline_detect_spelllang=1
 let g:indent_blankline_use_treesitter = v:true
 let g:strip_whitespace_on_save = 1
 let g:better_whitespace_skip_empty_lines=1
@@ -73,10 +77,32 @@ let g:airline#extensions#coc#show_coc_status = 1
 let airline#extensions#coc#stl_format_err = '%C(L%L)'
 let airline#extensions#coc#stl_format_warn = '%C(L%L)'
 let g:airline#extensions#hunks#enabled = 1
-let g:airline#extensions#hunks#non_zero_only = 0
+let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
 let g:airline#extensions#hunks#coc_git = 1
-
+let g:airline_mode_map = {
+      \ '__'     : '-',
+      \ 'c'      : 'C',
+      \ 'i'      : 'I',
+      \ 'ic'     : 'I',
+      \ 'ix'     : 'I',
+      \ 'n'      : 'N',
+      \ 'multi'  : 'M',
+      \ 'ni'     : 'N',
+      \ 'no'     : 'N',
+      \ 'R'      : 'R',
+      \ 'Rv'     : 'R',
+      \ 's'      : 'S',
+      \ 'S'      : 'S',
+      \ ''     : 'S',
+      \ 't'      : 'T',
+      \ 'v'      : 'V',
+      \ 'V'      : 'V',
+      \ ''     : 'V',
+      \ }
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 command! UP PlugUpdate
 
 " function! s:update_git_status()
@@ -95,16 +121,16 @@ autocmd InsertLeave,TextChanged, * if &readonly==0 && filereadable(bufname('%'))
 "}}}
 
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-nmap <C-1> <Plug>AirlineSelectTab1
-nmap <C-2> <Plug>AirlineSelectTab2
-nmap <C-3> <Plug>AirlineSelectTab3
-nmap <C-4> <Plug>AirlineSelectTab4
-nmap <C-5> <Plug>AirlineSelectTab5
-nmap <C-6> <Plug>AirlineSelectTab6
-nmap <C-7> <Plug>AirlineSelectTab7
-nmap <C-8> <Plug>AirlineSelectTab8
-nmap <C-9> <Plug>AirlineSelectTab9
-nmap <C-0> <Plug>AirlineSelectTab0
+nmap <A-1> <Plug>AirlineSelectTab1
+nmap <A-2> <Plug>AirlineSelectTab2
+nmap <A-3> <Plug>AirlineSelectTab3
+nmap <A-4> <Plug>AirlineSelectTab4
+nmap <A-5> <Plug>AirlineSelectTab5
+nmap <A-6> <Plug>AirlineSelectTab6
+nmap <A-7> <Plug>AirlineSelectTab7
+nmap <A-8> <Plug>AirlineSelectTab8
+nmap <A-9> <Plug>AirlineSelectTab9
+nmap <A-0> <Plug>AirlineSelectTab0
 nmap <C-h> <Plug>AirlineSelectPrevTab
 nmap <C-l> <Plug>AirlineSelectNextTab
 
