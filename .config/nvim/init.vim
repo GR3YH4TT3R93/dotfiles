@@ -21,7 +21,6 @@ call plug#begin()
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
   Plug 'rcarriga/nvim-notify'
-  Plug 'folke/noice.nvim'
   Plug 'MunifTanjim/nui.nvim'
   Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v2.x' }
   Plug 'ntpeters/vim-better-whitespace'
@@ -708,10 +707,6 @@ rule2('{',' ','}')
 vim.notify = require("notify")
 --}}}
 
--- Noice {{{
-require("noice").setup()
--- }}}
-
 -- CoC Vim Notify Extension {{{
 local coc_status_record = {}
 
@@ -759,10 +754,6 @@ require('telescope').load_extension('coc')
 -- LazyGit Telescope Extension {{{
 require('telescope').load_extension('lazygit')
 --}}}
-
--- Noice Telescope Extension {{{
-require("telescope").load_extension("noice")
--- }}}
 
 -- NeoTree {{{
 require("neo-tree").setup({
