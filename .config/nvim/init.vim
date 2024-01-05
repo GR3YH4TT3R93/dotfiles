@@ -72,13 +72,29 @@ let airline#extensions#coc#warning_symbol = 'W:'
 let g:airline#extensions#coc#show_coc_status = 1
 let airline#extensions#coc#stl_format_err = '%C(L%L)'
 let airline#extensions#coc#stl_format_warn = '%C(L%L)'
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#hunks#non_zero_only = 0
+let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
+let g:airline#extensions#hunks#coc_git = 1
 
-" autocmd VimLeave * wshada!
-command! UP PlugUpdate | CocUpdate
+command! UP PlugUpdate
+
+" function! s:update_git_status()
+"   let g:airline_section_b = "%{get(g:,'coc_git_status','')}"
+" endfunction
+
+" let g:airline_section_b = "%{get(g:,'coc_git_status','')}"
+
+" autocmd User CocGitStatusChange call s:update_git_status()
+" command! UP PlugUpdate
+
+"}}}
+
+"  Save Buffer on InsertLeave & TextChanged {{{
+autocmd InsertLeave,TextChanged, * if &readonly==0 && filereadable(bufname('%')) | update | endif
 "}}}
 
 " Providers {{{
-let g:python3_host_prog = '/data/data/com.termux/files/usr/bin/python3'
 let g:loaded_perl_provider = 0
 "}}}
 
@@ -105,10 +121,8 @@ let g:coc_global_extensions = [
   \'coc-sh',
   \'coc-lua',
   \'coc-vimlsp',
-  \'coc-typos',
   \'coc-snippets',
   \'coc-marketplace',
-  \'coc-node_modules',
   \'coc-html',
   \'coc-html-css-support',
   \'coc-eslint',
@@ -137,7 +151,7 @@ inoremap <f10> :CocCommand volar.action.nuxt<CR>
 "}}}
 
 " CoC Tailwind CSS {{{
-au FileType vue,html,js let b:coc_root_patterns = ['.git', '.env', 'tailwind.config.js', 'tailwind.config.cjs']
+au FileType vue,html,js,ts let b:coc_root_patterns = ['.git', '.env', 'tailwind.config.js', 'tailwind.config.cjs', 'tailwind.config.ts']
 "}}}
 
 " CoC Tab Completions {{{
@@ -420,8 +434,8 @@ autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
 " BarBar Keymaps {{{
 
 " Move to previous/next
-nnoremap <silent>    <C-l> <Cmd>BufferPrevious<CR>
-nnoremap <silent>    <C-h> <Cmd>BufferNext<CR>
+nnoremap <silent>    <C-h> <Cmd>BufferPrevious<CR>
+nnoremap <silent>    <C-l> <Cmd>BufferNext<CR>
 
 " Re-order to previous/next
 nnoremap <silent>    <C-<> <Cmd>BufferMovePrevious<CR>
@@ -493,7 +507,7 @@ require'nvim-treesitter.configs'.setup {
   auto_install = true,
 
   -- List of parsers to ignore installing (for "all")
-  ignore_install = { "" },
+  ignore_install = {},
 
   ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
   -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
@@ -520,6 +534,9 @@ end
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = true,
+  },
+  indent = {
+    enable = true
   },
 }
 --}}}
@@ -875,7 +892,7 @@ window = {
     ["<2-LeftMouse>"] = "open",
     ["<cr>"] = "open",
     ["<esc>"] = "cancel", -- close preview or floating neo-tree window
-    ["P"] = { "toggle_preview", config = { use_float = true } },
+    ["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
     ["l"] = "focus_preview",
     ["S"] = "open_split",
     ["s"] = "open_vsplit",
@@ -924,7 +941,7 @@ nesting_rules = {},
 filesystem = {
   filtered_items = {
     visible = false, -- when true, they will just be displayed differently than normal items
-    hide_dotfiles = true,
+    hide_dotfiles = false,
     show_hidden_count = false,
     hide_gitignored = true,
     hide_hidden = true, -- only works on Windows for hidden files/directories

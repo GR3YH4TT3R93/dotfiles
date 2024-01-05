@@ -182,10 +182,3 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
-export CARGO_BIN="/data/data/com.termux/files/home/.cargo/bin"
-case ":$PATH:" in
-  *":$CARGO_BIN:"*) ;;
-  *) export PATH="$CARGO_BIN:$PATH" ;;
-esac
-export MOCWORD_DATA="~/.cargo/mocword.sqlite"
