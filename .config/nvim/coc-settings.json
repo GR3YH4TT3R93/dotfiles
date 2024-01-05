@@ -6,7 +6,7 @@
   "highlight.colorNames.enable": false,
   "git.blameUseRealTime": true,
   "git.addGBlameToBufferVar": true,
-  "diagnostic.checkCurrentLine": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
   "diagnostic.messageDelay": 100,
   "diagnostic.virtualText": true,
   "volar.tsLocale": "en",

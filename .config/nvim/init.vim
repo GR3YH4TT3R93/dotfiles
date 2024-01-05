@@ -6,7 +6,6 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'lukas-reineke/indent-blankline.nvim'
-  Plug 'yamatsum/nvim-cursorline'
   Plug 'windwp/nvim-autopairs'
   Plug 'chentoast/marks.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
@@ -16,12 +15,12 @@ call plug#begin()
   Plug 'farmergreg/vim-lastplace'
   Plug 'ThePrimeagen/vim-be-good'
   Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-repeat'
   Plug 'fedepujol/move.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
   Plug 'rcarriga/nvim-notify'
-  Plug 'romgrk/barbar.nvim'
   Plug 'MunifTanjim/nui.nvim'
   Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v2.x' }
   Plug 'ntpeters/vim-better-whitespace'
@@ -59,6 +58,10 @@ set clipboard+=unnamedplus
 colorscheme onedark
 let g:airline_theme='onedark'
 let g:airline_powerline_fonts = 1
+let g:airline_highlighting_cache = 0
+let g:airline_detect_modified=1
+let g:airline_detect_paste=1
+let g:airline_detect_spelllang=1
 let g:indent_blankline_use_treesitter = v:true
 let g:strip_whitespace_on_save = 1
 let g:better_whitespace_skip_empty_lines=1
@@ -66,6 +69,7 @@ let g:strip_whitespace_confirm=1
 let g:strip_only_modified_lines=1
 let g:strip_whitelines_at_eof=1
 let g:show_spaces_that_precede_tabs=1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#coc#enabled = 1
 let airline#extensions#coc#error_symbol = 'E:'
 let airline#extensions#coc#warning_symbol = 'W:'
@@ -73,10 +77,32 @@ let g:airline#extensions#coc#show_coc_status = 1
 let airline#extensions#coc#stl_format_err = '%C(L%L)'
 let airline#extensions#coc#stl_format_warn = '%C(L%L)'
 let g:airline#extensions#hunks#enabled = 1
-let g:airline#extensions#hunks#non_zero_only = 0
+let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
 let g:airline#extensions#hunks#coc_git = 1
-
+let g:airline_mode_map = {
+      \ '__'     : '-',
+      \ 'c'      : 'C',
+      \ 'i'      : 'I',
+      \ 'ic'     : 'I',
+      \ 'ix'     : 'I',
+      \ 'n'      : 'N',
+      \ 'multi'  : 'M',
+      \ 'ni'     : 'N',
+      \ 'no'     : 'N',
+      \ 'R'      : 'R',
+      \ 'Rv'     : 'R',
+      \ 's'      : 'S',
+      \ 'S'      : 'S',
+      \ ''     : 'S',
+      \ 't'      : 'T',
+      \ 'v'      : 'V',
+      \ 'V'      : 'V',
+      \ ''     : 'V',
+      \ }
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 command! UP PlugUpdate
 
 " function! s:update_git_status()
@@ -93,6 +119,20 @@ command! UP PlugUpdate
 "  Save Buffer on InsertLeave & TextChanged {{{
 autocmd InsertLeave,TextChanged, * if &readonly==0 && filereadable(bufname('%')) | update | endif
 "}}}
+
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <A-1> <Plug>AirlineSelectTab1
+nmap <A-2> <Plug>AirlineSelectTab2
+nmap <A-3> <Plug>AirlineSelectTab3
+nmap <A-4> <Plug>AirlineSelectTab4
+nmap <A-5> <Plug>AirlineSelectTab5
+nmap <A-6> <Plug>AirlineSelectTab6
+nmap <A-7> <Plug>AirlineSelectTab7
+nmap <A-8> <Plug>AirlineSelectTab8
+nmap <A-9> <Plug>AirlineSelectTab9
+nmap <A-0> <Plug>AirlineSelectTab0
+nmap <C-h> <Plug>AirlineSelectPrevTab
+nmap <C-l> <Plug>AirlineSelectNextTab
 
 " Providers {{{
 let g:loaded_perl_provider = 0
@@ -122,13 +162,11 @@ let g:coc_global_extensions = [
   \'coc-lua',
   \'coc-vimlsp',
   \'coc-snippets',
-  \'coc-marketplace',
   \'coc-html',
   \'coc-html-css-support',
   \'coc-eslint',
   \'coc-emmet',
   \'coc-word',
-  \'coc-scssmodules'
 \]
 "}}}
 
@@ -431,61 +469,6 @@ nnoremap <leader>fd <cmd>Telescope coc definitions<CR>
 autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
 "}}}
 
-" BarBar Keymaps {{{
-
-" Move to previous/next
-nnoremap <silent>    <C-h> <Cmd>BufferPrevious<CR>
-nnoremap <silent>    <C-l> <Cmd>BufferNext<CR>
-
-" Re-order to previous/next
-nnoremap <silent>    <C-<> <Cmd>BufferMovePrevious<CR>
-nnoremap <silent>    <C->> <Cmd>BufferMoveNext<CR>
-
-" Goto buffer in position...
-nnoremap <silent>    <A-1> <Cmd>BufferGoto 1<CR>
-nnoremap <silent>    <A-2> <Cmd>BufferGoto 2<CR>
-nnoremap <silent>    <A-3> <Cmd>BufferGoto 3<CR>
-nnoremap <silent>    <A-4> <Cmd>BufferGoto 4<CR>
-nnoremap <silent>    <A-5> <Cmd>BufferGoto 5<CR>
-nnoremap <silent>    <A-6> <Cmd>BufferGoto 6<CR>
-nnoremap <silent>    <A-7> <Cmd>BufferGoto 7<CR>
-nnoremap <silent>    <A-8> <Cmd>BufferGoto 8<CR>
-nnoremap <silent>    <A-9> <Cmd>BufferGoto 9<CR>
-nnoremap <silent>    <A-0> <Cmd>BufferLast<CR>
-
-" Pin/unpin buffer
-nnoremap <silent>    <A-p> <Cmd>BufferPin<CR>
-
-" Close buffer
-nnoremap <silent>    <A-c> <Cmd>BufferClose<CR>
-" Restore buffer
-nnoremap <silent>    <A-s-c> <Cmd>BufferRestore<CR>
-
-" Wipeout buffer
-"  :BufferWipeout
-" Close commands
-"  :BufferCloseAllButCurrent
-"  :BufferCloseAllButVisible
-"  :BufferCloseAllButPinned
-"  :BufferCloseAllButCurrentOrPinned
-"  :BufferCloseBuffersLeft
-"  :BufferCloseBuffersRight
-
-" Magic buffer-picking mode
-nnoremap <silent> <C-p>    <Cmd>BufferPick<CR>
-nnoremap <silent> <C-p>    <Cmd>BufferPickDelete<CR>
-
-" Sort automatically by...
-nnoremap <silent> <Space>bb <Cmd>BufferOrderByBufferNumber<CR>
-nnoremap <silent> <Space>bd <Cmd>BufferOrderByDirectory<CR>
-nnoremap <silent> <Space>bl <Cmd>BufferOrderByLanguage<CR>
-nnoremap <silent> <Space>bw <Cmd>BufferOrderByWindowNumber<CR>
-
-" Other:
-" :BarbarEnable - enables barbar (enabled by default)
-" :BarbarDisable - very bad command, should never be used
-"}}}
-
 "use Prettier to format document {{{
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 "}}}
@@ -638,21 +621,6 @@ require("ibl").setup { indent = { highlight = highlight } }
 
 hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_tab_indent_level)
 --"}}}
-
--- Cursor Line {{{
-require('nvim-cursorline').setup {
-  cursorline = {
-    enable = true,
-    timeout = 225,
-    number = false,
-  },
-  cursorword = {
-    enable = false,
-    min_length = 3,
-    hl = { underline = true },
-  }
-}
---}}}
 
 -- Autopairs {{{
 require("nvim-autopairs").setup {}
@@ -1051,6 +1019,17 @@ git_status = {
       ["ot"] = { "order_by_type", nowait = false },
     }
   }
+},
+event_handlers = {
+  {
+    event = "file_opened",
+    handler = function(file_path)
+    -- auto close
+    -- vimc.cmd("Neotree close")
+    -- OR
+    require("neo-tree.command").execute({ action = "close" })
+    end
+  },
 }
 })
 
