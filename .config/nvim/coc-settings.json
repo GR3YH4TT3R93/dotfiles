@@ -51,7 +51,10 @@
   "extension-auto-installer.autoCheckLanguageExtensions": "autoInstall",
   "extension-auto-installer.autoCheckGlobalExtensions": "autoInstall",
   "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.experimental.classRegex": ["tw`([^`]*)", "tw\\('([^'\\)]*)"],
   "codeLens.enable": true,
+  "suggest.preferCompleteThanJumpPlaceholder": true,
+  "suggest.virtualText": true,
   "suggest.completionItemKindLabels": {
     "method": "  ",
     "function": "  ",
