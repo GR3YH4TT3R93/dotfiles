@@ -95,7 +95,6 @@ autocmd InsertLeave,TextChanged, * if &readonly==0 && filereadable(bufname('%'))
 "}}}
 
 " Providers {{{
-let g:python3_host_prog = '/data/data/com.termux/files/usr/bin/python3'
 let g:loaded_perl_provider = 0
 "}}}
 
@@ -122,10 +121,8 @@ let g:coc_global_extensions = [
   \'coc-sh',
   \'coc-lua',
   \'coc-vimlsp',
-  \'coc-typos',
   \'coc-snippets',
   \'coc-marketplace',
-  \'coc-node_modules',
   \'coc-html',
   \'coc-html-css-support',
   \'coc-eslint',
@@ -154,7 +151,7 @@ inoremap <f10> :CocCommand volar.action.nuxt<CR>
 "}}}
 
 " CoC Tailwind CSS {{{
-au FileType vue,html,js let b:coc_root_patterns = ['.git', '.env', 'tailwind.config.js', 'tailwind.config.cjs']
+au FileType vue,html,js,ts let b:coc_root_patterns = ['.git', '.env', 'tailwind.config.js', 'tailwind.config.cjs', 'tailwind.config.ts']
 "}}}
 
 " CoC Tab Completions {{{
@@ -437,8 +434,8 @@ autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
 " BarBar Keymaps {{{
 
 " Move to previous/next
-nnoremap <silent>    <C-l> <Cmd>BufferPrevious<CR>
-nnoremap <silent>    <C-h> <Cmd>BufferNext<CR>
+nnoremap <silent>    <C-h> <Cmd>BufferPrevious<CR>
+nnoremap <silent>    <C-l> <Cmd>BufferNext<CR>
 
 " Re-order to previous/next
 nnoremap <silent>    <C-<> <Cmd>BufferMovePrevious<CR>
@@ -510,7 +507,7 @@ require'nvim-treesitter.configs'.setup {
   auto_install = true,
 
   -- List of parsers to ignore installing (for "all")
-  ignore_install = { "" },
+  ignore_install = {},
 
   ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
   -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!

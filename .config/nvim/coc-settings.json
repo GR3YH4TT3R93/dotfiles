@@ -46,7 +46,6 @@
   "prettier.embeddedLanguageFormatting": "auto",
   "eslint.run": "onType",
   "eslint.autoFixOnSave": true,
-  "eslint.quiet": false,
   "eslint.format.enable": false,
   "eslint.packageManager": "pnpm",
   "extension-auto-installer.autoCheckLanguageExtensions": "autoInstall",
