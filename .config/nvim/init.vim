@@ -96,18 +96,18 @@ autocmd InsertLeave,TextChanged, * if &readonly==0 && filereadable(bufname('%'))
 "}}}
 
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-  nmap <C-1> <Plug>AirlineSelectTab1
-  nmap <C-2> <Plug>AirlineSelectTab2
-  nmap <C-3> <Plug>AirlineSelectTab3
-  nmap <C-4> <Plug>AirlineSelectTab4
-  nmap <C-5> <Plug>AirlineSelectTab5
-  nmap <C-6> <Plug>AirlineSelectTab6
-  nmap <C-7> <Plug>AirlineSelectTab7
-  nmap <C-8> <Plug>AirlineSelectTab8
-  nmap <C-9> <Plug>AirlineSelectTab9
-  nmap <C-0> <Plug>AirlineSelectTab0
-  nmap <C-h> <Plug>AirlineSelectPrevTab
-  nmap <C-l> <Plug>AirlineSelectNextTab
+nmap <C-1> <Plug>AirlineSelectTab1
+nmap <C-2> <Plug>AirlineSelectTab2
+nmap <C-3> <Plug>AirlineSelectTab3
+nmap <C-4> <Plug>AirlineSelectTab4
+nmap <C-5> <Plug>AirlineSelectTab5
+nmap <C-6> <Plug>AirlineSelectTab6
+nmap <C-7> <Plug>AirlineSelectTab7
+nmap <C-8> <Plug>AirlineSelectTab8
+nmap <C-9> <Plug>AirlineSelectTab9
+nmap <C-0> <Plug>AirlineSelectTab0
+nmap <C-h> <Plug>AirlineSelectPrevTab
+nmap <C-l> <Plug>AirlineSelectNextTab
 
 " Providers {{{
 let g:loaded_perl_provider = 0
@@ -137,13 +137,11 @@ let g:coc_global_extensions = [
   \'coc-lua',
   \'coc-vimlsp',
   \'coc-snippets',
-  \'coc-marketplace',
   \'coc-html',
   \'coc-html-css-support',
   \'coc-eslint',
   \'coc-emmet',
   \'coc-word',
-  \'coc-scssmodules'
 \]
 "}}}
 
