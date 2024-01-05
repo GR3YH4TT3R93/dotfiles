@@ -72,9 +72,26 @@ let airline#extensions#coc#warning_symbol = 'W:'
 let g:airline#extensions#coc#show_coc_status = 1
 let airline#extensions#coc#stl_format_err = '%C(L%L)'
 let airline#extensions#coc#stl_format_warn = '%C(L%L)'
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#hunks#non_zero_only = 0
+let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
+let g:airline#extensions#hunks#coc_git = 1
 
-" autocmd VimLeave * wshada!
-command! UP PlugUpdate | CocUpdate
+command! UP PlugUpdate
+
+" function! s:update_git_status()
+"   let g:airline_section_b = "%{get(g:,'coc_git_status','')}"
+" endfunction
+
+" let g:airline_section_b = "%{get(g:,'coc_git_status','')}"
+
+" autocmd User CocGitStatusChange call s:update_git_status()
+" command! UP PlugUpdate
+
+"}}}
+
+"  Save Buffer on InsertLeave & TextChanged {{{
+autocmd InsertLeave,TextChanged, * if &readonly==0 && filereadable(bufname('%')) | update | endif
 "}}}
 
 " Providers {{{
