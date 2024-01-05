@@ -21,7 +21,6 @@ call plug#begin()
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
   Plug 'rcarriga/nvim-notify'
-  Plug 'romgrk/barbar.nvim'
   Plug 'MunifTanjim/nui.nvim'
   Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v2.x' }
   Plug 'ntpeters/vim-better-whitespace'
@@ -59,6 +58,7 @@ set clipboard+=unnamedplus
 colorscheme onedark
 let g:airline_theme='onedark'
 let g:airline_powerline_fonts = 1
+let g:airline_highlighting_cache = 0
 let g:indent_blankline_use_treesitter = v:true
 let g:strip_whitespace_on_save = 1
 let g:better_whitespace_skip_empty_lines=1
@@ -66,6 +66,7 @@ let g:strip_whitespace_confirm=1
 let g:strip_only_modified_lines=1
 let g:strip_whitelines_at_eof=1
 let g:show_spaces_that_precede_tabs=1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#coc#enabled = 1
 let airline#extensions#coc#error_symbol = 'E:'
 let airline#extensions#coc#warning_symbol = 'W:'
@@ -93,6 +94,20 @@ command! UP PlugUpdate
 "  Save Buffer on InsertLeave & TextChanged {{{
 autocmd InsertLeave,TextChanged, * if &readonly==0 && filereadable(bufname('%')) | update | endif
 "}}}
+
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+  nmap <C-1> <Plug>AirlineSelectTab1
+  nmap <C-2> <Plug>AirlineSelectTab2
+  nmap <C-3> <Plug>AirlineSelectTab3
+  nmap <C-4> <Plug>AirlineSelectTab4
+  nmap <C-5> <Plug>AirlineSelectTab5
+  nmap <C-6> <Plug>AirlineSelectTab6
+  nmap <C-7> <Plug>AirlineSelectTab7
+  nmap <C-8> <Plug>AirlineSelectTab8
+  nmap <C-9> <Plug>AirlineSelectTab9
+  nmap <C-0> <Plug>AirlineSelectTab0
+  nmap <C-h> <Plug>AirlineSelectPrevTab
+  nmap <C-l> <Plug>AirlineSelectNextTab
 
 " Providers {{{
 let g:loaded_perl_provider = 0
@@ -429,61 +444,6 @@ nnoremap <leader>fd <cmd>Telescope coc definitions<CR>
 
 " Track any buffer that is in a git repo
 autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
-"}}}
-
-" BarBar Keymaps {{{
-
-" Move to previous/next
-nnoremap <silent>    <C-h> <Cmd>BufferPrevious<CR>
-nnoremap <silent>    <C-l> <Cmd>BufferNext<CR>
-
-" Re-order to previous/next
-nnoremap <silent>    <C-<> <Cmd>BufferMovePrevious<CR>
-nnoremap <silent>    <C->> <Cmd>BufferMoveNext<CR>
-
-" Goto buffer in position...
-nnoremap <silent>    <A-1> <Cmd>BufferGoto 1<CR>
-nnoremap <silent>    <A-2> <Cmd>BufferGoto 2<CR>
-nnoremap <silent>    <A-3> <Cmd>BufferGoto 3<CR>
-nnoremap <silent>    <A-4> <Cmd>BufferGoto 4<CR>
-nnoremap <silent>    <A-5> <Cmd>BufferGoto 5<CR>
-nnoremap <silent>    <A-6> <Cmd>BufferGoto 6<CR>
-nnoremap <silent>    <A-7> <Cmd>BufferGoto 7<CR>
-nnoremap <silent>    <A-8> <Cmd>BufferGoto 8<CR>
-nnoremap <silent>    <A-9> <Cmd>BufferGoto 9<CR>
-nnoremap <silent>    <A-0> <Cmd>BufferLast<CR>
-
-" Pin/unpin buffer
-nnoremap <silent>    <A-p> <Cmd>BufferPin<CR>
-
-" Close buffer
-nnoremap <silent>    <A-c> <Cmd>BufferClose<CR>
-" Restore buffer
-nnoremap <silent>    <A-s-c> <Cmd>BufferRestore<CR>
-
-" Wipeout buffer
-"  :BufferWipeout
-" Close commands
-"  :BufferCloseAllButCurrent
-"  :BufferCloseAllButVisible
-"  :BufferCloseAllButPinned
-"  :BufferCloseAllButCurrentOrPinned
-"  :BufferCloseBuffersLeft
-"  :BufferCloseBuffersRight
-
-" Magic buffer-picking mode
-nnoremap <silent> <C-p>    <Cmd>BufferPick<CR>
-nnoremap <silent> <C-p>    <Cmd>BufferPickDelete<CR>
-
-" Sort automatically by...
-nnoremap <silent> <Space>bb <Cmd>BufferOrderByBufferNumber<CR>
-nnoremap <silent> <Space>bd <Cmd>BufferOrderByDirectory<CR>
-nnoremap <silent> <Space>bl <Cmd>BufferOrderByLanguage<CR>
-nnoremap <silent> <Space>bw <Cmd>BufferOrderByWindowNumber<CR>
-
-" Other:
-" :BarbarEnable - enables barbar (enabled by default)
-" :BarbarDisable - very bad command, should never be used
 "}}}
 
 "use Prettier to format document {{{
