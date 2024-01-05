@@ -6,7 +6,6 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'lukas-reineke/indent-blankline.nvim'
-  Plug 'yamatsum/nvim-cursorline'
   Plug 'windwp/nvim-autopairs'
   Plug 'chentoast/marks.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
@@ -596,21 +595,6 @@ require("ibl").setup { indent = { highlight = highlight } }
 
 hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_tab_indent_level)
 --"}}}
-
--- Cursor Line {{{
-require('nvim-cursorline').setup {
-  cursorline = {
-    enable = true,
-    timeout = 225,
-    number = false,
-  },
-  cursorword = {
-    enable = false,
-    min_length = 3,
-    hl = { underline = true },
-  }
-}
---}}}
 
 -- Autopairs {{{
 require("nvim-autopairs").setup {}
