@@ -21,6 +21,7 @@ call plug#begin()
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
   Plug 'rcarriga/nvim-notify'
+  Plug 'folke/noice.nvim'
   Plug 'MunifTanjim/nui.nvim'
   Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v2.x' }
   Plug 'ntpeters/vim-better-whitespace'
@@ -120,6 +121,7 @@ command! UP PlugUpdate
 autocmd InsertLeave,TextChanged, * if &readonly==0 && filereadable(bufname('%')) | update | endif
 "}}}
 
+" Use A-x to jump to buffer x or C-h/l to move to next/prev{{{
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 nmap <A-1> <Plug>AirlineSelectTab1
 nmap <A-2> <Plug>AirlineSelectTab2
@@ -133,6 +135,7 @@ nmap <A-9> <Plug>AirlineSelectTab9
 nmap <A-0> <Plug>AirlineSelectTab0
 nmap <C-h> <Plug>AirlineSelectPrevTab
 nmap <C-l> <Plug>AirlineSelectNextTab
+"}}}
 
 " Providers {{{
 let g:loaded_perl_provider = 0
@@ -458,6 +461,7 @@ nnoremap [w :PrevTrailingWhitespace<CR>
 nnoremap <leader>ff <cmd>Telescope find_files<CR>
 nnoremap <leader>fg <cmd>Telescope live_grep<CR>
 nnoremap <leader>fr <cmd>Telescope lazygit<CR>
+nnoremap <leader>fn <cmd>Telescope noice<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<CR>
 nnoremap <leader>fc <cmd>Telescope coc<CR>
@@ -704,6 +708,10 @@ rule2('{',' ','}')
 vim.notify = require("notify")
 --}}}
 
+-- Noice {{{
+require("noice").setup()
+-- }}}
+
 -- CoC Vim Notify Extension {{{
 local coc_status_record = {}
 
@@ -751,6 +759,10 @@ require('telescope').load_extension('coc')
 -- LazyGit Telescope Extension {{{
 require('telescope').load_extension('lazygit')
 --}}}
+
+-- Noice Telescope Extension {{{
+require("telescope").load_extension("noice")
+-- }}}
 
 -- NeoTree {{{
 require("neo-tree").setup({
