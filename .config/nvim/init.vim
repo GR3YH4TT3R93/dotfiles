@@ -24,7 +24,7 @@ call plug#begin()
   Plug 'rcarriga/nvim-notify'
   Plug 'MunifTanjim/nui.nvim'
   Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v2.x' }
-  Plug 'ntpeters/vim-better-whitespace'
+  Plug 'cappyzawa/trim.nvim'
   Plug 'kdheepak/lazygit.nvim'
   Plug 'fannheyward/telescope-coc.nvim'
   Plug 'itchyny/vim-cursorword'
@@ -67,12 +67,6 @@ let g:airline_detect_modified = 1
 let g:airline_detect_paste = 0
 let g:airline_detect_spelllang = 1
 let g:indent_blankline_use_treesitter = v:true
-let g:strip_whitespace_on_save = 1
-let g:better_whitespace_skip_empty_lines=1
-let g:strip_whitespace_confirm = 1
-let g:strip_only_modified_lines = 1
-let g:strip_whitelines_at_eof = 1
-let g:show_spaces_that_precede_tabs = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#coc#enabled = 1
 let airline#extensions#coc#error_symbol = 'E:'
@@ -846,6 +840,16 @@ require('dashboard').setup {
    -- file_width,    -- preview file width
   },
 }
+
+require('trim').setup({
+  -- if you want to ignore markdown file.
+  -- you can specify filetypes.
+  ft_blocklist = {"markdown", "dashboard", "terminal"},
+})
+
+require('neoclip').setup()
+
+require("stcursorword").setup()
 
 -- NeoTree {{{
 require("neo-tree").setup({
