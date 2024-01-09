@@ -15,6 +15,7 @@ call plug#begin()
   Plug 'HiPhish/rainbow-delimiters.nvim'
   Plug 'farmergreg/vim-lastplace'
   Plug 'ThePrimeagen/vim-be-good'
+  Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-repeat'
@@ -27,7 +28,8 @@ call plug#begin()
   Plug 'cappyzawa/trim.nvim'
   Plug 'kdheepak/lazygit.nvim'
   Plug 'fannheyward/telescope-coc.nvim'
-  Plug 'itchyny/vim-cursorword'
+  Plug 'AckslD/nvim-neoclip.lua'
+  Plug 'sontungexpt/stcursorword'
   Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
   Plug 'nvimdev/dashboard-nvim'
 call plug#end()
@@ -467,13 +469,13 @@ nnoremap [w :PrevTrailingWhitespace<CR>
 nnoremap <leader>ff <cmd>Telescope find_files<CR>
 nnoremap <leader>fg <cmd>Telescope live_grep<CR>
 nnoremap <leader>fr <cmd>Telescope lazygit<CR>
-nnoremap <leader>fn <cmd>Telescope noice<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<CR>
 nnoremap <leader>fc <cmd>Telescope coc<CR>
 nnoremap <leader>fa <cmd>Telescope coc code_actions<CR>
 nnoremap <leader>fl <cmd>Telescope coc line_code_actions<CR>
 nnoremap <leader>fd <cmd>Telescope coc definitions<CR>
+nnoremap <leader>fy <cmd>Telescope neoclip<CR>
 
 " Track any buffer that is in a git repo
 autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
