@@ -831,9 +831,9 @@ require('dashboard').setup {
     },
   },
   hide = {
-   statusline = false    -- hide statusline default is true
-   -- tabline,       -- hide the tabline
-   -- winbar,        -- hide winbar
+   statusline = false,    -- hide statusline default is true
+   tabline,       -- hide the tabline
+   winbar,        -- hide winbar
   },
   preview = {
    -- command,       -- preview command
@@ -948,7 +948,7 @@ default_component_configs = {
 commands = {},
 window = {
   position = "left",
-  width = "35%",
+  width = "25",
   mapping_options = {
     noremap = true,
     nowait = false,
