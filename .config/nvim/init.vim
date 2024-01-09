@@ -7,6 +7,7 @@ call plug#begin()
   Plug 'vim-airline/vim-airline-themes'
   Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'windwp/nvim-autopairs'
+  Plug 'windwp/nvim-ts-autotag'
   Plug 'chentoast/marks.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'ryanoasis/vim-devicons'
@@ -26,6 +27,9 @@ call plug#begin()
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'kdheepak/lazygit.nvim'
   Plug 'fannheyward/telescope-coc.nvim'
+  Plug 'itchyny/vim-cursorword'
+  Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+  Plug 'nvimdev/dashboard-nvim'
 call plug#end()
 "}}}
 
@@ -39,7 +43,6 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 set encoding=utf-8
 set nobackup
 set nowritebackup
-set updatetime=250
 set signcolumn=yes
 set number relativenumber
 set cursorline
@@ -76,10 +79,10 @@ let airline#extensions#coc#warning_symbol = 'W:'
 let g:airline#extensions#coc#show_coc_status = 1
 let airline#extensions#coc#stl_format_err = '%C(L%L)'
 let airline#extensions#coc#stl_format_warn = '%C(L%L)'
-let g:airline#extensions#hunks#enabled = 1
-let g:airline#extensions#hunks#non_zero_only = 1
-let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
 let g:airline#extensions#hunks#coc_git = 1
+" let g:airline#extensions#hunks#enabled = 1
+" let g:airline#extensions#hunks#non_zero_only = 1
+" let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
 let g:airline_mode_map = {
       \ '__'     : '-',
       \ 'c'      : 'C',
@@ -100,16 +103,16 @@ let g:airline_mode_map = {
       \ 'V'      : 'V',
       \ ''     : 'V',
       \ }
-let g:airline#extensions#branch#enabled = 1
+" let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:better_whitespace_filetypes_blacklist=['dashboard', 'terminal']
 command! UP PlugUpdate
 
 " function! s:update_git_status()
-"   let g:airline_section_b = "%{get(g:,'coc_git_status','')}"
+"   let g:airline_section_b = "%{get(g:,'coc_git_status')}"
 " endfunction
-
-" let g:airline_section_b = "%{get(g:,'coc_git_status','')}"
+" let g:airline_section_b = "%{get(g:,'coc_git_status')}"
 
 " autocmd User CocGitStatusChange call s:update_git_status()
 " command! UP PlugUpdate
@@ -182,10 +185,17 @@ au FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsco
 autocmd Filetype vue setlocal iskeyword+=-
 "}}}
 
-" Use F10 to open Nuxt Dev Server {{{
+" Use F10 to open Nuxt Volar Action {{{
 vnoremap <f10> :CocCommand volar.action.nuxt<CR>
 nnoremap <f10> :CocCommand volar.action.nuxt<CR>
 inoremap <f10> :CocCommand volar.action.nuxt<CR>
+"}}}
+
+" Use \n to open Nuxt Dev Server {{{
+" OPEN Nuxt Dev Server in Normal Mode and  Return to File in Normal Mode
+nnoremap <leader>d <esc> :TermExec cmd="prd"<CR>
+" Open Nuxt Dev Server in Insert Mode and Return to File in Insert Mode  Place Cursor Before
+inoremap <leader>d <esc> :TermExec cmd="prd"<CR>i
 "}}}
 
 "}}}
@@ -222,7 +232,7 @@ endfunc
 
 "Use :C to open CoC Config {{{
 function! SetupCommandAbbrs(from, to)
-  exec 'cnoreabbrev <expr> '.a:from
+  exec 'cnoreabbrev <silent> <expr> '.a:from
     \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
     \ .'? ("'.a:to.'") : ("'.a:from.'"))'
 endfunction
@@ -418,6 +428,11 @@ vnoremap <silent><C-W> <esc> :w<CR>
 " Save + back into insert
 " inoremap <M-W> <esc> :w<CR>a
 
+" \bd Buffer Delete
+nnoremap <silent><leader>bd :bdelete<CR>
+vnoremap <silent><leader>bd <esc> :bdelete<CR>
+inoremap <silent><leader>bd <esc> :bdelete<CR>
+
 " Control-Q Quit without save
 nnoremap <silent><C-Q> :q!<CR>
 vnoremap <silent><C-Q> <esc> :q!<CR>
@@ -482,6 +497,11 @@ lua <<EOF
 -- TreeSitter {{{
 
 require'nvim-treesitter.configs'.setup {
+  autotag = {
+    enable = true,
+    enable_close = true,
+    enable_close_on_backslash = true,
+  },
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
   ensure_installed = { "c", "cpp", "lua", "vim", "vimdoc", "markdown", "diff",  "query", "vue", "typescript", "html", "css", "java", "javascript", "json", "jsonc", "git_config", "gitcommit", "gitignore", "bash", "python", "go", "rust" },
 
@@ -519,7 +539,7 @@ end
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = true,
+    additional_vim_regex_highlighting = false,
   },
   indent = {
     enable = true
@@ -620,9 +640,14 @@ hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
 end)
 
 vim.g.rainbow_delimiters = { highlight = highlight }
-require("ibl").setup { indent = { highlight = highlight } }
+require("ibl").setup {
+  exclude = { filetypes = {"dashboard"} },
+  indent = {
+    highlight = highlight,
+    char = "│"
+  },
+}
 
-hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_tab_indent_level)
 --"}}}
 
 -- Autopairs {{{
@@ -743,7 +768,7 @@ end
 require("telescope").setup({
   extensions = {
     coc = {
-        theme = 'ivy',
+        theme = 'dropdown',
         prefer_locations = true, -- always use Telescope locations to preview definitions/declarations/implementations etc
     }
   },
@@ -754,6 +779,69 @@ require('telescope').load_extension('coc')
 -- LazyGit Telescope Extension {{{
 require('telescope').load_extension('lazygit')
 --}}}
+
+require('dashboard').setup {
+  theme = 'hyper', --  theme is doom and hyper default is hyper
+  disable_move = false,    --  default is false disable move keymap for hyper
+  shortcut_type = 'letter',   --  shorcut type 'letter' or 'number'
+  change_to_vcs_root = true, -- default is false,for open file in hyper mru. it will change to the root of vcs
+  config = {    --  config used for theme
+    header = {
+      [[░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]],
+      [[░░████╗░░░███╗██╗░░░░░░██╗███╗███╗░░░░░░███╗░░]],
+      [[░░█████╗░░███║███╗░░░░███║███║████╗░░░░████║░░]],
+      [[░░██████╗░███║╚███╗░░███╔╝███║█████╗░░█████║░░]],
+      [[░░███╔███╗███║░╚███╗███╔╝░███║███╔█████╔███║░░]],
+      [[░░███║░╚█████║░░╚█████╔╝░░███║███║╚███╔╝███║░░]],
+      [[░░███║░░╚████║░░░╚███╔╝░░░███║███║░╚█╔╝░███║░░]],
+      [[░░███║░░░╚███║░░░░╚█╔╝░░░░███║███║░░╚╝░░███║░░]],
+      [[░░╚══╝░░░░╚══╝░░░░░╚╝░░░░░╚══╝╚══╝░░░░░░╚══╝░░]],
+      [[░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]],
+      [[]],
+      [[]],
+    },
+    packages = { enable = false },
+    project = { enable = false },
+    week_header = {
+     enable = false
+    },
+    shortcut = {
+      {
+        desc = '󰊳 Update', group = '@property', action = 'PlugUpdate', key = 'u'
+      },
+      {
+        icon = ' ',
+        desc = 'Files',
+        group = 'Label',
+        action = 'Telescope find_files',
+        key = 'f',
+      },
+      {
+        desc = ' Apps',
+        group = 'DiagnosticHint',
+        action = 'Telescope app',
+        key = 'a',
+      },
+      {
+        desc = ' dotfiles',
+        group = 'Number',
+        action = 'Telescope dotfiles',
+        key = 'd',
+      },
+    },
+  },
+  hide = {
+   statusline = false    -- hide statusline default is true
+   -- tabline,       -- hide the tabline
+   -- winbar,        -- hide winbar
+  },
+  preview = {
+   -- command,       -- preview command
+   -- file_path,     -- preview file path
+   -- file_height,   -- preview file height
+   -- file_width,    -- preview file width
+  },
+}
 
 -- NeoTree {{{
 require("neo-tree").setup({
@@ -1073,6 +1161,19 @@ require'marks'.setup {
     annotate = false,
   },
   mappings = {}
+}
+--}}}
+
+-- ToggleTerm {{{
+require("toggleterm").setup{
+  open_mapping = [[<leader>t]],
+  size = 8,
+  insert_mappings = true,
+  terminal_mappings = true,
+  shade_terminals = false,
+  winbar = {
+    enalbed = false
+  }
 }
 --}}}
 
