@@ -428,6 +428,11 @@ vnoremap <silent><C-W> <esc> :w<CR>
 " Save + back into insert
 " inoremap <M-W> <esc> :w<CR>a
 
+" \bd Buffer Delete
+nnoremap <silent><leader>bd :bdelete<CR>
+vnoremap <silent><leader>bd <esc> :bdelete<CR>
+inoremap <silent><leader>bd <esc> :bdelete<CR>
+
 " Control-Q Quit without save
 nnoremap <silent><C-Q> :q!<CR>
 vnoremap <silent><C-Q> <esc> :q!<CR>
