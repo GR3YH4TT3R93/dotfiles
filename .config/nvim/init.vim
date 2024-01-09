@@ -56,22 +56,23 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set clipboard+=unnamedplus
-
+set clipboard=unnamedplus
+filetype indent off
+syntax off
 colorscheme onedark
-let g:airline_theme='onedark'
+let g:airline_theme ='onedark'
 let g:airline_powerline_fonts = 1
 let g:airline_highlighting_cache = 0
-let g:airline_detect_modified=1
-let g:airline_detect_paste=1
-let g:airline_detect_spelllang=1
+let g:airline_detect_modified = 1
+let g:airline_detect_paste = 0
+let g:airline_detect_spelllang = 1
 let g:indent_blankline_use_treesitter = v:true
 let g:strip_whitespace_on_save = 1
 let g:better_whitespace_skip_empty_lines=1
-let g:strip_whitespace_confirm=1
-let g:strip_only_modified_lines=1
-let g:strip_whitelines_at_eof=1
-let g:show_spaces_that_precede_tabs=1
+let g:strip_whitespace_confirm = 1
+let g:strip_only_modified_lines = 1
+let g:strip_whitelines_at_eof = 1
+let g:show_spaces_that_precede_tabs = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#coc#enabled = 1
 let airline#extensions#coc#error_symbol = 'E:'
@@ -80,9 +81,6 @@ let g:airline#extensions#coc#show_coc_status = 1
 let airline#extensions#coc#stl_format_err = '%C(L%L)'
 let airline#extensions#coc#stl_format_warn = '%C(L%L)'
 let g:airline#extensions#hunks#coc_git = 1
-" let g:airline#extensions#hunks#enabled = 1
-" let g:airline#extensions#hunks#non_zero_only = 1
-" let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
 let g:airline_mode_map = {
       \ '__'     : '-',
       \ 'c'      : 'C',
@@ -107,7 +105,7 @@ let g:airline_mode_map = {
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:better_whitespace_filetypes_blacklist=['dashboard', 'terminal']
-command! UP PlugUpdate
+command! UP PlugUpdate | CocUpdate
 
 " function! s:update_git_status()
 "   let g:airline_section_b = "%{get(g:,'coc_git_status')}"
@@ -249,7 +247,7 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation{{{
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 "}}}
@@ -807,7 +805,18 @@ require('dashboard').setup {
     },
     shortcut = {
       {
-        desc = '󰊳 Update', group = '@property', action = 'PlugUpdate', key = 'u'
+        icon = '󰊳 ',
+        desc = 'Update Plugins',
+        group = '@property',
+        action = 'PlugUpdate',
+        key = 'p'
+      },
+      {
+        icon = '󰊳 ',
+        desc = 'Update CoC',
+        group = 'number',
+        action = 'CocUpdate',
+        key = 'c'
       },
       {
         icon = ' ',
@@ -817,16 +826,11 @@ require('dashboard').setup {
         key = 'f',
       },
       {
-        desc = ' Apps',
-        group = 'DiagnosticHint',
-        action = 'Telescope app',
-        key = 'a',
-      },
-      {
-        desc = ' dotfiles',
-        group = 'Number',
-        action = 'Telescope dotfiles',
-        key = 'd',
+        icon = '󰝰 ',
+        desc = 'Neo Tree',
+        group = '@type',
+        action = 'Neotree toggle',
+        key = 'n',
       },
     },
   },

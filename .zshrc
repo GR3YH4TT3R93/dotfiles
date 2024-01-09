@@ -127,6 +127,7 @@ function zvm_config() {
   ZVM_TERM=xterm-256color
   ZVM_VI_EDITOR='nvim'
 }
+source $HOME/.zprofile
 source $ZSH/oh-my-zsh.sh
 
 # Hide Ctrl commands
