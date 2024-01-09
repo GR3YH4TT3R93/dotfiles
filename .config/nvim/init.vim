@@ -97,19 +97,9 @@ let g:airline_mode_map = {
       \ 'V'      : 'V',
       \ ''     : 'V',
       \ }
-" let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:better_whitespace_filetypes_blacklist=['dashboard', 'terminal']
-command! UP PlugUpdate | CocUpdate
-
-" function! s:update_git_status()
-"   let g:airline_section_b = "%{get(g:,'coc_git_status')}"
-" endfunction
-" let g:airline_section_b = "%{get(g:,'coc_git_status')}"
-
-" autocmd User CocGitStatusChange call s:update_git_status()
-" command! UP PlugUpdate
+command! Up PlugUpdate
 
 "}}}
 
