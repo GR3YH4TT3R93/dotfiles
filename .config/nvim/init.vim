@@ -620,9 +620,14 @@ hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
 end)
 
 vim.g.rainbow_delimiters = { highlight = highlight }
-require("ibl").setup { indent = { highlight = highlight } }
+require("ibl").setup {
+  exclude = { filetypes = {"dashboard"} },
+  indent = {
+    highlight = highlight,
+    char = "│"
+  },
+}
 
-hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_tab_indent_level)
 --"}}}
 
 -- Autopairs {{{
