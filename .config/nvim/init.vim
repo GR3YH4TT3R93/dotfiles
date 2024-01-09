@@ -7,6 +7,7 @@ call plug#begin()
   Plug 'vim-airline/vim-airline-themes'
   Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'windwp/nvim-autopairs'
+  Plug 'windwp/nvim-ts-autotag'
   Plug 'chentoast/marks.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'ryanoasis/vim-devicons'
@@ -182,6 +183,12 @@ au FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsco
 
 "Fix Completions {{{
 autocmd Filetype vue setlocal iskeyword+=-
+"}}}
+
+" Use F10 to open Nuxt Volar Action {{{
+vnoremap <f10> :CocCommand volar.action.nuxt<CR>
+nnoremap <f10> :CocCommand volar.action.nuxt<CR>
+inoremap <f10> :CocCommand volar.action.nuxt<CR>
 "}}}
 
 " Use \n to open Nuxt Dev Server {{{
