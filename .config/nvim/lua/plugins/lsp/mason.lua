@@ -36,7 +36,7 @@ return {
       -- and will be called for each installed server that doesn't have
       -- a dedicated handler.
       function (server_name) -- default handler (optional)
-        require("lspconfig")[server_name].setup ({
+        require("lspconfig")[server_name].setup({
           capabilities = capabilities
         })
       end,
@@ -47,7 +47,7 @@ return {
       -- end
     })
 
-    require"lspconfig".lua_ls.setup {
+    require("lspconfig").lua_ls.setup({
       on_init = function(client)
         local path = client.workspace_folders[1].name
         if not vim.loop.fs_stat(path.."/.luarc.json") and not vim.loop.fs_stat(path.."/.luarc.jsonc") then
@@ -79,6 +79,6 @@ return {
         end
         return true
       end
-    }
+    })
   end
 }
