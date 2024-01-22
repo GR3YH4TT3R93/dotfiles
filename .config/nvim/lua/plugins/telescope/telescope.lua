@@ -9,11 +9,6 @@ return {
   },
   config = function()
     require("telescope").setup({
-      -- pickers ={
-      --   find_files = {
-          -- prompt_prefix = "🔍",
-      --   },
-      -- },
       fzf = {
         fuzzy = true,                    -- false will only do exact matching
         override_generic_sorter = true,  -- override the generic sorter
