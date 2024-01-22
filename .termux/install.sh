@@ -31,6 +31,9 @@ read -rp "${GREEN}Enter your Git username${ENDCOLOR}: " username
 # Prompt the user for their Git email
 read -rp "${GREEN}Enter your Git email${ENDCOLOR}: " email
 
+# Prompt the user for the name associated with the SSH key
+read -rp "${GREEN}Enter a name you would like associated with the SSH key for easy recognition on GitHub (Title):${ENDCOLOR} " key_title
+
 # Prompt the user to choose between global and system-wide configuration
 read -rp "${GREEN}Would you like to set your Git configuration system-wide? (Yes/No)${ENDCOLOR}: " choice
 
@@ -42,6 +45,14 @@ if [ ! -f ~/.ssh/id_ed25519 ]; then
   eval "$(ssh-agent -s)"
   HOME=/data/data/com.termux/files/home ssh-add ~/.ssh/id_ed25519
 fi
+
+# Give Permissions to GH CLI for adding SSH key to GitHub for Signing Commits
+echo "${GREEN}Time to give GH CLI permissions to add SSH key to GitHub for Signature Verification!${ENDCOLOR}"
+gh auth refresh -h github.com -s admin:ssh_signing_key || error_exit "${RED}Failed to give GH CLI permissions to add SSH key to GitHub for Signature Verification.${ENDCOLOR}"
+
+echo "${GREEN}Adding SSH key to GitHub${ENDCOLOR}"
+# Add SSH key to GitHub using gh cli
+gh ssh-key add ~/.ssh/id_ed25519.pub --title "$key_title" --type "signing" --confirm || error_exit "${RED}Failed to add SSH key to GitHub.${ENDCOLOR}"
 
 # Create file containing SSH public key for verifying signers
 awk '{ print $3 " " $1 " " $2 }' ~/.ssh/id_ed25519.pub >> ~/.ssh/allowed_signers
@@ -73,12 +84,6 @@ if [[ "$choice" == [Yy]* ]]; then
   cat "$HOME/.gitconfig" >> "/data/data/com.termux/files/usr/etc/gitconfig"
   # Clean up unnecessary file
   rm "$HOME/.gitconfig"
-  # Provide Pubkey for gpgsigning
-  echo "${YELLOW}COPY THE FOLLOWING OUTPUT${ENDCOLOR}"
-  echo "${GREEN}Your public key (id_ed25519.pub) is${ENDCOLOR}:"
-  cat ~/.ssh/id_ed25519.pub
-  echo "${YELLOW}Make sure to add your public key to your Git hosting provider${ENDCOLOR}!"
-  sleep 25
   echo -e "${GREEN}Git credentials configured system-wide.${ENDCOLOR}"
 else
   # Set the Git username and email globally
@@ -103,12 +108,6 @@ else
   git config --global status.short true
   git config --global alias.assume-unchanged 'update-index --assume-unchanged'
   git config --global alias.assume-changed 'update-index --no-assume-unchanged'
-  # Provide Pubkey for gpgsigning
-  echo "${YELLOW}COPY THE FOLLOWING OUTPUT${ENDCOLOR}"
-  echo "${YELLOW}Your public key (id_ed25519.pub) is${ENDCOLOR}:"
-  cat ~/.ssh/id_ed25519.pub
-  echo "${YELLOW}Make sure to add your public key to your Git hosting provider${ENDCOLOR}!"
-  sleep 25
   echo -e "${GREEN}Git credentials configured globally.${ENDCOLOR}"
 fi
 
@@ -257,8 +256,10 @@ pip install pynvim || error_exit "${RED}Failed to install pynvim.${ENDCOLOR}"
 npm install -g pnpm neovim || error_exit "${RED}Failed to install neovim npm package.${ENDCOLOR}"
 gem install neovim || error_exit "${RED}Failed to install neovim gem package.${ENDCOLOR}"
 gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
-luarocks install mpack || error_exit "${RED}Failed to install mpack${ENDCOLOR}"
-luarocks install lpeg || error_exit "${RED}Failed to install lpeg.${ENDCOLOR}"
+
+# Install LuaRocks packages for building Neovim
+# luarocks install mpack || error_exit "${RED}Failed to install mpack${ENDCOLOR}"
+# luarocks install lpeg || error_exit "${RED}Failed to install lpeg.${ENDCOLOR}"
 
 # Finish Setup
 echo -e "${GREEN}Setup Complete! Press Ctrl+D for changes to take effect.${ENDCOLOR}"
