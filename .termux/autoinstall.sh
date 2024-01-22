@@ -46,6 +46,14 @@ if [ ! -f ~/.ssh/id_ed25519 ]; then
   HOME=/data/data/com.termux/files/home ssh-add ~/.ssh/id_ed25519
 fi
 
+# Give Permissions to GH CLI for adding SSH key to GitHub for Signing Commits
+echo "${GREEN}Time to give GH CLI permissions to add SSH key to GitHub for Signature Verification!${ENDCOLOR}"
+gh auth refresh -h github.com -s admin:ssh_signing_key || error_exit "${RED}Failed to give GH CLI permissions to add SSH key to GitHub for Signature Verification.${ENDCOLOR}"
+
+echo "${GREEN}Adding SSH key to GitHub${ENDCOLOR}"
+# Add SSH key to GitHub using gh cli
+gh ssh-key add ~/.ssh/id_ed25519.pub --title "$key_title" --type "signing" --confirm || error_exit "${RED}Failed to add SSH key to GitHub.${ENDCOLOR}"
+
 # Create file containing SSH public key for verifying signers
 awk '{ print $3 " " $1 " " $2 }' ~/.ssh/id_ed25519.pub >> ~/.ssh/allowed_signers
 
@@ -100,14 +108,6 @@ else
   git config --global alias.assume-changed 'update-index --no-assume-unchanged'
   echo -e "${GREEN}Git credentials configured globally.${ENDCOLOR}"
 fi
-
-# Give Permissions to GH CLI for adding SSH key to GitHub for Signing Commits
-echo "${GREEN}Time to give GH CLI permissions to add SSH key to GitHub for Signature Verification!${ENDCOLOR}"
-gh auth refresh -h github.com -s admin:ssh_signing_key || error_exit "${RED}Failed to give GH CLI permissions to add SSH key to GitHub for Signature Verification.${ENDCOLOR}"
-
-echo "${GREEN}Adding SSH key to GitHub${ENDCOLOR}"
-# Add SSH key to GitHub using gh cli
-gh ssh-key add ~/.ssh/id_ed25519.pub --title "$key_title" --type "signing" --confirm || error_exit "${RED}Failed to add SSH key to GitHub.${ENDCOLOR}"
 
 
 echo -e "${GREEN}Time to install Nala Package Manager, Termux Clipboard, Neovim, NodeJS, Python-pip, Ruby, LuaRocks, LuaJIT, ripgrep, fd, LazyGit, wget, gettext, logo-ls, ncurses-utils, libuv, Timewarrior, Taskwarrior, and htop!${ENDCOLOR}"
