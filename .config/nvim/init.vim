@@ -15,6 +15,7 @@ call plug#begin()
   Plug 'HiPhish/rainbow-delimiters.nvim'
   Plug 'farmergreg/vim-lastplace'
   Plug 'ThePrimeagen/vim-be-good'
+  Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-repeat'
@@ -24,10 +25,11 @@ call plug#begin()
   Plug 'rcarriga/nvim-notify'
   Plug 'MunifTanjim/nui.nvim'
   Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v2.x' }
-  Plug 'ntpeters/vim-better-whitespace'
+  Plug 'cappyzawa/trim.nvim'
   Plug 'kdheepak/lazygit.nvim'
   Plug 'fannheyward/telescope-coc.nvim'
-  Plug 'itchyny/vim-cursorword'
+  Plug 'AckslD/nvim-neoclip.lua'
+  Plug 'sontungexpt/stcursorword'
   Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
   Plug 'nvimdev/dashboard-nvim'
 call plug#end()
@@ -67,12 +69,6 @@ let g:airline_detect_modified = 1
 let g:airline_detect_paste = 0
 let g:airline_detect_spelllang = 1
 let g:indent_blankline_use_treesitter = v:true
-let g:strip_whitespace_on_save = 1
-let g:better_whitespace_skip_empty_lines=1
-let g:strip_whitespace_confirm = 1
-let g:strip_only_modified_lines = 1
-let g:strip_whitelines_at_eof = 1
-let g:show_spaces_that_precede_tabs = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#coc#enabled = 1
 let airline#extensions#coc#error_symbol = 'E:'
@@ -101,19 +97,9 @@ let g:airline_mode_map = {
       \ 'V'      : 'V',
       \ ''     : 'V',
       \ }
-" let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:better_whitespace_filetypes_blacklist=['dashboard', 'terminal']
-command! UP PlugUpdate | CocUpdate
-
-" function! s:update_git_status()
-"   let g:airline_section_b = "%{get(g:,'coc_git_status')}"
-" endfunction
-" let g:airline_section_b = "%{get(g:,'coc_git_status')}"
-
-" autocmd User CocGitStatusChange call s:update_git_status()
-" command! UP PlugUpdate
+command! Up PlugUpdate
 
 "}}}
 
@@ -473,13 +459,13 @@ nnoremap [w :PrevTrailingWhitespace<CR>
 nnoremap <leader>ff <cmd>Telescope find_files<CR>
 nnoremap <leader>fg <cmd>Telescope live_grep<CR>
 nnoremap <leader>fr <cmd>Telescope lazygit<CR>
-nnoremap <leader>fn <cmd>Telescope noice<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<CR>
 nnoremap <leader>fc <cmd>Telescope coc<CR>
 nnoremap <leader>fa <cmd>Telescope coc code_actions<CR>
 nnoremap <leader>fl <cmd>Telescope coc line_code_actions<CR>
 nnoremap <leader>fd <cmd>Telescope coc definitions<CR>
+nnoremap <leader>fy <cmd>Telescope neoclip<CR>
 
 " Track any buffer that is in a git repo
 autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
@@ -835,9 +821,9 @@ require('dashboard').setup {
     },
   },
   hide = {
-   statusline = false    -- hide statusline default is true
-   -- tabline,       -- hide the tabline
-   -- winbar,        -- hide winbar
+   statusline = false,    -- hide statusline default is true
+   tabline,       -- hide the tabline
+   winbar,        -- hide winbar
   },
   preview = {
    -- command,       -- preview command
@@ -846,6 +832,16 @@ require('dashboard').setup {
    -- file_width,    -- preview file width
   },
 }
+
+require('trim').setup({
+  -- if you want to ignore markdown file.
+  -- you can specify filetypes.
+  ft_blocklist = {"markdown", "dashboard", "terminal"},
+})
+
+require('neoclip').setup()
+
+require("stcursorword").setup()
 
 -- NeoTree {{{
 require("neo-tree").setup({
@@ -942,7 +938,7 @@ default_component_configs = {
 commands = {},
 window = {
   position = "left",
-  width = "35%",
+  width = "25",
   mapping_options = {
     noremap = true,
     nowait = false,
