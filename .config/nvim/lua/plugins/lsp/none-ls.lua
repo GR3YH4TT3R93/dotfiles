@@ -33,5 +33,5 @@ return {
         end
       end,
     })
-  end
+  end,
 }

@@ -1,6 +1,6 @@
 return {
   "vladdoster/remember.nvim",
   config = function ()
-    require('remember').setup{}
+    require("remember").setup{}
   end
 }

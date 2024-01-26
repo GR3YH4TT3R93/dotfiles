@@ -7,5 +7,5 @@ return {
   config = function()
     require("telescope").load_extension("lazygit")
   end,
-  vim.cmd[[autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()]]
+  vim.cmd[[autocmd BufEnter * :lua require("lazygit.utils").project_root_dir()]]
 }

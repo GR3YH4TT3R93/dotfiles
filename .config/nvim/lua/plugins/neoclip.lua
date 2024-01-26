@@ -2,7 +2,7 @@ return {
   "AckslD/nvim-neoclip.lua",
   dependencies = {"kkharji/sqlite.lua"},
   config = function()
-    require('neoclip').setup({
+    require("neoclip").setup({
       history = 1000,
       enable_persistent_history = true,
       length_limit = 1048576,
@@ -12,7 +12,7 @@ return {
       preview = true,
       prompt = nil,
       default_register = '"',
-      default_register_macros = 'q',
+      default_register_macros = "q",
       enable_macro_history = true,
       content_spec_column = false,
       disable_keycodes_parsing = false,
@@ -36,30 +36,30 @@ return {
       keys = {
         telescope = {
           i = {
-            select = '<cr>',
-            paste = '<c-p>',
-            paste_behind = '<c-k>',
-            replay = '<c-q>',  -- replay a macro
-            delete = '<c-d>',  -- delete an entry
-            edit = '<c-e>',  -- edit an entry
+            select = "<cr>",
+            paste = "<c-p>",
+            paste_behind = "<c-k>",
+            replay = "<c-q>",  -- replay a macro
+            delete = "<c-d>",  -- delete an entry
+            edit = "<c-e>",  -- edit an entry
             custom = {},
           },
           n = {
-            select = '<cr>',
-            paste = 'p',
+            select = "<cr>",
+            paste = "p",
             --- It is possible to map to more than one key.
-            -- paste = { 'p', '<c-p>' },
-            paste_behind = 'P',
-            replay = 'q',
-            delete = 'd',
-            edit = 'e',
+            -- paste = { "p", "<c-p>" },
+            paste_behind = "P",
+            replay = "q",
+            delete = "d",
+            edit = "e",
             custom = {},
           },
         },
         fzf = {
-          select = 'default',
-          paste = 'ctrl-p',
-          paste_behind = 'ctrl-k',
+          select = "default",
+          paste = "ctrl-p",
+          paste_behind = "ctrl-k",
           custom = {},
         },
       },
