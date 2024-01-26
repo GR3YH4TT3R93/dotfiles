@@ -81,25 +81,20 @@ plugins=(
   copypath
   dircycle
   extract
-  frontend-search
   git
   git-auto-fetch
-  git-flow-completion
   gitfast
-  git-prompt
-  ionic
   last-working-dir
   magic-enter
   per-directory-history
-  pre-commit
-  safe-paste
   web-search
+  zoxide
   zsh-autosuggestions
   zsh-completions
-  zsh-history-substring-search
   zsh-interactive-cd
   zsh-vi-mode
   zsh-syntax-highlighting
+  zsh-history-substring-search
 )
 
 
@@ -183,3 +178,4 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+eval "$(zoxide init zsh)"
