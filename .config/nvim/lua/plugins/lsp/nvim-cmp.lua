@@ -97,7 +97,19 @@ return {
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<CR>"] = cmp.mapping({
+          i = function(fallback)
+            if cmp.visible() and cmp.get_active_entry() then
+              cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+            elseif cmp.visible() and has_words_before() then
+              cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+            else
+              fallback()
+            end
+          end,
+          s = cmp.mapping.confirm({ select = true }),
+          c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+        }),
 
         -- ["<Tab>"] = cmp.mapping(cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }), { "i" }),
 
@@ -126,13 +138,13 @@ return {
         end, { "i", "s" }),
       }),
       sources = cmp.config.sources({
-        { name = "copilot",  group_index = 1 },
+        { name = "copilot", group_index = 1 },
         { name = "nvim_lsp", group_index = 3 },
-        { name = "luasnip",  group_index = 2 },
-        { name = "cmdline",  group_index = 5 },
-        { name = "buffer",   group_index = 4 },
-        { name = "path",     group_index = 6 },
-        { name = "emoji",    group_index = 7 },
+        { name = "luasnip", group_index = 2 },
+        { name = "cmdline", group_index = 5 },
+        { name = "buffer", group_index = 4 },
+        { name = "path", group_index = 6 },
+        { name = "emoji", group_index = 7 },
       }),
       -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline({ "/", "?" }, {
