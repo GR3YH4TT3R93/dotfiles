@@ -12,7 +12,7 @@ return {
       ts_config = {
         lua = { "string" }, -- it will not add a pair on that treesitter node
         javascript = { "template_string" },
-        java = false,   -- don't check treesitter on java
+        java = false, -- don't check treesitter on java
       },
     })
     local ts_conds = require("nvim-autopairs.ts-conds")
@@ -49,8 +49,7 @@ return {
         :with_cr(cond.none())
         :with_del(function(opts)
           local col = vim.api.nvim_win_get_cursor(0)[2]
-          return a1 .. ins .. ins .. a2 ==
-          opts.line:sub(col - #a1 - #ins + 1, col + #ins + #a2)                             -- insert only works for #ins == 1 anyway
+          return a1 .. ins .. ins .. a2 == opts.line:sub(col - #a1 - #ins + 1, col + #ins + #a2) -- insert only works for #ins == 1 anyway
         end))
     end
 
