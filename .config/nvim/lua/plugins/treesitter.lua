@@ -1,6 +1,8 @@
 return {
   -- Highlight, edit, and navigate code
   "nvim-treesitter/nvim-treesitter",
+  tag = "v0.9.2",
+  commit = "ba6454783493ac3a5dd209c25e491640b07bd8de",
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "windwp/nvim-ts-autotag",
