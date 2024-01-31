@@ -1,12 +1,12 @@
 return {
   "nvimdev/dashboard-nvim",
   config = function()
-    require("dashboard").setup {
-      theme = "hyper", --  theme is doom and hyper default is hyper
-      disable_move = false,    --  default is false disable move keymap for hyper
-      shortcut_type = "letter",   --  shorcut type "letter" or "number"
+    require("dashboard").setup({
+      theme = "hyper",        --  theme is doom and hyper default is hyper
+      disable_move = false,   --  default is false disable move keymap for hyper
+      shortcut_type = "letter", --  shorcut type "letter" or "number"
       change_to_vcs_root = true, -- default is false,for open file in hyper mru. it will change to the root of vcs
-      config = {    --  config used for theme
+      config = {              --  config used for theme
         header = {
           [[░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]],
           [[░░████╗░░░███╗██╗░░░░░░██╗███╗███╗░░░░░░███╗░░]],
@@ -24,7 +24,7 @@ return {
         packages = { enable = true },
         project = { enable = true, limit = 3 },
         week_header = {
-          enable = false
+          enable = false,
         },
         shortcut = {
           {
@@ -32,14 +32,14 @@ return {
             desc = "Update Lazy",
             group = "@property",
             action = "require('lazy').update()",
-            key = "l"
+            key = "l",
           },
           {
             icon = "󰊳 ",
             desc = "Update Mason",
             group = "number",
             action = "MasonUpdate",
-            key = "m"
+            key = "m",
           },
           {
             icon = " ",
@@ -58,9 +58,9 @@ return {
         },
       },
       hide = {
-        statusline = false,    -- hide statusline default is true
-        tabline = true,       -- hide the tabline
-        winbar = true,        -- hide winbar
+        statusline = false, -- hide statusline default is true
+        tabline = true, -- hide the tabline
+        winbar = true,  -- hide winbar
       },
       preview = {
         -- command,       -- preview command
@@ -68,6 +68,6 @@ return {
         -- file_height,   -- preview file height
         -- file_width,    -- preview file width
       },
-    }
+    })
   end,
 }

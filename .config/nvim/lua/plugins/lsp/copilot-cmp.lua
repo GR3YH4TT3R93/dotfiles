@@ -1,6 +1,7 @@
 return {
   "zbirenbaum/copilot-cmp",
-  config = function ()
+  event = "InsertEnter",
+  config = function()
     require("copilot_cmp").setup()
-  end
+  end,
 }

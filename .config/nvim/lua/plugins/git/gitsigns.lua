@@ -1,5 +1,6 @@
 return {
   "lewis6991/gitsigns.nvim", --git signs
+  lazy = true,
   event = "BufRead",
   config = function()
     require("gitsigns").setup({
@@ -29,7 +30,7 @@ return {
             gs.next_hunk()
           end)
           return "<Ignore>"
-          end, { expr = true })
+        end, { expr = true })
 
         map("n", "[c", function()
           if vim.wo.diff then
@@ -39,7 +40,7 @@ return {
             gs.prev_hunk()
           end)
           return "<Ignore>"
-          end, { expr = true })
+        end, { expr = true })
 
         -- -- Actions
         -- map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>")

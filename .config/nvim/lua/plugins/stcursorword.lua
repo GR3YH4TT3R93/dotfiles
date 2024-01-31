@@ -1,7 +1,9 @@
 return {
   "sontungexpt/stcursorword",
+  lazy = true,
+  event = "BufReadPre",
   config = function()
-    require("stcursorword").setup{}
+    require("stcursorword").setup({})
     -- code
-  end
+  end,
 }

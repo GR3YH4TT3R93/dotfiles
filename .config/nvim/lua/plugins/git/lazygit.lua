@@ -1,5 +1,7 @@
 return {
   "kdheepak/lazygit.nvim",
+  Lazy = true,
+  command = "LazyGit",
   -- optional for floating window border decoration
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -7,5 +9,5 @@ return {
   config = function()
     require("telescope").load_extension("lazygit")
   end,
-  vim.cmd[[autocmd BufEnter * :lua require("lazygit.utils").project_root_dir()]]
+  vim.cmd([[autocmd BufEnter * :lua require("lazygit.utils").project_root_dir()]]),
 }

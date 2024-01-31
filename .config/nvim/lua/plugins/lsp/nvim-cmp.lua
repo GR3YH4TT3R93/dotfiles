@@ -10,8 +10,9 @@ return {
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-emoji",
-    "rafamadriz/friendly-snippets",
-    "honza/vim-snippets"
+    -- "rafamadriz/friendly-snippets",
+    { "ybc37/friendly-snippets", branch = "feature/global-uuid" },
+    "honza/vim-snippets",
   },
   config = function()
     local cmp = require("cmp")
@@ -46,7 +47,7 @@ return {
     }
 
     luasnip.config.setup({})
-    luasnip.filetype_extend("vue", {"nuxt_js_ts", "nuxt_html"})
+    luasnip.filetype_extend("vue", { "nuxt_js_ts", "nuxt_html" })
 
     require("luasnip.loaders.from_snipmate").lazy_load()
     require("luasnip.loaders.from_vscode").lazy_load()
@@ -71,7 +72,7 @@ return {
       },
       preselect = cmp.PreselectMode.item,
       completion = {
-        -- completeopt = "menu,menuone,noinsert",
+        completeopt = "menu,menuone,noinsert",
       },
       experimental = {
         ghost_text = { hlgroup = string },
@@ -125,33 +126,30 @@ return {
         end, { "i", "s" }),
       }),
       sources = cmp.config.sources({
-        { name = "copilot", group_index = 1 },
-        { name = "nvim_lsp", group_index = 2 },
-        { name = "luasnip", group_index = 1 },
-        { name = "cmdline", group_index = 4 },
-        { name = "buffer", group_index = 3 },
-        { name = "path", group_index = 5 },
-        { name = "emoji", group_index = 6 },
+        { name = "copilot",  group_index = 1 },
+        { name = "nvim_lsp", group_index = 3 },
+        { name = "luasnip",  group_index = 2 },
+        { name = "cmdline",  group_index = 5 },
+        { name = "buffer",   group_index = 4 },
+        { name = "path",     group_index = 6 },
+        { name = "emoji",    group_index = 7 },
       }),
       -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline({ "/", "?" }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
-          { name = "buffer" }
-        }
+          { name = "buffer" },
+        },
       }),
 
       -- Use cmdline & path source for ":" (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources(
-          {
-            { name = "path" }
-          },
-          {
-            { name = "cmdline" }
-          }
-        )
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          { name = "cmdline" },
+        }),
       }),
     })
   end,
