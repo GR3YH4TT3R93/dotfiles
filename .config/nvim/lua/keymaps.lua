@@ -88,25 +88,16 @@ vim.keymap.set("v", "<C-l>", "<esc> :bnext<cr>", opts)
 vim.keymap.set("i", "<C-l>", "<esc> :bnext<cr>", opts)
 -- }}}
 
--- Eslint{{{
-
--- Run Eslint with Leader F {{{
-vim.keymap.set("n", "<leader>lf", ":EslintFixAll<CR>", opts)
+-- Run Eslint with Leader lf {{{
+vim.keymap.set("n", "<leader>lf", function()
+  vim.lsp.buf.format({
+    filter = function(client)
+      return client.name == "null-ls"
+    end,
+    bufnr = bufnr,
+  })
+end, opts)
 -- }}}
-
--- Run Eslint Fix on Write {{{
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.tsx", "*.ts", "*.jsx", "*.js", "*.vue" },
-  command = "silent! EslintFixAll",
-  group = vim.api.nvim_create_augroup("MyAutocmdsJavaScripFormatting", {}),
-})
-vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
-  pattern = { "*.tsx", "*.ts", "*.jsx", "*.js", "*.vue" },
-  command = "silent! EslintFixAll<CR>",
-})
--- }}}
-
---}}}
 
 -- Diagnostic Window on CursorHold {{{
 vim.api.nvim_create_autocmd("CursorHold", {
@@ -154,12 +145,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", op)
   end,
 })
---}}}
-
--- UUID Commands REQUIRES OSSP-UUID {{{
--- Insert mode mapping
-vim.keymap.set("i", "<C-u>", [[<C-R>=trim(system("uuid -v 4"))<CR>]], opts)
-
--- Normal mode mapping
-vim.keymap.set("n", "<C-u>", [[i<C-R>=trim(system("uuid -v 4"))<CR><Esc>]], opts)
 --}}}

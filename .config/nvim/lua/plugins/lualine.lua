@@ -36,32 +36,32 @@ return {
               status = {
                 icons = {
                   enabled = " ",
-                  sleep = " ",   -- auto-trigger disabled
+                  sleep = " ", -- auto-trigger disabled
                   disabled = " ",
                   warning = " ",
-                  unknown = " "
+                  unknown = " ",
                 },
                 hl = {
                   enabled = "#98c379",
                   sleep = "#848b98",
                   disabled = "#5c6370",
                   warning = "#d19a66",
-                  unknown = "#848b98"
-                }
+                  unknown = "#848b98",
+                },
               },
               spinners = require("copilot-lualine.spinners").dots,
-              spinner_color = "#5c6370"
+              spinner_color = "#5c6370",
             },
             show_colors = true,
-            show_loading = true
+            show_loading = true,
           },
           "encoding",
           "fileformat",
-          "filetype"
+          "filetype",
         },
-      lualine_y = { "progress" },
-      lualine_z = { "location" },
-    },
+        lualine_y = { "progress" },
+        lualine_z = { "location" },
+      },
       inactive_sections = {
         lualine_a = {},
         lualine_b = {},
@@ -71,7 +71,7 @@ return {
         lualine_z = {},
       },
       tabline = {
-        lualine_a = { { "buffers", mode = 2, } },
+        lualine_a = { { "buffers", mode = 2 } },
         lualine_x = {},
         lualine_y = {},
         lualine_z = { "tabs" },

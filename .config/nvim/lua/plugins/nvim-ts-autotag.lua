@@ -1,5 +1,7 @@
 return {
   "windwp/nvim-ts-autotag",
+  Lazy = true,
+  event = "InsertEnter",
   ft = {
     "javascript",
     "javascriptreact",
@@ -7,7 +9,7 @@ return {
     "typescriptreact",
     "handlebars",
     "html",
-    "vue"
+    "vue",
   },
   config = function()
     require("nvim-ts-autotag").setup()
