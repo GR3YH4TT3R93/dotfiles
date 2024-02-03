@@ -1,5 +1,6 @@
 return {
   "akinsho/toggleterm.nvim",
+  cmd = { "ToggleTerm", "TermExec" },
   opts = {
     open_mapping = [[<leader>t]],
     size = 8,
