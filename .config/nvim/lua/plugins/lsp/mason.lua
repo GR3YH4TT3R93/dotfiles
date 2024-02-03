@@ -5,13 +5,14 @@ return {
     "williamboman/mason-lspconfig.nvim",
     "jay-babu/mason-null-ls.nvim",
     "nvimtools/none-ls.nvim",
+    "RubixDev/mason-update-all",
   },
   config = function()
     local null_ls = require("null-ls")
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
     require("mason").setup({})
-
+    require("mason-update-all").setup({})
     require("mason-null-ls").setup({
       ensure_installed = {
         -- Opt to list sources here, when available in mason.

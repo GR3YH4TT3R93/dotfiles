@@ -38,7 +38,7 @@ return {
             icon = "󰊳 ",
             desc = "Update Mason",
             group = "number",
-            action = "MasonUpdate",
+            action = "MasonUpdateAll",
             key = "m",
           },
           {
