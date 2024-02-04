@@ -30,6 +30,7 @@ return {
         "git_rebase",
         "regex",
         "diff",
+        "markdown_inline",
       },
       auto_install = true,
       sync_install = false,
