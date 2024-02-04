@@ -154,3 +154,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 --}}}
+
+-- Fix Treesitter Highlighting {{{
+vim.keymap.set("n", "<leader>ts", ":write | edit | TSBufEnable highlight<CR>", opts)
