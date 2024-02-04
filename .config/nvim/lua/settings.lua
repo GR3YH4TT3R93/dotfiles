@@ -1,5 +1,4 @@
 vim.o.encoding = "utf-8"
-vim.o.mouse = "a"
 vim.o.termguicolors = true
 vim.o.termguicolors = true
 vim.o.updatetime = 100
