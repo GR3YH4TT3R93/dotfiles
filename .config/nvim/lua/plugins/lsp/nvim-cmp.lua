@@ -10,8 +10,7 @@ return {
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-emoji",
-    -- "rafamadriz/friendly-snippets",
-    { "ybc37/friendly-snippets", branch = "feature/global-uuid" },
+    "GR3YH4TT3R93/friendly-snippets",
     "honza/vim-snippets",
   },
   config = function()
