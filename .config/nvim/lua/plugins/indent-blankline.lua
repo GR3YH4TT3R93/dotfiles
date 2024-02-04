@@ -26,6 +26,7 @@ return {
     end)
 
     vim.g.rainbow_delimiters = { highlight = highlight }
+    hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
     require("ibl").setup({
       exclude = { filetypes = { "dashboard" } },
       indent = {
@@ -35,15 +36,7 @@ return {
       },
       scope = {
         char = "┃",
-        highlight = {
-          "RainbowDelimiterRed",
-          "RainbowDelimiterYellow",
-          "RainbowDelimiterBlue",
-          "RainbowDelimiterOrange",
-          "RainbowDelimiterGreen",
-          "RainbowDelimiterViolet",
-          "RainbowDelimiterCyan",
-        },
+        highlight = highlight,
       },
     })
   end,
