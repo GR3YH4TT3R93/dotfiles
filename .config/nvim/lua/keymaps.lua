@@ -157,3 +157,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- Fix Treesitter Highlighting {{{
 vim.keymap.set("n", "<leader>ts", ":write | edit | TSBufEnable highlight<CR>", opts)
+-- }}}
+
+-- Remap j and k to gj and gk {{{
+vim.keymap.set("n", "j", "gj", opts)
+vim.keymap.set("n", "k", "gk", opts)
+-- }}}

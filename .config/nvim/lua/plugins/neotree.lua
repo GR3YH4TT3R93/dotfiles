@@ -3,6 +3,7 @@ return {
   branch = "v3.x",
   lazy = true,
   cmd = "Neotree",
+  event = "BufEnter",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",

@@ -4,7 +4,7 @@ alias nf='nala fetch' # Nala Fastest Mirror
 alias nu='nala update' # Nala Update
 alias nfu='nala upgrade -y' # Nala Update & Full-Upgrade
 alias ni='nala install -y' # Nala Install
-alias nr='nala remove -y' # Nala Remove
+alias nrm='nala remove -y' # Nala Remove
 alias np='nala purge -y' # Nala Purge
 alias nc='nala clean' # Nala Clean
 alias na='nala autoremove -y' # Nala Auto Remove
@@ -16,7 +16,7 @@ alias nv='nala show' # Nala View Package Info
 # Bun Aliases
 alias bun='grun ~/.bun/bin/bun'
 alias bn='grun ~/.bun/bin/bun' # A complete toolkit for building JavaScript apps
-alias bni='grun ~/.bun/bin/bun install' # Bun Install
+alias bni='grun ~/.bun/bin/bun install --backend=copyfile' # Bun Install
 alias bnr='grun ~/.bun/bin/bun run' # Bun Run
 alias bnt='grun ~/.bun/bin/bun test' # Bun Test
 alias bnx='grun ~/.bun/bin/bun x' # Bunx
@@ -110,6 +110,7 @@ alias buc='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume-unchange
 alias bch='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume-changed' # Git Bare Assume Specified File(s) Changed
 
 # Git Aliases
+alias gan='git add -N' # Git add --intent-to-add
 alias gmd='git checkout test && git merge dev --no-ff -m "Merge branch '\''dev'\''" dev' # Git Chechout Test & Git Merge Dev into Test With Message
 alias gmt='git checkout main && git merge test --no-ff -m "Merge branch '\''test'\''"' # Git Chechout Main & Git Merge Dev into Main With Message
 alias gmm='git checkout dev && git merge main && git push && git checkout test && git merge main && git push && git checkout dev' # Git Chechout Dev & Git Merge Main into Dev & Test

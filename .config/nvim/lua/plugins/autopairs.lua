@@ -27,7 +27,7 @@ return {
     npairs.setup({
       fast_wrap = {
         map = "<M-e>",
-        chars = { "{", "[", "(", '"', '"' },
+        chars = { "{", "[", "(", '"', "'" },
         pattern = [=[[%"%"%>%]%)%}%,]]=],
         end_key = "$",
         before_key = "h",
@@ -60,6 +60,5 @@ return {
     Rule2("{{", " ", "}}", "vue")
     Rule2("({", " ", "})", "vue")
     Rule2("{", " ", "}")
-    --}}}
   end,
 }

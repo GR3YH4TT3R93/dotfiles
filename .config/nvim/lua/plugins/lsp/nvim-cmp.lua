@@ -74,14 +74,8 @@ return {
         completeopt = "menu,menuone,noinsert",
       },
       experimental = {
-        ghost_text = { hlgroup = string },
+        ghost_text = true,
       },
-      -- sorting = {
-      --   comparators = {
-      --     cmp.config.compare.exact,
-      --     cmp.config.compare.recently_used,
-      --   },
-      -- },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)

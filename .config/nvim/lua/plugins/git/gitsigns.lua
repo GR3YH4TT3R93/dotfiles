@@ -1,7 +1,7 @@
 return {
   "lewis6991/gitsigns.nvim", --git signs
   lazy = true,
-  event = "BufRead",
+  event = "BufReadPre",
   config = function()
     require("gitsigns").setup({
       signs = {
@@ -11,7 +11,10 @@ return {
         topdelete = { text = "‾" },
         changedelete = { text = "≃" },
       },
-      current_line_blame = false,
+      current_line_blame = true,
+      current_line_blame_opts = {
+        delay = 500,
+      },
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
 
