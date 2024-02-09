@@ -66,6 +66,7 @@ if [[ "$choice" == [Yy]* ]]; then
   git config --system gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
   git config --system merge.verifySignatures true
   git config --system diff.submodule log
+  git config --system submodule.recurse true
   git config --system log.showSignature true
   git config --system commit.gpgsign true
   git config --system tag.gpgsign true
@@ -95,6 +96,7 @@ else
   git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
   git config --global merge.verifySignatures true
   git config --global diff.submodule log
+  git config --global submodule.recurse true
   git config --global log.showSignature true
   git config --global commit.gpgsign true
   git config --global tag.gpgsign true
