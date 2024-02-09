@@ -16,7 +16,7 @@
 
     rm -rf .termux/termux.properties
     ## REPLACE THIS URL ⬇️
-    git clone --bare https://github.com/GR3YH4TT3R93/dotfiles.git ~/GitHub/dotfiles
+    git clone --bare --recurse-submodules https://github.com/GR3YH4TT3R93/dotfiles.git ~/GitHub/dotfiles
     ## REPLACE THIS URL ⬆️
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout
     git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
