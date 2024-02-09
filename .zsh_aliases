@@ -99,8 +99,10 @@ alias b='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME' #Git Bare
 alias ba='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME add' # Git Bare Add
 alias bam='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME commit -p -S -m' #Git Bare Commit Patch Sign Message
 alias bs='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME status' # Git Bare Status
+alias bsu='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME submodule update --remote' # Git Bare Submodule Update
+alias bsum='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME submodule update --remote --merge' # Git Bare Submodule Update Merge
 alias bad='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME diff' # Git Bare Diff
-alias bpu='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push' # Git Bare Push
+alias bpu='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push --recurse-submodules=on-demand' # Git Bare Push Update Submodules
 alias bpl='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME pull' # Git Bare Pull
 alias bcd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev' # Git Checkout Dev
 alias bcm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main' # Git Checkout Main
