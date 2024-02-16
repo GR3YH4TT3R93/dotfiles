@@ -1,6 +1,6 @@
 [submodule "OurNvim.lazy"]
 	path = .config/nvim
 	url = https://github.com/GR3YH4TT3R93/OurNvim.lazy.git
-[submodule "ranger-devicons2"]
-	path = /data/data/com.termux/files/home/.config/ranger/plugins/devicons2
+[submodule ".config/ranger/plugins/devicons2"]
+	path = .config/ranger/plugins/devicons2
 	url = https://github.com/cdump/ranger-devicons2
