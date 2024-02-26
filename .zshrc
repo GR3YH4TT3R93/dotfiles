@@ -1,3 +1,4 @@
+setopt re_match_pcre
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -122,7 +123,6 @@ function zvm_config() {
   ZVM_TERM=xterm-256color
   ZVM_VI_EDITOR='nvim'
 }
-source $HOME/.zprofile
 source $ZSH/oh-my-zsh.sh
 
 # Hide Ctrl commands
@@ -158,6 +158,9 @@ if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
 fi
 
+if [ -f ~/.zprofile ]; then
+    . ~/.zprofile
+fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
