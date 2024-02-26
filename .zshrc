@@ -123,7 +123,6 @@ function zvm_config() {
   ZVM_TERM=xterm-256color
   ZVM_VI_EDITOR='nvim'
 }
-source $HOME/.zprofile
 source $ZSH/oh-my-zsh.sh
 
 # Hide Ctrl commands
@@ -159,6 +158,9 @@ if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
 fi
 
+if [ -f ~/.zprofile ]; then
+    . ~/.zprofile
+fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
