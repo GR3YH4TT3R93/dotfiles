@@ -97,17 +97,17 @@ alias tlcy='task end.after:today-1y completed' # List all Tasks Completed in the
 # Git Bare Aliases
 alias b='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME' #Git Bare
 alias ba='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME add' # Git Bare Add
-alias bam='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME commit -p -S -m' #Git Bare Commit Patch Sign Message
+alias bam='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME commit -pm' #Git Bare Commit Patch Message
 alias bs='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME status' # Git Bare Status
 alias bsu='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME submodule update --remote' # Git Bare Submodule Update
 alias bsum='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME submodule update --remote --merge' # Git Bare Submodule Update Merge
 alias bad='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME diff' # Git Bare Diff
 alias bpu='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push --recurse-submodules=on-demand' # Git Bare Push Update Submodules
-alias bpl='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME pull' # Git Bare Pull
-alias bcd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev' # Git Checkout Dev
-alias bcm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main' # Git Checkout Main
-alias bmd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge --no-ff -m "Merge branch '\''dev'\''" dev' # Git Bare Checkout Main & Merge Dev into Main
-alias bmm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge main && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push' # Git Bare Checkout Dev & Merge Main into Dev
+alias bpl='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME pull --recurse-submodules' # Git Bare Pull
+alias bcd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev --recurse-submodules' # Git Checkout Dev
+alias bcm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main --recurse-submodules' # Git Checkout Main
+alias bmd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main --recurse-submodules && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge --no-ff -m "Merge branch '\''dev'\''" dev' # Git Bare Checkout Main & Merge Dev into Main
+alias bmm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev --recurse-submodules && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge main && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push' # Git Bare Checkout Dev & Merge Main into Dev
 alias buc='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume-unchanged' # Git Bare Assume Specified File(s) Unchanged
 alias bch='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume-changed' # Git Bare Assume Specified File(s) Changed
 
