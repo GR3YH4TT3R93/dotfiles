@@ -1,6 +1,8 @@
-[submodule ".config/nvim"]
-  path = .config/nvim
-  url = https://github.com/GR3YH4TT3R93/OurNvim.lazy.git
 [submodule ".config/ranger/plugins/devicons2"]
-  path = .config/ranger/plugins/devicons2
-  url = https://github.com/cdump/ranger-devicons2
+	path = .config/ranger/plugins/devicons2
+	url = https://github.com/cdump/ranger-devicons2.git
+	branch = master
+[submodule ".config/nvim"]
+	path = .config/nvim
+	url = https://github.com/GR3YH4TT3R93/OurNvim.lazy.git
+	branch = main
