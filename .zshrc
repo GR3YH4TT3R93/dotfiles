@@ -152,7 +152,7 @@ fi
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
+# ~/.zsh_aliases, instead of adding them here directly.
 
 if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
@@ -182,3 +182,7 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
+
+# Enable EsLint flat config support for Eslint_d
+# Comment out to use legacy config
+export ESLINT_USE_FLAT_CONFIG=true
