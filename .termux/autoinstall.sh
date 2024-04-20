@@ -138,9 +138,9 @@ cpanm -n Neovim::Ext || error_exit "${RED}Failed to install neovim perl module.$
 # Install MOTD
 echo "${GREEN}Installing MOTD${ENDCOLOR}"
 sleep 2
-rm /data/data/com.termux/files/usr/etc/motd
-git clone https://github.com/GR3YH4TT3R93/termux-motd.git /data/data/com.termux/files/usr/etc/motd
-echo "/data/data/com.termux/files/usr/etc/motd/init.sh" >> /data/data/com.termux/files/usr/etc/zprofile
+rm $PREFIX/etc/motd
+git clone --depth=1 https://github.com/GR3YH4TT3R93/termux-motd.git $PREFIX/etc/motd
+echo "$PREFIX/etc/motd/init.sh" >> $PREFIX/etc/zprofile
 
 # Install Oh My Zsh
 echo "${GREEN}Installing Oh-My-Zsh${ENDCOLOR}"
