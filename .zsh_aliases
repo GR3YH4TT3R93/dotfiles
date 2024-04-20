@@ -23,7 +23,7 @@ alias bnx='grun ~/.bun/bin/bun x' # Bunx
 alias bnrpl='grun ~/.bun/bin/bun repl' # Bun Repl
 alias bnini='grun ~/.bun/bin/bun init' # Bun Init
 alias bnc='grun ~/.bun/bin/bun create' # Bun Create
-alias bna='grun ~/.bun/bin/bun add' # Bun Add
+alias bna='grun ~/.bun/bin/bun add --backend=copyfile' # Bun Add
 alias bnrm='grun ~/.bun/bin/bun remove' # Bun Remove
 alias bnu='grun ~/.bun/bin/bun update' #Bun Update
 alias bnl='grun ~/.bun/bin/bun link' # Bun Link
@@ -134,3 +134,4 @@ alias tm='tmux' # Terminal Multiplexer
 alias ghb='cd ~/GitHub' # Jump to GitHub Projects
 alias ct='clear' # Clear Terminal
 alias cl='zsh /data/data/com.termux/files/usr/etc/motd/init.sh' # Clear Terminal Fancily
+alias zel='zellij' # Zellij Terminal Multiplexer
