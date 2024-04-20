@@ -32,18 +32,21 @@ read -rp "${GREEN}Enter your Git username${ENDCOLOR}: " username
 read -rp "${GREEN}Enter your Git email${ENDCOLOR}: " email
 
 # Prompt the user for the name associated with the SSH key
-read -rp "${GREEN}Enter a name you would like associated with the SSH key for easy recognition on GitHub (Title):${ENDCOLOR} " key_title
+read -rp "${GREEN}Enter a name you would like associated with the SSH key for easy recognition on GitHub (Title)${ENDCOLOR}: " key_title
 
 # Prompt the user to choose between global and system-wide configuration
 read -rp "${GREEN}Would you like to set your Git configuration system-wide? (Yes/No)${ENDCOLOR}: " choice
 
 # Set Up SSH Key
-if [ ! -f ~/.ssh/id_ed25519 ]; then
+if [ ! -f ~/.ssh/"$key_title" ]; then
   # Generate an Ed25519 SSH key pair
-  HOME=/data/data/com.termux/files/home ssh-keygen -C "$email"
+  ssh-keygen -f ~/.ssh/"$key_title" -C "$email"
   # Check if an SSH key pair already exists
   eval "$(ssh-agent -s)"
-  HOME=/data/data/com.termux/files/home ssh-add ~/.ssh/id_ed25519
+  ssh-add ~/.ssh/"$key_title"
+else
+  echo -e "${YELLOW}SSH key already exists. Skipping SSH key generation. Adding SSH key to SSH-agent${ENDCOLOR}."
+  ssh-add ~/.ssh/"$key_title"
 fi
 
 # Give Permissions to GH CLI for adding SSH key to GitHub for Signing Commits
@@ -52,17 +55,17 @@ gh auth refresh -h github.com -s admin:ssh_signing_key || error_exit "${RED}Fail
 
 echo "${GREEN}Adding SSH key to GitHub${ENDCOLOR}"
 # Add SSH key to GitHub using gh cli
-gh ssh-key add ~/.ssh/id_ed25519.pub --title "$key_title" --type "signing" || error_exit "${RED}Failed to add SSH key to GitHub.${ENDCOLOR}"
+gh ssh-key add ~/.ssh/"$key_title".pub --title "$key_title" --type "signing" || error_exit "${RED}Failed to add SSH key to GitHub.${ENDCOLOR}"
 
 # Create file containing SSH public key for verifying signers
-awk '{ print $3 " " $1 " " $2 }' ~/.ssh/id_ed25519.pub >> ~/.ssh/allowed_signers
+awk '{ print $3 " " $1 " " $2 }' ~/.ssh/"$key_title".pub >> ~/.ssh/allowed_signers
 
 if [[ "$choice" == [Yy]* ]]; then
   # Set the Git username and email system-wide
   git config --system user.name "$username"
   git config --system user.email "$email"
   git config --system gpg.format ssh
-  git config --system user.signingkey ~/.ssh/id_ed25519.pub
+  git config --system user.signingkey ~/.ssh/"$key_title".pub
   git config --system gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
   git config --system diff.submodule log
   git config --system log.showSignature true
@@ -91,7 +94,7 @@ else
   git config --global user.name "$username"
   git config --global user.email "$email"
   git config --global gpg.format ssh
-  git config --global user.signingkey ~/.ssh/id_ed25519.pub
+  git config --global user.signingkey ~/.ssh/"$key_title".pub
   git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
   git config --global diff.submodule log
   git config --global submodule.recurse true
