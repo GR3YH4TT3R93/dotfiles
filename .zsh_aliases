@@ -134,3 +134,4 @@ alias tm='tmux' # Terminal Multiplexer
 alias ghb='cd ~/GitHub' # Jump to GitHub Projects
 alias ct='clear' # Clear Terminal
 alias cl='zsh /data/data/com.termux/files/usr/etc/motd/init.sh' # Clear Terminal Fancily
+alias zel='zellij' # Zellij Terminal Multiplexer
