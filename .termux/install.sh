@@ -149,7 +149,7 @@ read -rp "${YELLOW}Would You Like Auto-Suggestions? (Yes/No)${ENDCOLOR}: " sugge
 if [[ "$suggestions" == [Yy]* ]]; then
   echo -e "${GREEN}Installing Zsh Auto-Suggestions${ENDCOLOR}"
   sleep 1
-  git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions" || error_exit "${RED}Failed to install zsh-autosuggestions.${ENDCOLOR}"
+  git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions" || error_exit "${RED}Failed to install zsh-autosuggestions.${ENDCOLOR}"
 else
   echo "${RED}Skipping${ENDCOLOR}"
   sed -i '/zsh-autosuggestions/d' ~/.zshrc
@@ -161,7 +161,7 @@ read -rp "${YELLOW}How about completions? (Yes/No)${ENDCOLOR}: " completions
 if [[ "$completions" == [Yy]* ]]; then
   echo -e "${GREEN}Installing Zsh Completions${ENDCOLOR}"
   sleep 1
-  git clone https://github.com/zsh-users/zsh-completions "$ZSH_CUSTOM/plugins/zsh-completions" || error_exit "${RED}Failed to install zsh-completions.${ENDCOLOR}"
+  git clone --depth=1 https://github.com/zsh-users/zsh-completions "$ZSH_CUSTOM/plugins/zsh-completions" || error_exit "${RED}Failed to install zsh-completions.${ENDCOLOR}"
 else
   echo "${RED}Skipping${ENDCOLOR}"
   sed -i '/zsh-completions/d' ~/.zshrc
@@ -173,7 +173,7 @@ read -rp "${YELLOW}History Substring Search? (Yes/No)${ENDCOLOR}: " substring
 if [[ "$substring" == [Yy]* ]]; then
   echo -e "${GREEN}Installing History Substring Search${ENDCOLOR}"
   sleep 1
-  git clone https://github.com/zsh-users/zsh-history-substring-search "$ZSH_CUSTOM/plugins/zsh-history-substring-search" || error_exit "${RED}Failed to install zsh-history-substring-search.${ENDCOLOR}"
+  git clone --depth=1 https://github.com/zsh-users/zsh-history-substring-search "$ZSH_CUSTOM/plugins/zsh-history-substring-search" || error_exit "${RED}Failed to install zsh-history-substring-search.${ENDCOLOR}"
 else
   echo "${RED}Skipping${ENDCOLOR}"
   sed -i '/zsh-history-substring-search/d' ~/.zshrc
@@ -183,7 +183,7 @@ fi
 read -rp "${YELLOW}Syntax Highlighting? (Yes/No)${ENDCOLOR}: " highlighting
 if [[ "$highlighting" == [Yy]* ]]; then
   echo -e "${GREEN}Installing Syntax Highlighting${ENDCOLOR}"
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" || error_exit "${RED}Failed to install zsh-syntax-highlighting.${ENDCOLOR}"
+  git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" || error_exit "${RED}Failed to install zsh-syntax-highlighting.${ENDCOLOR}"
 else
   echo "${RED}Skipping${ENDCOLOR}"
   sed -i '/zsh-syntax-highlighting/d' ~/.zshrc
@@ -194,7 +194,7 @@ read -rp "${YELLOW}Git Flow Completions? (Yes/No)${ENDCOLOR}: " git
 if [[ "$git" == [Yy]* ]]; then
   echo -e "${GREEN}Installing Git Flow Completions${ENDCOLOR}"
   sleep 1
-  git clone https://github.com/bobthecow/git-flow-completion "$ZSH_CUSTOM/plugins/git-flow-completion" || error_exit "${RED}Failed to install git-flow-completion.${ENDCOLOR}"
+  git clone --depth=1 https://github.com/bobthecow/git-flow-completion "$ZSH_CUSTOM/plugins/git-flow-completion" || error_exit "${RED}Failed to install git-flow-completion.${ENDCOLOR}"
 else
   echo "${RED}Skipping${ENDCOLOR}"
   sed -i '/git-flow-completion/d' ~/.zshrc
@@ -205,7 +205,7 @@ read -rp "${YELLOW}Zsh Vi Mode? (Yes/No)${ENDCOLOR}: " vi
 if [[ "$vi" == [Yy]* ]]; then
   echo -e "${GREEN}Installing Zsh Vi Mode${ENDCOLOR}"
   sleep 1
-  git clone https://github.com/jeffreytse/zsh-vi-mode "$ZSH_CUSTOM/plugins/zsh-vi-mode" || error_exit "${RED}Failed to install zsh-vi-mode.${ENDCOLOR}"
+  git clone --depth=1 https://github.com/jeffreytse/zsh-vi-mode "$ZSH_CUSTOM/plugins/zsh-vi-mode" || error_exit "${RED}Failed to install zsh-vi-mode.${ENDCOLOR}"
 else
   echo "${RED}Skipping${ENDCOLOR}"
   sed -i '/zsh-vi-mode/d' ~/.zshrc
@@ -217,7 +217,7 @@ read -rp "${YELLOW}Magic Enter? (Yes/No)${ENDCOLOR}: " magic
 if [[ "$magic" == [Yy]* ]]; then
   echo -e "${GREEN}Installing Magic-Enter${ENDCOLOR}"
   sleep 1
-  git clone https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plugins/magic-enter" || error_exit "${RED}Failed to install magic-enter.${ENDCOLOR}"
+  git clone --depth=1 https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plugins/magic-enter" || error_exit "${RED}Failed to install magic-enter.${ENDCOLOR}"
 else
   echo "${RED}Skipping${ENDCOLOR}"
   sed -i '/magic-enter/d' ~/.zshrc
