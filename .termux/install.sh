@@ -229,7 +229,7 @@ read -rp "${YELLOW}Would you like to keep the included Neovim Config? (Yes/No)${
 if [[ "$neovim" == [Nn]* ]]; then
   echo "${RED}Removing Neovim Config!${ENDCOLOR}"
   echo "${YELLOW}You will now need to configure neovim yourself!${ENDCOLOR}"
-  rm -rf ~/.config/nvim ~/.local/share/nvim/
+  rm -rf ~/.config/nvim ~/.local/share/nvim/ ~/.local/state/nvim/ ~/.cache/nvim/
 fi
 
 # Hide README.md
