@@ -223,9 +223,19 @@ else
   sed -i '/magic-enter/d' ~/.zshrc
 fi
 
+# Fzf Tab Completion
+read -rp "${YELLOW}Fzf Tab Completion? (Yes/No)${ENDCOLOR}: " fzf
+if [[ "$fzf" == [Yy]* ]]; then
+  echo -e "${GREEN}Installing Fzf Tab Completion${ENDCOLOR}"
+  sleep 1
+  git clone --depth=1 https://github.com/Aloxaf/fzf-tab "$ZSH_CUSTOM/plugins/fzf-tab" || error_exit "${RED}Failed to install fzf-tab.${ENDCOLOR}"
+else
+  echo "${RED}Skipping${ENDCOLOR}"
+  sed -i '/fzf-tab/d' ~/.zshrc
+fi
+
 # Make sure user wants Neovim config
 read -rp "${YELLOW}Would you like to keep the included Neovim Config? (Yes/No)${ENDCOLOR}: " neovim
-
 if [[ "$neovim" == [Nn]* ]]; then
   echo "${RED}Removing Neovim Config!${ENDCOLOR}"
   echo "${YELLOW}You will now need to configure neovim yourself!${ENDCOLOR}"
