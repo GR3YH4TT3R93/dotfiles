@@ -192,6 +192,11 @@ echo -e "${GREEN}Installing Magic-Enter${ENDCOLOR}"
 sleep 1
 git clone --depth=1 https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plugins/magic-enter" || error_exit "${RED}Failed to install magic-enter.${ENDCOLOR}"
 
+#Fzf Tab Completion
+echo -e "${GREEN}Installing Fzf Tab Completion${ENDCOLOR}"
+sleep 1
+git clone --depth=1 https://github.com/Aloxaf/fzf-tab "$ZSH_CUSTOM/plugins/fzf-tab" || error_exit "${RED}Failed to install fzf-tab.${ENDCOLOR}"
+
 # Hide README.md
 file_path="$HOME/GitHub/dotfiles"
 

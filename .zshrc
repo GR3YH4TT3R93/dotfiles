@@ -83,6 +83,7 @@ plugins=(
   copypath
   dircycle
   extract
+  fzf-tab
   git
   git-auto-fetch
   gitfast
