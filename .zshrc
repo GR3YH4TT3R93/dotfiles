@@ -203,6 +203,7 @@ esac
 # Enable EsLint flat config support for Eslint_d
 # Comment out to use legacy config
 export ESLINT_USE_FLAT_CONFIG=true
+export ESLINT_D_LOCAL_ESLINT_ONLY=true
 
 # bun
 # export BUN_INSTALL="$HOME/.bun"
