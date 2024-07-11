@@ -36,6 +36,7 @@ alias bnlf='grun ~/.bun/bin/bun lintfix' # Run Prettier & ESLint, Fix Errors
 
 # PNPM Aliases
 alias p='pnpm' # PNPM Package Manager
+alias px='pnpx' # PNPM Package Runner
 alias pa='pnpm add' # PNPM Add Package
 alias pad='pnpm add -D' # PNPM Add Dev Package
 alias pag='pnpm add -g' # PNPM Add Global Package
@@ -106,6 +107,7 @@ alias bpu='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push --recurse-
 alias bpl='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME pull --recurse-submodules' # Git Bare Pull
 alias bcd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev --recurse-submodules' # Git Checkout Dev
 alias bcm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main --recurse-submodules' # Git Checkout Main
+alias blog='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset"' # Git Bare Log Graph Pretty
 alias bmd='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout main --recurse-submodules && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge --no-ff -m "Merge branch '\''dev'\''" dev' # Git Bare Checkout Main & Merge Dev into Main
 alias bmm='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME checkout dev --recurse-submodules && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME merge main && git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME push' # Git Bare Checkout Dev & Merge Main into Dev
 alias buc='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME assume-unchanged' # Git Bare Assume Specified File(s) Unchanged
@@ -126,11 +128,12 @@ alias rm='rm -i' # Remove File Safely
 #Random Aliases
 alias uwu='nala upgrade -y' # Nala upgrade -y
 alias uu='apt update && apt upgrade'
+alias ur='pkg --check-mirror update' # Update Repositories
 alias 10k='p10k configure' # Configure Powerlevel10k
 alias ou='omz update' # Manually Update Oh My Zsh
 alias e='nvim' # A highly customizable editor
 alias f='ranger' #The better File Manager
-alias tm='tmux' # Terminal Multiplexer
+alias tm='tmux new-session -A -s TERMUX' # Terminal Multiplexer
 alias ghb='cd ~/GitHub' # Jump to GitHub Projects
 alias ct='clear' # Clear Terminal
 alias cl='zsh /data/data/com.termux/files/usr/etc/motd/init.sh' # Clear Terminal Fancily
@@ -138,3 +141,5 @@ alias zj='zellij' # Zellij Terminal Multiplexer
 alias zt='zellij attach termux'
 alias tm='tmux new-session -A -s TERMUX'
 alias ff='fastfetch' # Fastfetch
+alias cd='z' # Zoxide
+alias lg='lazygit' # Lazygit
