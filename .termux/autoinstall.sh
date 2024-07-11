@@ -73,6 +73,7 @@ if [[ "$choice" == [Yy]* ]]; then
   git config --system commit.gpgsign true
   git config --system tag.gpgsign true
   git config --system push.autoSetupRemote true
+  git config --system push.followTags true
   git config --system fetch.prune true
   git config --system core.editor nvim
   git config --system core.autocrlf input
@@ -102,6 +103,7 @@ else
   git config --global commit.gpgsign true
   git config --global tag.gpgsign true
   git config --global push.autoSetupRerun true
+  git config --global push.followTags true
   git config --global fetch.prune true
   git config --global core.editor nvim
   git config --global core.autocrlf input
@@ -130,6 +132,9 @@ gem install neovim || error_exit "${RED}Failed to install neovim gem package.${E
 gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
 cpan App::cpanminus || error_exit "${RED}Failed to install cpanminus.${ENDCOLOR}"
 cpanm -n Neovim::Ext || error_exit "${RED}Failed to install neovim perl module.${ENDCOLOR}"
+
+# Install Selene Cargo package
+cargo install selene || error_exit "${RED}Failed to install selene.${ENDCOLOR}"
 
 # Install LuaRocks packages for building Neovim
 # luarocks install mpack || error_exit "${RED}Failed to install mpack${ENDCOLOR}"
