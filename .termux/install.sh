@@ -74,6 +74,7 @@ if [[ "$choice" == [Yy]* ]]; then
   git config --system commit.gpgsign true
   git config --system tag.gpgsign true
   git config --system push.autoSetupRemote true
+  git config --system push.followTags true
   git config --system fetch.prune true
   git config --system core.editor nvim
   git config --system core.autocrlf input
@@ -104,6 +105,7 @@ else
   git config --global commit.gpgsign true
   git config --global tag.gpgsign true
   git config --global push.autoSetupRerun true
+  git config --global push.followTags true
   git config --global fetch.prune true
   git config --global core.editor nvim
   git config --global core.autocrlf input
