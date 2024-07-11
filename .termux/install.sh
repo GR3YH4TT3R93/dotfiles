@@ -234,6 +234,22 @@ else
   sed -i '/fzf-tab/d' ~/.zshrc
 fi
 
+# Yazi Theme
+read -rp "${YELLOW}Would you like to keep the included Yazi Theme? (Yes/No)${ENDCOLOR}: " yazi
+if [[ "$yazi" == [Nn]* ]]; then
+  echo "${RED}Removing Yazi Theme!${ENDCOLOR}"
+  echo "${YELLOW}You will now need to configure your own theme!${ENDCOLOR}"
+  rm -rf ~/.config/yazi
+fi
+
+# Tmux Config
+read -rp "${YELLOW}Would you like to keep the included Tmux Config? (Yes/No)${ENDCOLOR}: " tmux
+if [[ "$tmux" == [Nn]* ]]; then
+  echo "${RED}Removing Tmux Config!${ENDCOLOR}"
+  echo "${YELLOW}You will now need to configure tmux yourself!${ENDCOLOR}"
+  rm -rf ~/.config/tmux
+fi
+
 # Make sure user wants Neovim config
 read -rp "${YELLOW}Would you like to keep the included Neovim Config? (Yes/No)${ENDCOLOR}: " neovim
 if [[ "$neovim" == [Nn]* ]]; then
@@ -275,6 +291,9 @@ gem install neovim || error_exit "${RED}Failed to install neovim gem package.${E
 gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
 cpan App::cpanminus || error_exit "${RED}Failed to install cpanminus.${ENDCOLOR}"
 cpanm -n Neovim::Ext || error_exit "${RED}Failed to install neovim perl module.${ENDCOLOR}"
+
+# Install Selene Cargo Packages
+cargo install selene || error_exit "${RED}Failed to install selene.${ENDCOLOR}"
 
 # Install LuaRocks packages for building Neovim
 # luarocks install mpack || error_exit "${RED}Failed to install mpack${ENDCOLOR}"

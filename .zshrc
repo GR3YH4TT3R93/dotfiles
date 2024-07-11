@@ -1,5 +1,11 @@
 setopt re_match_pcre
 
+# Handle SIGHUP gracefully
+trap "exit" HUP
+
+if [ -t 1 ] && [ -z "$TMUX" ]; then
+  tmux new-session -A -s TERMUX
+fi
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -168,7 +174,7 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 autoload -Uz compinit
-zstyle ':completion:*' menu select
+# zstyle ':completion:*' menu select
 #compdef nala
 
 _nala_completion() {
@@ -191,5 +197,48 @@ esac
 export ESLINT_USE_FLAT_CONFIG=true
 
 # bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# export BUN_INSTALL="$HOME/.bun"
+# case ":$PATH:" in
+#   *":$BUN_INSTALL/bin:"*) ;;
+#   *) export PATH="$BUN_INSTALL/bin:$PATH" ;;
+# esac
+# export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Go
+export GOPATH=$HOME/go
+case ":$PATH:" in
+  *":$GOPATH/bin:"*) ;;
+  *) export PATH="$GOPATH/bin:$PATH" ;;
+esac
+
+# Ruby
+export PATH=$PATH:/data/data/com.termux/files/usr/lib/ruby/gems/3.2.0/bin
+export PATH=$PATH:/data/data/com.termux/files/home/.local/share/gem/ruby/3.2.0/bin
+
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+ZLE_RPROMPT_INDENT=0
+
+# GH Copilot Alias
+eval "$(gh copilot alias -- zsh)"
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}'
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'logo-ls -AhD'
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
+export TMUX_FZF_LAUNCH_KEY="C-f"
+tmux start-server
