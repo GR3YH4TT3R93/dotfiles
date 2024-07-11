@@ -1,4 +1,5 @@
 setopt re_match_pcre
+setopt HIST_IGNORE_DUPS
 
 # Handle SIGHUP gracefully
 trap "exit" HUP
@@ -190,6 +191,13 @@ export PNPM_HOME="/data/data/com.termux/files/home/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# Cargo Path
+export CARGO_BIN="/data/data/com.termux/files/home/.cargo/bin/"
+case ":$PATH:" in
+  *":$CARGO_BIN:"*) ;;
+  *) export PATH="$CARGO_BIN:$PATH" ;;
 esac
 
 # Enable EsLint flat config support for Eslint_d
