@@ -142,7 +142,6 @@ alias ur='pkg --check-mirror update' # Update Repositories
 alias 10k='p10k configure' # Configure Powerlevel10k
 alias ou='omz update' # Manually Update Oh My Zsh
 alias e='nvim' # A highly customizable editor
-alias f='ranger' #The better File Manager
 alias tm='tmux new-session -A -s TERMUX' # Terminal Multiplexer
 alias ghb='cd ~/GitHub' # Jump to GitHub Projects
 alias ct='clear' # Clear Terminal

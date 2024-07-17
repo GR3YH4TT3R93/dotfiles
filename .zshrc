@@ -251,3 +251,11 @@ source <(fzf --zsh)
 
 export TMUX_FZF_LAUNCH_KEY="C-f"
 tmux start-server
+function f() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		pushd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
