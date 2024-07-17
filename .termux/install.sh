@@ -74,6 +74,7 @@ if [[ "$choice" == [Yy]* ]]; then
   git config --system commit.gpgsign true
   git config --system tag.gpgsign true
   git config --system push.autoSetupRemote true
+  git config --system push.followTags true
   git config --system fetch.prune true
   git config --system core.editor nvim
   git config --system core.autocrlf input
@@ -104,6 +105,7 @@ else
   git config --global commit.gpgsign true
   git config --global tag.gpgsign true
   git config --global push.autoSetupRerun true
+  git config --global push.followTags true
   git config --global fetch.prune true
   git config --global core.editor nvim
   git config --global core.autocrlf input
@@ -234,6 +236,22 @@ else
   sed -i '/fzf-tab/d' ~/.zshrc
 fi
 
+# Yazi Theme
+read -rp "${YELLOW}Would you like to keep the included Yazi Theme? (Yes/No)${ENDCOLOR}: " yazi
+if [[ "$yazi" == [Nn]* ]]; then
+  echo "${RED}Removing Yazi Theme!${ENDCOLOR}"
+  echo "${YELLOW}You will now need to configure your own theme!${ENDCOLOR}"
+  rm -rf ~/.config/yazi
+fi
+
+# Tmux Config
+read -rp "${YELLOW}Would you like to keep the included Tmux Config? (Yes/No)${ENDCOLOR}: " tmux
+if [[ "$tmux" == [Nn]* ]]; then
+  echo "${RED}Removing Tmux Config!${ENDCOLOR}"
+  echo "${YELLOW}You will now need to configure tmux yourself!${ENDCOLOR}"
+  rm -rf ~/.config/tmux
+fi
+
 # Make sure user wants Neovim config
 read -rp "${YELLOW}Would you like to keep the included Neovim Config? (Yes/No)${ENDCOLOR}: " neovim
 if [[ "$neovim" == [Nn]* ]]; then
@@ -261,12 +279,12 @@ else
   rm -rf README.md .git || error_exit "${RED}Failed to hide README.md.${ENDCOLOR}"
 fi
 
-echo -e "${GREEN}Time to install Nala Package Manager, Termux Clipboard, Neovim, Lua Language Server, Stylua, NodeJS, Python-pip, Perl, Ruby, LuaRocks, LuaJIT, LazyGit, Ranger, RipGrep, fd, wget, gettext, logo-ls, ncurses-utils, libuv, Timewarrior, Taskwarrior, Zoxide, Zellij, and htop!${ENDCOLOR}"
+echo -e "${GREEN}Time to install Nala Package Manager, Termux Clipboard, Neovim, Lua Language Server, Stylua, NodeJS, Python-pip, Perl, Ruby, SQLite, LuaRocks, LuaJIT, LazyGit, Ranger, RipGrep, fd, wget, gettext, logo-ls, ncurses-utils, libuv, Timewarrior, Taskwarrior, Zoxide, Zellij, htop and yazi!${ENDCOLOR}"
 sleep 5
 
 # Install Nala Package Manager, Z Shell, Termux Clipboard, Git, GitHub CLI, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, htop
 apt update && apt install nala -y
-nala install termux-api gh neovim lua-language-server stylua nodejs python-pip perl ruby luarocks luajit ripgrep fd lazygit ranger wget gettext logo-ls ncurses-utils libuv timewarrior taskwarrior zoxide zellij htop -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
+nala install termux-api gh neovim lua-language-server stylua nodejs python-pip perl ruby sqlite luarocks luajit ripgrep fd lazygit ranger wget gettext logo-ls ncurses-utils libuv timewarrior taskwarrior zoxide zellij htop yazi -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
 
 # Install pynvim, pnpm and neovim npm package, and neovim gem package
 pip install pynvim || error_exit "${RED}Failed to install pynvim.${ENDCOLOR}"
@@ -275,6 +293,9 @@ gem install neovim || error_exit "${RED}Failed to install neovim gem package.${E
 gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
 cpan App::cpanminus || error_exit "${RED}Failed to install cpanminus.${ENDCOLOR}"
 cpanm -n Neovim::Ext || error_exit "${RED}Failed to install neovim perl module.${ENDCOLOR}"
+
+# Install Selene Cargo Packages
+cargo install selene || error_exit "${RED}Failed to install selene.${ENDCOLOR}"
 
 # Install LuaRocks packages for building Neovim
 # luarocks install mpack || error_exit "${RED}Failed to install mpack${ENDCOLOR}"
