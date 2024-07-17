@@ -73,6 +73,7 @@ if [[ "$choice" == [Yy]* ]]; then
   git config --system commit.gpgsign true
   git config --system tag.gpgsign true
   git config --system push.autoSetupRemote true
+  git config --system push.followTags true
   git config --system fetch.prune true
   git config --system core.editor nvim
   git config --system core.autocrlf input
@@ -102,6 +103,7 @@ else
   git config --global commit.gpgsign true
   git config --global tag.gpgsign true
   git config --global push.autoSetupRerun true
+  git config --global push.followTags true
   git config --global fetch.prune true
   git config --global core.editor nvim
   git config --global core.autocrlf input
@@ -116,12 +118,12 @@ else
   echo -e "${GREEN}Git credentials configured globally.${ENDCOLOR}"
 fi
 
-echo -e "${GREEN}Time to install Nala Package Manager, Termux Clipboard, Neovim, Lua Language Server, Stylua, NodeJS, Python-pip, Perl, Ruby, LuaRocks, LuaJIT, LazyGit, Ranger, RipGrep, fd, wget, gettext, logo-ls, ncurses-utils, libuv, Timewarrior, Taskwarrior, Zoxide, Zellij, and htop!${ENDCOLOR}"
+echo -e "${GREEN}Time to install Nala Package Manager, Termux Clipboard, Neovim, Lua Language Server, Stylua, NodeJS, Python-pip, Perl, Ruby, SQLite, LuaRocks, LuaJIT, LazyGit, Ranger, RipGrep, fd, wget, gettext, logo-ls, ncurses-utils, libuv, Timewarrior, Taskwarrior, Zoxide, Zellij, tmux, htop, and yazi!${ENDCOLOR}"
 sleep 5
 
 # Install Nala Package Manager, Z Shell, Termux Clipboard, Neovim, NodeJS, Python-pip, Ruby, wget, logo-ls, Timewarrior, Taskwarrior, htop
 pkg update && pkg install nala -y
-nala install termux-api gh neovim lua-language-server stylua nodejs python-pip perl ruby luarocks luajit ripgrep fd lazygit ranger wget gettext logo-ls ncurses-utils libuv timewarrior taskwarrior zoxide zellij htop -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
+nala install termux-api gh neovim lua-language-server stylua nodejs python-pip perl ruby sqlite luarocks luajit ripgrep fd lazygit ranger wget gettext logo-ls ncurses-utils libuv timewarrior taskwarrior zoxide zellij tmux htop yazi -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
 
 # Install pynvim, pnpm and neovim npm package, and neovim gem package
 pip install pynvim || error_exit "${RED}Failed to install pynvim.${ENDCOLOR}"
@@ -130,6 +132,9 @@ gem install neovim || error_exit "${RED}Failed to install neovim gem package.${E
 gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
 cpan App::cpanminus || error_exit "${RED}Failed to install cpanminus.${ENDCOLOR}"
 cpanm -n Neovim::Ext || error_exit "${RED}Failed to install neovim perl module.${ENDCOLOR}"
+
+# Install Selene Cargo package
+cargo install selene || error_exit "${RED}Failed to install selene.${ENDCOLOR}"
 
 # Install LuaRocks packages for building Neovim
 # luarocks install mpack || error_exit "${RED}Failed to install mpack${ENDCOLOR}"
@@ -196,6 +201,11 @@ git clone --depth=1 https://github.com/GR3YH4TT3R93/magic-enter "$ZSH_CUSTOM/plu
 echo -e "${GREEN}Installing Fzf Tab Completion${ENDCOLOR}"
 sleep 1
 git clone --depth=1 https://github.com/Aloxaf/fzf-tab "$ZSH_CUSTOM/plugins/fzf-tab" || error_exit "${RED}Failed to install fzf-tab.${ENDCOLOR}"
+
+# Yaziline
+echo -e "${GREEN}Installing Yaziline${ENDCOLOR}"
+sleep 1
+git clone --depth=1 https://github.com/imsi32/yatline.yazi.git "$HOME/.config/yazi/plugins/yatline.yazi" || error_exit "${RED}Failed to install yazi.${ENDCOLOR}"
 
 # Hide README.md
 file_path="$HOME/GitHub/dotfiles"
