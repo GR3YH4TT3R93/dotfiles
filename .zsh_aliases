@@ -97,6 +97,7 @@ alias tlcy='task end.after:today-1y completed' # List all Tasks Completed in the
 
 # Git Bare Aliases
 alias b='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME' #Git Bare
+alias bl='lazygit --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME' # Lazygit Bare Repo
 alias ba='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME add' # Git Bare Add
 alias bam='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME commit -pm' #Git Bare Commit Patch Message
 alias bs='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME status' # Git Bare Status
@@ -124,6 +125,15 @@ alias gcpm='git commit -pm' # Git Commit Patch Message
 alias mv='mv -i' # Move File Safely
 alias cp='cp -i' # Copy File Safely
 alias rm='rm -i' # Remove File Safely
+
+# Fancy ls Aliases
+# alias ls='logo-ls'
+alias l='logo-ls -D' # Fancy ls
+alias la='logo-ls -lAh' # Fancy ls -a
+alias ll='logo-ls -lh' # Fancy ls -l
+alias ls='ls --color=tty'
+alias lsa='logo-ls -AD' # Fancy ls -a
+alias lsl='logo-ls -lhA' # Fancy ls -l
 
 #Random Aliases
 alias uwu='nala upgrade -y' # Nala upgrade -y
