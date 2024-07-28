@@ -294,6 +294,9 @@ gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
 cpan App::cpanminus || error_exit "${RED}Failed to install cpanminus.${ENDCOLOR}"
 cpanm -n Neovim::Ext || error_exit "${RED}Failed to install neovim perl module.${ENDCOLOR}"
 
+# Install Github Copilot
+gh extension install github/gh-copilot --force || error_exit "${RED}Failed to install Github Copilot.${ENDCOLOR}"
+
 # Install Selene Cargo Packages
 cargo install selene || error_exit "${RED}Failed to install selene.${ENDCOLOR}"
 

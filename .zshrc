@@ -230,8 +230,11 @@ export LC_ALL=en_US.UTF-8
 
 ZLE_RPROMPT_INDENT=0
 
-# GH Copilot Alias
-eval "$(gh copilot alias -- zsh)"
+# Check if gh copilot command exists
+if command -v gh > /dev/null && gh copilot > /dev/null 2>&1; then
+  # GH Copilot Alias
+  eval "$(gh copilot alias -- zsh)"
+fi
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
