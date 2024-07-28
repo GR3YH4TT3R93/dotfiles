@@ -32,6 +32,7 @@ git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME config --local status.show
 ```bash
 git init
 git remote add upstream https://github.com/GR3YH4TT3R93/dotfiles.git
+git config --local status.showUntrackedFiles no
 git fetch upstream
 git reset --hard upstream/main
 git submodule update --init
@@ -51,11 +52,10 @@ git submodule update --init
 
 ```bash
 # Bare:
-b remote set-url https://your.git.fork/repo
+b remote set-url origin https://your.git.fork/repo
+b remote add upstream https://github.com/GR3YH4TT3R93/dotfiles.git
 
 # Regular:
-git init
-git config --local status.showUntrackedFiles no
 git remote add origin https://your.git.fork/repo
 ```
 
