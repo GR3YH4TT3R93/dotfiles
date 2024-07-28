@@ -30,8 +30,11 @@ git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME config --local status.show
 ## Clone Dotfiles as Normal Repo
 
 ```bash
-rm -rf .termux
-git clone --recurse-submodules https://github.com/GR3YH4TT3R93/dotfiles.git ~/
+git init
+git remote add upstream https://github.com/GR3YH4TT3R93/dotfiles.git
+git fetch upstream
+git reset --hard upstream/main
+git submodule update --init
 ```
 
 ## Run Install Script
@@ -109,7 +112,6 @@ e # open editor
 
 ```bash
 apt install luarocks cmake
-luarocks install mpack
 luarocks install lpeg
 ```
 
