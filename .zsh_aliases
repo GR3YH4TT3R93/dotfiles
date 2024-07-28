@@ -152,3 +152,4 @@ alias tm='tmux new-session -A -s TERMUX'
 alias ff='fastfetch' # Fastfetch
 alias cd='z' # Zoxide
 alias lg='lazygit' # Lazygit
+alias q='exit' # Exit Terminal
