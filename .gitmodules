@@ -6,3 +6,6 @@
 	path = .config/nvim
 	url = https://github.com/GR3YH4TT3R93/OurNvim.lazy.git
 	branch = main
+[submodule ".config/yazi/plugins/yatline.yazi"]
+	path = .config/yazi/plugins/yatline.yazi
+	url = https://github.com/imsi32/yatline.yazi.git

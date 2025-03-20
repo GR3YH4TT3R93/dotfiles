@@ -69,16 +69,28 @@ e # open editor
 
 ```xml
 <keyboard name="GR3Y" script="latin">
+  <row height="0.75">
+    <key key0="1"/>
+    <key key0="2"/>
+    <key key0="3"/>
+    <key key0="4"/>
+    <key key0="5"/>
+    <key key0="6"/>
+    <key key0="7"/>
+    <key key0="8"/>
+    <key key0="9"/>
+    <key key0="0"/>
+  </row>
   <row>
     <key key0="q" key2="superscript" key4="esc"/>
-    <key key0="w" key2="2" key3="\@" key4="~"/>
-    <key key0="e" key2="3" key4="\#"/>
-    <key key0="r" key2="4" key4="$"/>
-    <key key0="t" key2="5" key4="%"/>
-    <key key0="y" key2="6" key3="^"/>
-    <key key0="u" key2="7" key3="&amp;"/>
-    <key key0="i" key2="8" key3="*"/>
-    <key key0="o" key2="9" key3="\?"/>
+    <key key0="w" key3="\@" key4="~"/>
+    <key key0="e" key4="\#"/>
+    <key key0="r" key4="$"/>
+    <key key0="t" key4="%"/>
+    <key key0="y" key3="^"/>
+    <key key0="u" key3="&amp;"/>
+    <key key0="i" key3="*"/>
+    <key key0="o" key3="\?"/>
     <key key0="p" key1="subscript" key2="0" key3="!"/>
   </row>
   <row>
