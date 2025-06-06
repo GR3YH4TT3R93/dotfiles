@@ -2,13 +2,13 @@
 keybinds {
     normal {
         // uncomment this and adjust key if using copy_on_select=false
-        bind "Enter" {  // Intercept `Enter`.
-            WriteChars "\u{000D}";  // Passthru `Enter`.
-           MessagePlugin "autolock" {};  // Activate the autolock plugin.
-        }
+        // bind "Enter" {  // Intercept `Enter`.
+        //     WriteChars "\u{000D}";  // Passthru `Enter`.
+        //    MessagePlugin "autolock" {};  // Activate the autolock plugin.
+        // }
     }
     locked {
-        bind "Ctrl g" { SwitchToMode "Normal"; }
+        bind "Alt g" { SwitchToMode "Normal"; }
     }
     resize {
         bind "Ctrl n" { SwitchToMode "Normal"; }
@@ -148,7 +148,7 @@ keybinds {
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
     }
     shared_except "locked" {
-        bind "Ctrl g" { SwitchToMode "Locked"; }
+        bind "Alt g" { SwitchToMode "Locked"; }
         bind "Ctrl q" { Detach; }
         bind "Alt q" { Quit; }
         bind "Alt n" { NewPane; }
@@ -194,12 +194,12 @@ plugins {
     compact-bar { path "compact-bar"; }
     session-manager { path "session-manager"; }
     // Define the "autolock" plugin.
-    autolock location="file:~/.config/zellij/plugins/zellij-autolock.wasm" {
+    // autolock location="file:~/.config/zellij/plugins/zellij-autolock.wasm" {
     // autolock location="https://github.com/fresh2dev/zellij-autolock/releases/latest/download/zellij-autolock.wasm" {
-        triggers "nvim|vim"  // Lock when any open these programs open. They are expected to unlock themselves when closed (e.g., using zellij.vim plugin).
-        watch_triggers "fzf|atuin"  // Lock when any of these open and monitor until closed.
-        watch_interval "1.0"  // When monitoring, check every X seconds.
-    }
+    //     triggers "nvim|vim"  // Lock when any open these programs open. They are expected to unlock themselves when closed (e.g., using zellij.vim plugin).
+    //     watch_triggers "fzf|atuin"  // Lock when any of these open and monitor until closed.
+    //     watch_interval "1.0"  // When monitoring, check every X seconds.
+    // }
 }
 
 // Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
