@@ -133,19 +133,21 @@ gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
 cpan App::cpanminus || error_exit "${RED}Failed to install cpanminus.${ENDCOLOR}"
 cpanm -n Neovim::Ext || error_exit "${RED}Failed to install neovim perl module.${ENDCOLOR}"
 
+# Check if running Android 14 or higher
+android_version=$(getprop ro.build.version.release)
+if [ "$android_version" -ge 14 ]; then
+  wget -q --show-progress https://github.com/termux/termux-exec/files/13802391/termux-exec.zip
+  unzip termux-exec.zip
+  apt install --reinstall ./termux-exec/termux-exec_2.0.0_arm.deb
+  rm -rf termux-exec.zip termux-exec
+fi
+
 # Install Github Copilot
 gh extension install github/gh-copilot --force || error_exit "${RED}Failed to install Github Copilot.${ENDCOLOR}"
 
 # Install Selene Cargo package
 cargo install selene || error_exit "${RED}Failed to install selene.${ENDCOLOR}"
 
-# Set up lua-language-server
-mkdir -p $HOME/.local/share/nvim/mason/packages/lua-language-server
-ln -s $PREFIX/bin/lua-language-server $HOME/.local/share/nvim/mason/packages/lua-language-server
-
-# Set up rust-analyzer
-mkdir -p $HOME/.local/share/nvim/mason/packages/rust-analyzer
-ln -s $PREFIX/bin/rust-analyzer $HOME/.local/share/nvim/mason/packages/rust-analyzer/rust-analyzer-aarch64-unknown-linux-gnu
 # Install LuaRocks packages for building Neovim
 # luarocks install mpack || error_exit "${RED}Failed to install mpack${ENDCOLOR}"
 # luarocks install lpeg || error_exit "${RED}Failed to install lpeg.${ENDCOLOR}"
@@ -153,9 +155,7 @@ ln -s $PREFIX/bin/rust-analyzer $HOME/.local/share/nvim/mason/packages/rust-anal
 # Install MOTD
 echo "${GREEN}Installing MOTD${ENDCOLOR}"
 sleep 2
-rm $PREFIX/etc/motd
-git clone --depth=1 https://github.com/GR3YH4TT3R93/termux-motd.git $PREFIX/etc/motd
-echo "$PREFIX/etc/motd/init.sh" >> $PREFIX/etc/zprofile
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/GR3YH4TT3R93/rusty-motd/main/install.sh)"
 
 # Install Oh My Zsh
 echo "${GREEN}Installing Oh-My-Zsh${ENDCOLOR}"
@@ -237,4 +237,8 @@ else
 fi
 
 # Finish Setup
-echo -e "${GREEN}Setup Complete! Press Ctrl+D for changes to take effect.${ENDCOLOR}"
+echo -e "${GREEN}Setup Complete! Press Ctrl+D to exit or wait 5 seconds for changes to take effect.${ENDCOLOR}"
+
+sleep 5
+
+exec zsh

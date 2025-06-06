@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/zsh
 # Install script for My Termux Dotfiles
 # Set custom variables
 ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
@@ -123,9 +123,7 @@ fi
 # Install MOTD
 echo "${GREEN}Installing MOTD${ENDCOLOR}"
 sleep 2
-rm $PREFIX/etc/motd
-git clone --depth=1 https://github.com/GR3YH4TT3R93/termux-motd.git $PREFIX/etc/motd
-echo "$PREFIX/etc/motd/init.sh" >> $PREFIX/etc/zprofile
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/GR3YH4TT3R93/rusty-motd/main/install.sh)"
 
 # Install Oh My Zsh
 echo "${GREEN}Installing Oh-My-Zsh${ENDCOLOR}"
@@ -183,6 +181,7 @@ fi
 
 # Syntax Highlighting
 read -rp "${YELLOW}Syntax Highlighting? (Yes/No)${ENDCOLOR}: " highlighting
+
 if [[ "$highlighting" == [Yy]* ]]; then
   echo -e "${GREEN}Installing Syntax Highlighting${ENDCOLOR}"
   git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" || error_exit "${RED}Failed to install zsh-syntax-highlighting.${ENDCOLOR}"
@@ -191,8 +190,9 @@ else
   sed -i '/zsh-syntax-highlighting/d' ~/.zshrc
 fi
 
-read -rp "${YELLOW}Git Flow Completions? (Yes/No)${ENDCOLOR}: " git
 # Git Flow Completions
+read -rp "${YELLOW}Git Flow Completions? (Yes/No)${ENDCOLOR}: " git
+
 if [[ "$git" == [Yy]* ]]; then
   echo -e "${GREEN}Installing Git Flow Completions${ENDCOLOR}"
   sleep 1
@@ -204,6 +204,7 @@ fi
 
 # Zsh Vi Mode
 read -rp "${YELLOW}Zsh Vi Mode? (Yes/No)${ENDCOLOR}: " vi
+
 if [[ "$vi" == [Yy]* ]]; then
   echo -e "${GREEN}Installing Zsh Vi Mode${ENDCOLOR}"
   sleep 1
@@ -216,6 +217,7 @@ fi
 
 # Magic Enter
 read -rp "${YELLOW}Magic Enter? (Yes/No)${ENDCOLOR}: " magic
+
 if [[ "$magic" == [Yy]* ]]; then
   echo -e "${GREEN}Installing Magic-Enter${ENDCOLOR}"
   sleep 1
@@ -227,6 +229,7 @@ fi
 
 # Fzf Tab Completion
 read -rp "${YELLOW}Fzf Tab Completion? (Yes/No)${ENDCOLOR}: " fzf
+
 if [[ "$fzf" == [Yy]* ]]; then
   echo -e "${GREEN}Installing Fzf Tab Completion${ENDCOLOR}"
   sleep 1
@@ -238,6 +241,7 @@ fi
 
 # Yazi Theme
 read -rp "${YELLOW}Would you like to keep the included Yazi Theme? (Yes/No)${ENDCOLOR}: " yazi
+
 if [[ "$yazi" == [Nn]* ]]; then
   echo "${RED}Removing Yazi Theme!${ENDCOLOR}"
   echo "${YELLOW}You will now need to configure your own theme!${ENDCOLOR}"
@@ -246,6 +250,7 @@ fi
 
 # Tmux Config
 read -rp "${YELLOW}Would you like to keep the included Tmux Config? (Yes/No)${ENDCOLOR}: " tmux
+
 if [[ "$tmux" == [Nn]* ]]; then
   echo "${RED}Removing Tmux Config!${ENDCOLOR}"
   echo "${YELLOW}You will now need to configure tmux yourself!${ENDCOLOR}"
@@ -254,6 +259,7 @@ fi
 
 # Make sure user wants Neovim config
 read -rp "${YELLOW}Would you like to keep the included Neovim Config? (Yes/No)${ENDCOLOR}: " neovim
+
 if [[ "$neovim" == [Nn]* ]]; then
   echo "${RED}Removing Neovim Config!${ENDCOLOR}"
   echo "${YELLOW}You will now need to configure neovim yourself!${ENDCOLOR}"
@@ -286,33 +292,55 @@ sleep 5
 apt update && apt install nala -y
 nala install termux-api gh neovim lua-language-server stylua rust rust-analyzer nodejs python-pip perl ruby sqlite luarocks luajit ripgrep fd yq lazygit ranger wget gettext logo-ls ncurses-utils libuv timewarrior taskwarrior zoxide zellij htop yazi -y || error_exit "${RED}Failed to install packages.${ENDCOLOR}"
 
-# Install pynvim, pnpm and neovim npm package, and neovim gem package
-pip install pynvim || error_exit "${RED}Failed to install pynvim.${ENDCOLOR}"
-npm install -g pnpm neovim || error_exit "${RED}Failed to install neovim npm package.${ENDCOLOR}"
-gem install neovim || error_exit "${RED}Failed to install neovim gem package.${ENDCOLOR}"
-gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
-cpan App::cpanminus || error_exit "${RED}Failed to install cpanminus.${ENDCOLOR}"
-cpanm -n Neovim::Ext || error_exit "${RED}Failed to install neovim perl module.${ENDCOLOR}"
-
 # Install Github Copilot
 gh extension install github/gh-copilot --force || error_exit "${RED}Failed to install Github Copilot.${ENDCOLOR}"
 
-# Install Selene Cargo Packages
-cargo install selene || error_exit "${RED}Failed to install selene.${ENDCOLOR}"
+# Check if user wants to use pnpm
+read -rp "${YELLOW}Would you like to use pnpm? (Yes/No)${ENDCOLOR}: " pnpm
 
-# If the user kept the Neovim config, set up lua-language-server and Rust Analyzer
-if [[ "$neovim" == [Yy]* ]]; then
-  # Set up lua-language-server
-  mkdir -p $HOME/.local/share/nvim/mason/packages/lua-language-server
-  ln -s $PREFIX/bin/lua-language-server $HOME/.local/share/nvim/mason/packages/lua-language-server
-
-  # Set up rust-analyzer
-  mkdir -p $HOME/.local/share/nvim/mason/packages/rust-analyzer
-  ln -s $PREFIX/bin/rust-analyzer $HOME/.local/share/nvim/mason/packages/rust-analyzer/rust-analyzer-aarch64-unknown-linux-gnu
+if [[ "$pnpm" == [Yy]* ]]; then
+  # If user wants to use pnpm, check if user wants to use neovim
+  if [[ "$neovim" == [Yy]* ]]; then
+    echo -e "${GREEN}Installing neovim dependencies and pnpm${ENDCOLOR}"
+    # Install pynvim, pnpm and neovim npm package, neovim gem package, neovim perl module, and selene
+    pip install pynvim || error_exit "${RED}Failed to install pynvim.${ENDCOLOR}"
+    npm install -g pnpm neovim || error_exit "${RED}Failed to install pnpm.${ENDCOLOR}"
+    gem install neovim || error_exit "${RED}Failed to install neovim gem package.${ENDCOLOR}"
+    gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
+    cpan App::cpanminus || error_exit "${RED}Failed to install cpanminus.${ENDCOLOR}"
+    cpanm -n Neovim::Ext || error_exit "${RED}Failed to install neovim perl module.${ENDCOLOR}"
+    cargo install selene || error_exit "${RED}Failed to install selene.${ENDCOLOR}"
+  else
+    # If user doesn't want to use neovim, only install pnpm
+    echo -e "${GREEN}Installing pnpm${ENDCOLOR}"
+    # Install pnpm
+    npm install -g pnpm || error_exit "${RED}Failed to install pnpm.${ENDCOLOR}"
+  fi
+elif [[ "$pnpm" == [Nn]* ]]; then
+  # If user doesn't want to use pnpm, check if user wants to use neovim
+  if [[ "$neovim" == [Yy]* ]]; then
+    echo -e "${GREEN}Installing neovim dependencies${ENDCOLOR}"
+    # Install pynvim, neovim npm package, neovim gem package, neovim perl module, and selene
+    npm install -g neovim || error_exit "${RED}Failed to install neovim npm package.${ENDCOLOR}"
+    pip install pynvim || error_exit "${RED}Failed to install pynvim.${ENDCOLOR}"
+    gem install neovim || error_exit "${RED}Failed to install neovim gem package.${ENDCOLOR}"
+    gem update --system || error_exit "${RED}Failed to update gem.${ENDCOLOR}"
+    cpan App::cpanminus || error_exit "${RED}Failed to install cpanminus.${ENDCOLOR}"
+    cpanm -n Neovim::Ext || error_exit "${RED}Failed to install neovim perl module.${ENDCOLOR}"
+    cargo install selene || error_exit "${RED}Failed to install selene.${ENDCOLOR}"
+  else
+    echo "${RED}Skipping neovim dependencies${ENDCOLOR}"
+  fi
+  echo "${RED}Skipping pnpm${ENDCOLOR}"
 fi
+
 # Install LuaRocks packages for building Neovim
 # luarocks install mpack || error_exit "${RED}Failed to install mpack${ENDCOLOR}"
 # luarocks install lpeg || error_exit "${RED}Failed to install lpeg.${ENDCOLOR}"
 
 # Finish Setup
-echo -e "${GREEN}Setup Complete! Press Ctrl+D for changes to take effect.${ENDCOLOR}"
+echo -e "${GREEN}Setup Complete! Press Ctrl+D or wait 5 seconds for changes to take effect.${ENDCOLOR}"
+
+sleep 5
+
+exec zsh
