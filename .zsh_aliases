@@ -38,6 +38,7 @@ alias bnlf='grun ~/.bun/bin/bun lintfix' # Run Prettier & ESLint, Fix Errors
 alias p='pnpm' # PNPM Package Manager
 alias px='pnpx' # PNPM Package Runner
 alias pa='pnpm add' # PNPM Add Package
+alias pab='pnpm approve-builds' # PNPM approve builds
 alias pad='pnpm add -D' # PNPM Add Dev Package
 alias pag='pnpm add -g' # PNPM Add Global Package
 alias pb='pnpm build' # PNPM Create Bundle Package
@@ -58,6 +59,7 @@ alias pur='pnpm update --recursive' # PNPM Update Packages
 alias pr='pnpm run' # PNPM Run Script
 alias prm='pnpm remove' # PNPM Remove Package
 alias prmg='pnpm remove -g' # PNPM Remove Global Package
+alias psu='pnpm self-update' # PNPM Self Update
 alias psp='pnpm store prune' # PNPM Remove Unreferenced Packages Store
 alias prd='pnpm dev -o' # PNPM Run Dev
 alias pl='pnpm lint' # Run Prettier & ESLint
@@ -69,12 +71,12 @@ alias pauf='pnpm audit --fix' # PNPM Fix Vuln Deps
 # Nuxt CLI Tool PNPM Aliases
 alias pnx='pnpm nuxi' # Nuxt CLI Tool
 alias pnxc='pnpm nuxi cleanup' # Nuxi Cleanup generated nuxt files and caches
-alias pnxu='pnpm nuxi upgrade' # Nuxi Upgrade and Fix .nuxt & node_modules
+alias pnxu='pnpm nuxi upgrade --force' # Nuxi Upgrade and Fix .nuxt & node_modules
 
 # Nuxt CLI Tool Aliases
 alias nx='nuxi' # Nuxt CLI Tool
 alias nxc='nuxi cleanup' # Nuxi Cleanup generated nuxt files and caches
-alias nxu='nuxi upgrade' # Nuxi Upgrade and Fix .nuxt & node_modules
+alias nxu='nuxi upgrade --force' # Nuxi Upgrade and Fix .nuxt & node_modules
 alias nxd='nuxi dev -o' # Nuxi Run Dev and Open Browser
 
 # Taskwarrior Aliases
@@ -101,6 +103,7 @@ alias bl='lazygit --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME' # Lazygit B
 alias ba='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME add' # Git Bare Add
 alias bam='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME commit -pm' #Git Bare Commit Patch Message
 alias bs='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME status' # Git Bare Status
+alias bsa='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME submodule add' # Git Bare Submodule Add
 alias bsu='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME submodule update --remote' # Git Bare Submodule Update
 alias bsum='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME submodule update --remote --merge' # Git Bare Submodule Update Merge
 alias bad='git --git-dir=$HOME/GitHub/dotfiles --work-tree=$HOME diff' # Git Bare Diff
@@ -120,6 +123,7 @@ alias gmd='git checkout test && git merge dev --no-ff -m "Merge branch '\''dev'\
 alias gmt='git checkout main && git merge test --no-ff -m "Merge branch '\''test'\''"' # Git Chechout Main & Git Merge Dev into Main With Message
 alias gmm='git checkout dev && git merge main && git push && git checkout test && git merge main && git push && git checkout dev' # Git Chechout Dev & Git Merge Main into Dev & Test
 alias gcpm='git commit -pm' # Git Commit Patch Message
+alias gi='git init' # Git Initialise Repository
 
 # Safe File Management Aliases
 alias mv='mv -i' # Move File Safely
@@ -141,15 +145,23 @@ alias uu='apt update && apt upgrade'
 alias ur='pkg --check-mirror update' # Update Repositories
 alias 10k='p10k configure' # Configure Powerlevel10k
 alias ou='omz update' # Manually Update Oh My Zsh
-alias e='nvim' # A highly customizable editor
+alias or='omz reload' # Reload Oh My Zsh
+alias e=$EDITOR # A highly customizable editor
 alias tm='tmux new-session -A -s TERMUX' # Terminal Multiplexer
 alias ghb='cd ~/GitHub' # Jump to GitHub Projects
 alias ct='clear' # Clear Terminal
-alias cl='zsh /data/data/com.termux/files/usr/etc/motd/init.sh && tmux clear-history' # Clear Terminal Fancily
-alias zj='zellij' # Zellij Terminal Multiplexer
+alias cl='~/../usr/etc/motd/init && tmux clear-history' # Clear Terminal Fancily
+alias zj="zellij" # Zellij Terminal Multiplexer
 alias zt='zellij attach termux'
 alias tm='tmux new-session -A -s TERMUX'
 alias ff='fastfetch' # Fastfetch
 alias cd='z' # Zoxide
 alias lg='lazygit' # Lazygit
 alias q='exit' # Exit Terminal
+alias of='onefetch' # Onefetch
+alias zrc='$EDITOR ~/.zshrc' # Edit Zshrc
+alias zal='$EDITOR ~/.zsh_aliases' # Edit Zsh Aliases
+alias zpl='$EDITOR ~/.p10k.zsh' # Edit Zsh Powerlevel10k
+alias zpr='$EDITOR ~/.zprofile' # Edit Zsh Profile
+alias nvc='$EDITOR ~/.config/nvim/' # Edit Zsh Profile
+alias ed='eslint_d restart --debug' # Eslint_d Debug
