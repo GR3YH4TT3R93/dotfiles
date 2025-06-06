@@ -1,12 +1,17 @@
 setopt re_match_pcre
 setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt INTERACTIVE_COMMENTS
 
-# Handle SIGHUP gracefully
+# export TMPPREFIX="$TMPDIR"
+# Handle SIGHUP gracefully for Tmux
 trap "exit" HUP
 
-if [ -t 1 ] && [ -z "$TMUX" ]; then
-  tmux new-session -A -s TERMUX
+# Start tmux on startup
+if [ -t 1 ] && [ -z "$TMUX" ] && [ -z "$ZELLIJ" ]; then
+  tmux new-session -As TERMUX
 fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -68,7 +73,7 @@ zstyle ':omz:update' frequency 1
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -94,9 +99,13 @@ plugins=(
   git
   git-auto-fetch
   gitfast
+  golang
   last-working-dir
   magic-enter
   per-directory-history
+  rsync
+  rust
+  ssh
   web-search
   zoxide
   zsh-autosuggestions
@@ -113,7 +122,7 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 # User configuration
 function zvm_config() {
   # Surround operating mode (verb->s->surround)
-  ZVM_VI_SURROUND_BINDKEY='classic'
+  ZVM_VI_SURROUND_BINDKEY="classic"
   # Always starting with insert mode for each command line
   ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
   # Retrieve default cursor styles
@@ -122,17 +131,17 @@ function zvm_config() {
   local vcur=$(zvm_cursor_style $ZVM_VISUAL_MODE_CURSOR)
   local vlcur=$(zvm_cursor_style $ZVM_VISUAL_LINE_MODE_CURSOR)
   # Append your custom color for your cursor
-  ZVM_INSERT_MODE_CURSOR=$icur'\e\e]12;#4fa6ed\a'
-  ZVM_NORMAL_MODE_CURSOR=$ncur'\e\e]12;#98c379\a'
-  ZVM_VISUAL_MODE_CURSOR=$vcur'\e\e]12;#c678dd\a'
-  ZVM_VISUAL_LINE_MODE_CURSOR=$vlcur'\e\e]12;#c678dd\a'
+  ZVM_INSERT_MODE_CURSOR=$icur"\e\e]12;#4fa6ed\a"
+  ZVM_NORMAL_MODE_CURSOR=$ncur"\e\e]12;#98c379\a"
+  ZVM_VISUAL_MODE_CURSOR=$vcur"\e\e]12;#c678dd\a"
+  ZVM_VISUAL_LINE_MODE_CURSOR=$vlcur"\e\e]12;#c678dd\a"
   ZVM_VI_HIGHLIGHT_FOREGROUND=#cccccc
   ZVM_VI_HIGHLIGHT_BACKGROUND=#c678dd
   ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline
   ZVM_TERM=xterm-256color
-  ZVM_VI_EDITOR='nvim'
+  ZVM_VI_EDITOR="nvim"
 }
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 # Hide Ctrl commands
 # [[ -o interactive ]] && stty -echoctl
@@ -142,9 +151,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
+  export EDITOR="nvim"
 else
-  export EDITOR='nvim'
+  export EDITOR="nvim"
 fi
 
 # Compilation flags
@@ -159,14 +168,15 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Alias definitions.
 # You may want to put all your additions into a separate file like
-# ~/.zsh_aliases, instead of adding them here directly.
+# ~/.zsh_aliases, instead of adding them to the ZSH_CUSTOM folder or here
+# directly
 
 if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
 fi
 
+#
 if [ -f ~/.zprofile ]; then
     . ~/.zprofile
 fi
@@ -175,59 +185,48 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 autoload -Uz compinit
-# zstyle ':completion:*' menu select
-#compdef nala
-
-_nala_completion() {
-  eval $(env _TYPER_COMPLETE_ARGS="${words[1,$CURRENT]}" _NALA_COMPLETE=complete_zsh nala)
-}
-
-compdef _nala_completion nala
+zstyle ':completion:*' menu select
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main brackets pattern cursor)
 
 # pnpm
-export PNPM_HOME="/data/data/com.termux/files/home/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
 # Cargo Path
-export CARGO_BIN="/data/data/com.termux/files/home/.cargo/bin/"
+export CARGO_PATH="$HOME/.cargo/bin"
 case ":$PATH:" in
-  *":$CARGO_BIN:"*) ;;
-  *) export PATH="$CARGO_BIN:$PATH" ;;
+  *":$CARGO_PATH:"*) ;;
+  *) export PATH="$CARGO_PATH:$PATH" ;;
 esac
 
-# Enable EsLint flat config support for Eslint_d
-# Comment out to use legacy config
-export ESLINT_USE_FLAT_CONFIG=true
-export ESLINT_D_LOCAL_ESLINT_ONLY=true
+# Go
+export GOPATH="$HOME/go/bin"
+case ":$PATH:" in
+  *":$GOPATH:"*) ;;
+  *) export PATH="$GOPATH:$PATH" ;;
+esac
 
 # bun
-# export BUN_INSTALL="$HOME/.bun"
+# export BUN_PATH="$HOME/.bun/bin"
 # case ":$PATH:" in
-#   *":$BUN_INSTALL/bin:"*) ;;
-#   *) export PATH="$BUN_INSTALL/bin:$PATH" ;;
+#   *":$BUN_PATH:"*) ;;
+#   *) export PATH="$BUN_PATH:$PATH" ;;
 # esac
 # export PATH="$BUN_INSTALL/bin:$PATH"
 
-# Go
-export GOPATH=$HOME/go
-case ":$PATH:" in
-  *":$GOPATH/bin:"*) ;;
-  *) export PATH="$GOPATH/bin:$PATH" ;;
-esac
+# Fix for CopilotChat.nvim
+export XDG_RUNTIME_DIR=$PREFIX/tmp
 
-# Ruby
-export PATH=$PATH:/data/data/com.termux/files/usr/lib/ruby/gems/3.2.0/bin
-export PATH=$PATH:/data/data/com.termux/files/home/.local/share/gem/ruby/3.2.0/bin
-
+# Fix for neovim (not working)
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+# Remove unnecessary space at end prompt
 ZLE_RPROMPT_INDENT=0
 
 # Check if gh copilot command exists
@@ -235,29 +234,34 @@ if command -v gh > /dev/null && gh copilot > /dev/null 2>&1; then
   # GH Copilot Alias
   eval "$(gh copilot alias -- zsh)"
 fi
+
 # disable sort when completing `git checkout`
-zstyle ':completion:*:git-checkout:*' sort false
+zstyle ":completion:*:git-checkout:*" sort false
 # set descriptions format to enable group support
 # NOTE: don't use escape sequences here, fzf-tab will ignore them
-zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ":completion:*:descriptions" format "[%d]"
 # set list-colors to enable filename colorizing
-zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}'
+zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"
 # force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
-zstyle ':completion:*' menu no
-# preview directory's content with eza when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'logo-ls -AhD'
+zstyle ":completion:*" menu no
+# preview directory's content with logo-ls when completing cd
+zstyle ":fzf-tab:complete:cd:*" fzf-preview "logo-ls -AhD"
 # switch group using `<` and `>`
-zstyle ':fzf-tab:*' switch-group '<' '>'
-zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ":fzf-tab:*" switch-group "<" ">"
+zstyle ":fzf-tab:*" fzf-command ftb-tmux-popup
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
+# Launch FZF with Ctrl+f
 export TMUX_FZF_LAUNCH_KEY="C-f"
+
+# alias f to Yazi File Manager
 function f() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	local tmp
+  tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
 	yazi "$@" --cwd-file="$tmp"
 	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		pushd -- "$cwd"
+		builtin cd -- "$cwd"
 	fi
 	rm -f -- "$tmp"
 }
