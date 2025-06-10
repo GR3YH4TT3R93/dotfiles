@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/zsh
 # Install script for My Termux Dotfiles
 # Set custom variables
 ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
@@ -155,7 +155,7 @@ cargo install selene || error_exit "${RED}Failed to install selene.${ENDCOLOR}"
 # Install MOTD
 echo "${GREEN}Installing MOTD${ENDCOLOR}"
 sleep 2
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/GR3YH4TT3R93/rusty-motd/main/install.sh)"
+zsh -c "$(curl -fsSL https://raw.githubusercontent.com/GR3YH4TT3R93/rusty-motd/main/install.sh)"
 
 # Install Oh My Zsh
 echo "${GREEN}Installing Oh-My-Zsh${ENDCOLOR}"

@@ -123,7 +123,7 @@ fi
 # Install MOTD
 echo "${GREEN}Installing MOTD${ENDCOLOR}"
 sleep 2
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/GR3YH4TT3R93/rusty-motd/main/install.sh)"
+zsh -c "$(curl -fsSL https://raw.githubusercontent.com/GR3YH4TT3R93/rusty-motd/main/install.sh)"
 
 # Install Oh My Zsh
 echo "${GREEN}Installing Oh-My-Zsh${ENDCOLOR}"
