@@ -30,7 +30,6 @@ TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SEPARATOR=${TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SE
 if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_CURRENT" ]; then
 	TMUX_POWERLINE_WINDOW_STATUS_CURRENT=(
 		"#[$(format regular)]"
-    "#[${continuum_status}]"
 		# "$TMUX_POWERLINE_DEFAULT_LEFTSIDE_SEPARATOR"
 		# " #I#F "
 		# "$TMUX_POWERLINE_SEPARATOR_RIGHT_THIN"
@@ -137,20 +136,20 @@ if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
     # "vcs_others #393f4a #abb2bf"
     # Define VCS commands with their respective parameters
     VCS_COMMANDS=(
-      "vcs_branch #393f4a #abb2bf ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
-      "vcs_compare #393f4a #abb2bf"
-      "vcs_staged #393f4a #abb2bf"
-      "vcs_modified #393f4a #abb2bf"
-      "vcs_others #393f4a #abb2bf"
+      # "vcs_branch #393f4a #abb2bf ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
+      # "vcs_compare #393f4a #abb2bf"
+      # "vcs_staged #393f4a #abb2bf"
+      # "vcs_modified #393f4a #abb2bf"
+      # "vcs_others #393f4a #abb2bf"
     )
 
     # Default values if the condition is not met
     VCS_COMMANDS_ELSE=(
-      "vcs_branch #393f4a #abb2bf ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
-      "vcs_compare #393f4a #abb2bf"
-      "vcs_staged #393f4a #abb2bf ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
-      "vcs_modified #393f4a #abb2bf ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
-      "vcs_others #393f4a #abb2bf ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
+      # "vcs_branch #393f4a #abb2bf ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
+      # "vcs_compare #393f4a #abb2bf"
+      # "vcs_staged #393f4a #abb2bf ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color right_disable"
+      # "vcs_modified #393f4a #abb2bf ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
+      # "vcs_others #393f4a #abb2bf ${TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD} no_sep_bg_color no_sep_fg_color left_disable"
     )
 
     # Loop through each VCS command and check if the next one is showing
@@ -179,6 +178,8 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 		# "weather 37 255"
 		#"rainbarf 0 ${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR}"
 		#"xkb_layout 125 117"
+    # "tmux_continuum_status #31353f #abb2bf"
+    "tmux_continuum_save #31353f #abb2bf"
     # "disk_usage #31353f #abb2bf"
 		"date_day #31353f #abb2bf"
 		"date #393f4a #abb2bf ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD}"
