@@ -146,9 +146,10 @@ alias ur='pkg --check-mirror update' # Update Repositories
 alias 10k='p10k configure' # Configure Powerlevel10k
 alias ou='omz update' # Manually Update Oh My Zsh
 alias or='omz reload' # Reload Oh My Zsh
-alias e=$EDITOR # A highly customizable editor
+alias e='$EDITOR' # A highly customizable editor
+alias es='$EDITOR --listen $TMPDIR/vim-server.pipe' # A highly customizable editor - server
 alias tm='tmux new-session -A -s TERMUX' # Terminal Multiplexer
-alias ghb='cd ~/GitHub' # Jump to GitHub Projects
+alias ghb='~/GitHub' # Jump to GitHub Projects
 alias ct='clear' # Clear Terminal
 alias cl='~/../usr/etc/motd/init && [ -n "$TMUX" ] && tmux clear-history' # Clear Terminal Fancily
 alias zj="zellij" # Zellij Terminal Multiplexer
@@ -165,3 +166,45 @@ alias zpl='$EDITOR ~/.p10k.zsh' # Edit Zsh Powerlevel10k
 alias zpr='$EDITOR ~/.zprofile' # Edit Zsh Profile
 alias nvc='$EDITOR ~/.config/nvim/' # Edit Zsh Profile
 alias ed='eslint_d restart --debug' # Eslint_d Debug
+
+# Function aliases
+
+# alias gcr to [g]ithub [c]reate [r]epo
+gcr() {
+  local repo_name
+  local visibility="public"  # default
+  local description
+
+  # Check if first parameter is a visibility keyword
+  if [ "$1" = "private" ] || [ "$1" = "public" ]; then
+    repo_name="$(basename "$PWD")"  # use directory name
+    visibility="$1"
+    description="$2"  # description shifts to 2nd parameter
+  else
+    repo_name="${1:-$(basename "$PWD")}"  # use provided name or directory name
+    visibility="${2:-public}"
+    description="$3"  # description stays as 3rd parameter
+  fi
+
+  if [ "$description" = "" ]; then
+    echo "Enter repository description (or press Enter to skip):"
+    read -r description
+  fi
+
+  if [ "$description" != "" ]; then
+    gh repo create "$repo_name" --source=. --"$visibility" --description "$description"
+  else
+    gh repo create "$repo_name" --source=. --"$visibility"
+  fi
+}
+
+# alias f to Yazi File Manager
+f() {
+	local tmp
+  tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [[ ! -v "$cwd" ]] && [[ "$cwd" != "$PWD" ]]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}

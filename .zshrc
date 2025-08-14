@@ -8,8 +8,8 @@ setopt INTERACTIVE_COMMENTS
 trap "exit" HUP
 
 # Start tmux on startup
-if [ -t 1 ] && [ -z "$TMUX" ] && [ -z "$ZELLIJ" ]; then
-  tmux new-session -As TERMUX
+if [[ -t 1 ]] && [[ ! -v TMUX ]] && [[ ! -v ZELLIJ ]]; then
+  tmux new -A -s TERMUX
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -108,28 +108,30 @@ plugins=(
   ssh
   web-search
   zoxide
-  zsh-autosuggestions
   zsh-completions
   zsh-interactive-cd
   zsh-vi-mode
+  zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-history-substring-search
 )
 
+# To avoid issues with redundant .zcompdump cache generation
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+autoload -U compinit && compinit
 
-# User configuration
+# User configuration for zsh-vi-mode
 function zvm_config() {
   # Surround operating mode (verb->s->surround)
   ZVM_VI_SURROUND_BINDKEY="classic"
   # Always starting with insert mode for each command line
   ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
   # Retrieve default cursor styles
-  local icur=$(zvm_cursor_style $ZVM_INSERT_MODE_CURSOR)
-  local ncur=$(zvm_cursor_style $ZVM_NORMAL_MODE_CURSOR)
-  local vcur=$(zvm_cursor_style $ZVM_VISUAL_MODE_CURSOR)
-  local vlcur=$(zvm_cursor_style $ZVM_VISUAL_LINE_MODE_CURSOR)
+  local icur=$(zvm_cursor_style "$ZVM_INSERT_MODE_CURSOR")
+  local ncur=$(zvm_cursor_style "$ZVM_NORMAL_MODE_CURSOR")
+  local vcur=$(zvm_cursor_style "$ZVM_VISUAL_MODE_CURSOR")
+  local vlcur=$(zvm_cursor_style "$ZVM_VISUAL_LINE_MODE_CURSOR")
   # Append your custom color for your cursor
   ZVM_INSERT_MODE_CURSOR=$icur"\e\e]12;#4fa6ed\a"
   ZVM_NORMAL_MODE_CURSOR=$ncur"\e\e]12;#98c379\a"
@@ -138,16 +140,13 @@ function zvm_config() {
   ZVM_VI_HIGHLIGHT_FOREGROUND=#cccccc
   ZVM_VI_HIGHLIGHT_BACKGROUND=#c678dd
   ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline
-  ZVM_TERM=xterm-256color
+  # ZVM_TERM=xterm-256color
   ZVM_VI_EDITOR="nvim"
 }
+
 source "$ZSH/oh-my-zsh.sh"
 
-# Hide Ctrl commands
-# [[ -o interactive ]] && stty -echoctl
-
 # export MANPATH="/usr/local/man:$MANPATH"
-
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -173,21 +172,18 @@ fi
 # directly
 
 if [ -f ~/.zsh_aliases ]; then
-    . ~/.zsh_aliases
+  . ~/.zsh_aliases
 fi
 
-#
+# Personal Configurations
 if [ -f ~/.zprofile ]; then
-    . ~/.zprofile
+  . ~/.zprofile
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-autoload -Uz compinit
-zstyle ':completion:*' menu select
-
-ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main brackets pattern cursor)
+if [ -f ~/.p10k.zsh ]; then
+  . ~/.p10k.zsh
+fi
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -216,18 +212,20 @@ esac
 #   *":$BUN_PATH:"*) ;;
 #   *) export PATH="$BUN_PATH:$PATH" ;;
 # esac
-# export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Fix for CopilotChat.nvim
 export XDG_RUNTIME_DIR=$PREFIX/tmp
 
-# Fix for neovim (not working)
+# Fix for neovim (doesn't fix)
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# Remove unnecessary space at end prompt
+# Remove unnecessary space at end of prompt
 ZLE_RPROMPT_INDENT=0
+
+# Zsh Syntax Highlighting config
+ZSH_HIGHLIGHT_HIGHLIGHTERS+=(brackets pattern cursor line regexp root)
 
 # Check if gh copilot command exists
 if command -v gh > /dev/null && gh copilot > /dev/null 2>&1; then
@@ -249,19 +247,4 @@ zstyle ":fzf-tab:complete:cd:*" fzf-preview "logo-ls -AhD"
 # switch group using `<` and `>`
 zstyle ":fzf-tab:*" switch-group "<" ">"
 zstyle ":fzf-tab:*" fzf-command ftb-tmux-popup
-# Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
 
-# Launch FZF with Ctrl+f
-export TMUX_FZF_LAUNCH_KEY="C-f"
-
-# alias f to Yazi File Manager
-function f() {
-	local tmp
-  tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-}
