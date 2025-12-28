@@ -33,7 +33,6 @@ read -rp "${GREEN}Enter your Git email${ENDCOLOR}: " email
 
 # Prompt the user for the name associated with the SSH key
 read -rp "${GREEN}Enter a name you would like associated with the SSH key for easy recognition on GitHub (Title) [Press Enter for default: id_ed25519]${ENDCOLOR}: " key_title
-# CORREÇÃO: Garante um nome padrão se a variável estiver vazia
 key_title=${key_title:-id_ed25519}
 
 # Prompt the user to choose between global and system-wide configuration
@@ -42,7 +41,6 @@ read -rp "${GREEN}Would you like to set your Git configuration system-wide? (Yes
 # Set Up SSH Key
 if [ ! -f ~/.ssh/"$key_title" ]; then
   # Generate an Ed25519 SSH key pair
-  # CORREÇÃO: Adicionado -N "" para não pedir senha e travar o script
   ssh-keygen -f ~/.ssh/"$key_title" -C "$email" -N ""
   # Check if an SSH key pair already exists
   eval "$(ssh-agent -s)"
