@@ -32,7 +32,8 @@ read -rp "${GREEN}Enter your Git username${ENDCOLOR}: " username
 read -rp "${GREEN}Enter your Git email${ENDCOLOR}: " email
 
 # Prompt the user for the name associated with the SSH key
-read -rp "${GREEN}Enter a name you would like associated with the SSH key for easy recognition on GitHub (Title)${ENDCOLOR}: " key_title
+read -rp "${GREEN}Enter a name you would like associated with the SSH key for easy recognition on GitHub (Title) [Press Enter for default: id_ed25519]${ENDCOLOR}: " key_title
+key_title=${key_title:-id_ed25519}
 
 # Prompt the user to choose between global and system-wide configuration
 read -rp "${GREEN}Would you like to set your Git configuration system-wide? (Yes/No)${ENDCOLOR}: " choice
@@ -40,12 +41,13 @@ read -rp "${GREEN}Would you like to set your Git configuration system-wide? (Yes
 # Set Up SSH Key
 if [ ! -f ~/.ssh/"$key_title" ]; then
   # Generate an Ed25519 SSH key pair
-  ssh-keygen -f ~/.ssh/"$key_title" -C "$email"
+  ssh-keygen -f ~/.ssh/"$key_title" -C "$email" -N ""
   # Check if an SSH key pair already exists
   eval "$(ssh-agent -s)"
   ssh-add ~/.ssh/"$key_title"
 else
   echo -e "${YELLOW}SSH key already exists. Skipping SSH key generation. Adding SSH key to SSH-agent${ENDCOLOR}."
+  eval "$(ssh-agent -s)"
   ssh-add ~/.ssh/"$key_title"
 fi
 
